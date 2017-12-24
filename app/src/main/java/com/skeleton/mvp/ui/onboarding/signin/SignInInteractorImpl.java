@@ -4,6 +4,7 @@ import com.skeleton.mvp.data.model.CommonResponse;
 import com.skeleton.mvp.data.network.ApiError;
 import com.skeleton.mvp.data.network.ResponseResolver;
 import com.skeleton.mvp.data.network.RestClient;
+import com.skeleton.mvp.ui.base.BaseInteractorImpl;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,10 +13,10 @@ import java.util.Map;
  * Developer: Click Labs
  */
 
-public class SignInInteractorImpl implements SignInInteractor {
+public class SignInInteractorImpl extends BaseInteractorImpl implements SignInInteractor {
 
     @Override
-    public void login(final String email, final String password, final SignInListener signInListener) {
+    public void login(final String email, final String password, final ApiListener mApiListener) {
 
         Map<String, String> map = new HashMap<>();
 
@@ -26,20 +27,18 @@ public class SignInInteractorImpl implements SignInInteractor {
 
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
-                signInListener.onSignInSuccess(commonResponse);
+                mApiListener.onSuccess(commonResponse);
             }
 
             @Override
             public void onError(final ApiError error) {
-                signInListener.onSignInFailed(error, null);
+                mApiListener.onFailure(error, null);
             }
 
             @Override
             public void onFailure(final Throwable throwable) {
-                signInListener.onSignInFailed(null, throwable);
+                mApiListener.onFailure(null, throwable);
             }
-
-
         });
     }
 }

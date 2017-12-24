@@ -1,42 +1,18 @@
 package com.skeleton.mvp.ui.onboarding.signin;
 
-import com.skeleton.mvp.data.model.CommonResponse;
-import com.skeleton.mvp.data.network.ApiError;
+import com.skeleton.mvp.ui.base.BaseInteractor;
 
 /**
  * Developer: Click Labs
  */
-
-public interface SignInInteractor {
+public interface SignInInteractor extends BaseInteractor {
 
     /**
      * Do login
      *
-     * @param email          the provided email
-     * @param password       the provided password
-     * @param signInListener the sign in listener
+     * @param email        the provided email
+     * @param password     the provided password
+     * @param mApiListener the m api listener
      */
-    void login(String email, String password, SignInListener signInListener);
-
-    /**
-     * SignIn listener
-     */
-    interface SignInListener {
-
-        /**
-         * On SignIn success
-         *
-         * @param commonResponse the parsed common response object
-         */
-        void onSignInSuccess(CommonResponse commonResponse);
-
-        /**
-         * On SignIn failed
-         *
-         * @param apiError  the parsed api error if any
-         * @param throwable the generated throwable if any
-         */
-        void onSignInFailed(final ApiError apiError, final Throwable throwable);
-    }
-
+    void login(String email, String password, BaseInteractor.ApiListener mApiListener);
 }

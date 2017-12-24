@@ -8,6 +8,10 @@ import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.skeleton.mvp.MyApplication;
+import com.skeleton.mvp.data.model.CommonResponse;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -134,6 +138,28 @@ public final class CommonUtil {
         }
         bytes = output.toByteArray();
         return Base64.encodeToString(bytes, Base64.DEFAULT);
+    }
+
+    /**
+     * Gets mock response.
+     *
+     * @param fileName the file name
+     * @return the mock response
+     */
+    public static CommonResponse getMockResponse(final String fileName) {
+        try {
+            InputStream is = MyApplication.getAppContext().getAssets().open(fileName + ".json");
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            String bufferString = new String(buffer);
+            Gson gson = new Gson();
+            return gson.fromJson(bufferString, CommonResponse.class);
+        } catch (final Exception e) {
+            e.printStackTrace();
+            return new CommonResponse();
+        }
     }
 
 }

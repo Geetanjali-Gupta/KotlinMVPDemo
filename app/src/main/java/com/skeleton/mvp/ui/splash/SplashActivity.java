@@ -3,14 +3,18 @@ package com.skeleton.mvp.ui.splash;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
+import android.view.View;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
+import com.skeleton.mvp.BuildConfig;
 import com.skeleton.mvp.R;
 import com.skeleton.mvp.ui.base.BaseActivity;
+import com.skeleton.mvp.ui.customview.ProgressWheel;
 
 
 /**
@@ -20,12 +24,17 @@ import com.skeleton.mvp.ui.base.BaseActivity;
 public class SplashActivity extends BaseActivity implements SplashView {
 
     private static final int REQ_CODE_PLAY_SERVICES_RESOLUTION = 1000;
+    private static final int REQ_CODE_PLAY_STORE = 1001;
     private SplashPresenter mSplashPresenter;
+    private ProgressWheel progressWheel;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        progressWheel = findViewById(R.id.progressWheel);
 
         mSplashPresenter = new SplashPresenterImpl(this);
         mSplashPresenter.onAttach();
@@ -99,12 +108,89 @@ public class SplashActivity extends BaseActivity implements SplashView {
     }
 
     @Override
+    public void navigateToHomeScreen() {
+        //its called when access token login api success
+        //navigate to dashboard/home screen of the application
+    }
+
+    @Override
+    public void navigateToWelcomeScreen() {
+        //its called when access token login fails or access token is null or empty
+        //navigate to welcome screen of the application or show login or sign up options
+    }
+
+    @Override
+    public void showAppUpdateDialog(final String updateTitle, final String updateMessage, final boolean isCriticalUpdate) {
+        AlertDialog.Builder mBuilder = new AlertDialog.Builder(SplashActivity.this);
+        mBuilder.setTitle(updateTitle);
+        mBuilder.setMessage(updateMessage);
+        mBuilder.setPositiveButton(R.string.text_update, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(final DialogInterface dialogInterface, final int i) {
+                openPlayStoreForAppUpdate();
+            }
+        });
+        if (!isCriticalUpdate) {
+            mBuilder.setNegativeButton(R.string.text_cancel, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(final DialogInterface dialogInterface, final int i) {
+                    mSplashPresenter.checkAccessToken();
+                }
+            });
+        }
+        mBuilder.setCancelable(false);
+        mBuilder.show();
+    }
+
+    @Override
+    public void showProgress() {
+        progressWheel.setVisibility(View.VISIBLE);
+        progressWheel.spin();
+    }
+
+    @Override
+    public void hideProgress() {
+        progressWheel.stopSpinning();
+        progressWheel.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onFcmTokenReceived() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                mSplashPresenter.checkAppVersion();
+            }
+        });
+    }
+
+    @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // handles play service resolution
-        if (requestCode == REQ_CODE_PLAY_SERVICES_RESOLUTION) {
-            mSplashPresenter.registerForFcmToken();
+        switch (requestCode) {
+            case REQ_CODE_PLAY_SERVICES_RESOLUTION:
+                mSplashPresenter.registerForFcmToken();
+                break;
+            case REQ_CODE_PLAY_STORE:
+                mSplashPresenter.checkAppVersion();
+                break;
+            default:
+                break;
+        }
+    }
+
+    /**
+     * Open play store.
+     */
+    private void openPlayStoreForAppUpdate() {
+        final Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse("market://details?id=" + BuildConfig.APPLICATION_ID));
+        try {
+            startActivityForResult(intent, REQ_CODE_PLAY_STORE);
+        } catch (final Exception e) {
+            intent.setData(Uri.parse("https://play.google.com/store/apps/details?id=" + BuildConfig.APPLICATION_ID));
+            startActivityForResult(intent, REQ_CODE_PLAY_STORE);
         }
     }
 }

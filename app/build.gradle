@@ -26,7 +26,7 @@ check.dependsOn('checkstyle')
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '26.0.2'
+    buildToolsVersion '27.0.2'
 
     /**
      * Define you Project Name here
@@ -96,7 +96,7 @@ android {
 
 ext {
     supportLibraryVersion = "27.0.2"
-    playServicesVersion = "11.6.2"
+    playServicesVersion = "11.8.0"
 }
 
 dependencies {
@@ -133,7 +133,7 @@ dependencies {
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
 
     //facebook
-    implementation 'com.facebook.android:facebook-android-sdk:4.28.0'
+    implementation 'com.facebook.android:facebook-android-sdk:4.29.0'
 
     //multi picker
     implementation 'com.kbeanie:multipicker:1.1.31@aar'

@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.model.CommonResponse;
 import com.skeleton.mvp.data.network.ApiError;
+import com.skeleton.mvp.ui.base.BaseInteractor;
 import com.skeleton.mvp.ui.base.BasePresenterImpl;
 import com.skeleton.mvp.util.ValidationUtil;
 
@@ -44,14 +45,14 @@ public class SignInPresenterImpl extends BasePresenterImpl implements SignInPres
         }
 
         mSignInView.showLoading();
-        mSignInInteractor.login(email, password, new SignInInteractor.SignInListener() {
+        mSignInInteractor.login(email, password, new BaseInteractor.ApiListener() {
             @Override
-            public void onSignInSuccess(final CommonResponse commonResponse) {
+            public void onSuccess(final CommonResponse commonResponse) {
                 //todo handle success
             }
 
             @Override
-            public void onSignInFailed(final ApiError apiError, final Throwable throwable) {
+            public void onFailure(final ApiError apiError, final Throwable throwable) {
 
                 if (isViewAttached()) {
                     mSignInView.hideLoading();

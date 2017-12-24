@@ -14,6 +14,16 @@ public interface SplashPresenter extends BasePresenter {
     void init();
 
     /**
+     * Check app version.
+     */
+    void checkAppVersion();
+
+    /**
+     * Check access token.
+     */
+    void checkAccessToken();
+
+    /**
      * Registers for fcm token
      */
     void registerForFcmToken();

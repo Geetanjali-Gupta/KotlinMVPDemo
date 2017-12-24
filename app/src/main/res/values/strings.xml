@@ -36,6 +36,7 @@
     <string name="text_ok">Ok</string>
     <string name="text_proceed">Proceed</string>
     <string name="text_loading">Loading…</string>
+    <string name="text_update">Update</string>
 
     <!-- Sign In -->
     <string name="error_invalid_email">Please enter valid email address.</string>

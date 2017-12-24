@@ -8,6 +8,7 @@ import io.paperdb.Paper;
 public final class CommonData {
 
     private static final String PAPER_DEVICE_TOKEN = "paper_device_token";
+    private static final String PAPER_ACCESS_TOKEN = "paper_access_token";
 
     /**
      * Prevent instantiation
@@ -15,6 +16,7 @@ public final class CommonData {
     private CommonData() {
     }
 
+    //=================================== FCM Token ==================================
     /**
      * Update fcm token.
      *
@@ -31,6 +33,36 @@ public final class CommonData {
      */
     public static String getFcmToken() {
         return Paper.book().read(PAPER_DEVICE_TOKEN);
+    }
+
+
+    //=================================== Access Token ===============================
+    /**
+     * Save access token.
+     *
+     * @param accessToken the access token
+     */
+    public static void saveAccessToken(final String accessToken) {
+        Paper.book().write(PAPER_ACCESS_TOKEN, "bearer " + accessToken);
+    }
+
+    /**
+     * Gets access token.
+     *
+     * @return the access token
+     */
+    public static String getAccessToken() {
+        return Paper.book().read(PAPER_ACCESS_TOKEN);
+    }
+
+
+    /**
+     * Clear data.
+     */
+    public static void clearData() {
+        String fcmToken = getFcmToken();
+        Paper.book().destroy();
+        updateFcmToken(fcmToken);
     }
 
 }

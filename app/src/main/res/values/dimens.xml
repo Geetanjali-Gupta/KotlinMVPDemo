@@ -25,6 +25,7 @@
     <!-- Custom views dimen -->
     <dimen name="dialog_progress_wheel_width_height">70dp</dimen>
     <dimen name="screen_padding">@dimen/spacing_normal</dimen>
+    <dimen name="progress_wheel_radius">60dp</dimen>
 
 
     <!--met editext-->

@@ -4,7 +4,6 @@ import com.skeleton.mvp.data.network.ApiError;
 
 /**
  * Developer: Click Labs
- *
  */
 public interface BaseView {
 
@@ -42,6 +41,14 @@ public interface BaseView {
     /**
      * Show error message.
      *
+     * @param stringId               the string id
+     * @param mOnErrorHandleCallback the m on error handle callback
+     */
+    void showErrorMessage(int stringId, OnErrorHandleCallback mOnErrorHandleCallback);
+
+    /**
+     * Show error message.
+     *
      * @param apiError the api error
      */
     void showErrorMessage(ApiError apiError);
@@ -68,6 +75,12 @@ public interface BaseView {
      * @param mOnErrorHandleCallback the m on error handle callback
      */
     void showErrorMessage(String message, OnErrorHandleCallback mOnErrorHandleCallback);
+
+    /**
+     * Restart app.
+     */
+    void restartApp();
+
 
     /**
      * The interface On error handle callback.

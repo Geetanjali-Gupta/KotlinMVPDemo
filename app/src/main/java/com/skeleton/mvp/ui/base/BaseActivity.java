@@ -31,7 +31,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
 /**
  * Developer: Click Labs
- *
+ * <p>
  * Base Activity
  */
 
@@ -92,6 +92,12 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
         showErrorMessage(getString(resId), null);
     }
 
+
+    @Override
+    public void showErrorMessage(final int resId, final OnErrorHandleCallback mOnErrorHandleCallback) {
+        showErrorMessage(getString(resId), mOnErrorHandleCallback);
+    }
+
     @Override
     public void showErrorMessage(final String errorMessage) {
         showErrorMessage(errorMessage, null);
@@ -112,6 +118,11 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
                 .show();
     }
 
+    @Override
+    public void restartApp() {
+
+    }
+
 
     @Override
     public void showErrorMessage(final ApiError apiError) {
@@ -122,8 +133,8 @@ public abstract class BaseActivity extends AppCompatActivity implements BaseView
     public void showErrorMessage(final ApiError apiError, final OnErrorHandleCallback mOnErrorHandleCallback) {
         if (apiError != null) {
             if (apiError.getStatusCode() == AppConstant.SESSION_EXPIRED) {
-                //todo handle session expired case
                 CommonUtil.showToast(this, getString(R.string.error_session_expired));
+                restartApp();
             } else {
                 showErrorMessage(apiError.getMessage(), mOnErrorHandleCallback);
             }

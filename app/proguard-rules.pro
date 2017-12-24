@@ -41,12 +41,12 @@
 -dontwarn okhttp3.**
 
 #paper Db
--keep class com.skeleton.mvpbase.model.** { *; }
+-keep class com.skeleton.mvp.data.model.** { *; }
 
 -keep class org.objenesis.** { *; }
 -keep interface org.objenesis.** { *; }
 -dontwarn org.objenesis.**
--keep class com.skeleton.mvpbase.network.ApiError { *; }
+-keep class com.skeleton.mvp.data.network.ApiError { *; }
 # Preserve opentok streaming dependencies
 #-keep class com.opentok.** { *; }
 #-keep class org.webrtc.** { *; }
