@@ -12,6 +12,7 @@ public final class AppConstant {
 
     //status code
     public static final int SESSION_EXPIRED = 401;
+    public static final int FB_USER_NOT_REGISTERED = SESSION_EXPIRED;
 
     /**
      * Prevent instantiation
