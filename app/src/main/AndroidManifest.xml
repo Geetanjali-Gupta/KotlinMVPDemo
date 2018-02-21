@@ -29,11 +29,6 @@
             android:theme="@style/AppTheme.Launcher"
             android:windowSoftInputMode="stateHidden">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
 
         <activity
@@ -68,11 +63,23 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".ui.invite.InviteActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
 
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="${fabric_key}" />
+        <!-- Used for Google Play Store Campaign Measurement-->
+        <receiver android:name=".ui.invite.ReferralInstallBroadcastReceiver">
+            <intent-filter>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
+            </intent-filter>
+        </receiver>
     </application>
-
 
 </manifest>

@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "505853294760",
-    "firebase_url": "https://mvp-base.firebaseio.com",
-    "project_id": "mvp-base",
-    "storage_bucket": "mvp-base.appspot.com"
+    "project_number": "570651038601",
+    "firebase_url": "https://dynamiclinkdemo-70519.firebaseio.com",
+    "project_id": "dynamiclinkdemo-70519",
+    "storage_bucket": "dynamiclinkdemo-70519.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:505853294760:android:a7b046b98df5f528",
+        "mobilesdk_app_id": "1:570651038601:android:a7b046b98df5f528",
         "android_client_info": {
           "package_name": "com.skeleton.mvp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "505853294760-vlj5a4hch79q62kvtkae7budadrjjqdo.apps.googleusercontent.com",
+          "client_id": "570651038601-tsnqc65nj0o631geg2b37r4a1rd7uql0.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAJ1ljqVwrDMUKaa-KdxoOfprwbjcSlfoY"
+          "current_key": "AIzaSyBqjYmXVAreA36UhiNtijsrUg2n4zhAbJw"
         }
       ],
       "services": {

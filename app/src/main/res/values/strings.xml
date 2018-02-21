@@ -50,5 +50,8 @@
         \n<b>3.</b> Replace google-services.json file.
     </string>
 
-
+    <string name="tell_friends">Tell your friends about our great services\n and earn rewards toward future rides.</string>
+    <string name="has_send_you_a_referral_link">Hi your friend has send you a referral link, to Sign Up for Demo App </string>
+    <string name="invite">Invite</string>
+    <string name="share">Share</string>
 </resources>

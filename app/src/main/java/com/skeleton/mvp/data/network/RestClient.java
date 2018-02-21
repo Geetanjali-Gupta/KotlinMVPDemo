@@ -27,7 +27,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Developer: Click Labs
- *
+ * <p>
  * Rest Client
  */
 public final class RestClient {
@@ -55,6 +55,23 @@ public final class RestClient {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BuildConfig.BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(httpClient().build())
+                    //.client(secureConnection().build())
+                    .build();
+        }
+        return retrofit.create(ApiInterface.class);
+    }
+
+    /**
+     * Gets api interface.
+     *
+     * @return object of ApiInterface
+     */
+    public static ApiInterface getFirebaseApiInterface() {
+        if (retrofit == null) {
+            retrofit = new Retrofit.Builder()
+                    .baseUrl(BuildConfig.FIREBASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .client(httpClient().build())
                     //.client(secureConnection().build())

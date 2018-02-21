@@ -1,0 +1,13 @@
+
+/******* Test ReferralCode while Debugging *******/
+
+
+1. cd /Users/clicklabs/Library/Android/sdk/platform-tools/
+
+
+2. echo 'am broadcast \
+    -a com.android.vending.INSTALL_REFERRER \
+    -n "com.skeleton.mvp/com.skeleton.mvp.ui.invite.ReferralInstallBroadcastReceiver" \
+    --es "referrer" \
+      "utm_source=test_source&utm_medium=test_medium&utm_term=test_term&utm_content=test_content&utm_campaign=test_name"; \
+    exit' | ./adb shell

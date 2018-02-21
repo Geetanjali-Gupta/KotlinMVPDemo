@@ -72,16 +72,19 @@ android {
     productFlavors {
         dev {
             buildConfigField 'String', 'BASE_URL', '"YOUR DEV URL"'
+            buildConfigField 'String', 'FIREBASE_URL', '"https://firebasedynamiclinks.googleapis.com/"'
             buildConfigField 'boolean', 'WATER_MARK', 'true'
 
         }
         qa {
             buildConfigField 'String', 'BASE_URL', '"YOUR TEST URL"'
+            buildConfigField 'String', 'FIREBASE_URL', '"https://firebasedynamiclinks.googleapis.com/"'
             buildConfigField 'boolean', 'WATER_MARK', 'true'
 
         }
         live {
             buildConfigField 'String', 'BASE_URL', '"YOUR_LIVE_URL"'
+            buildConfigField 'String', 'FIREBASE_URL', '"https://firebasedynamiclinks.googleapis.com/"'
             buildConfigField 'boolean', 'WATER_MARK', 'false'
 
         }
@@ -112,6 +115,7 @@ dependencies {
     implementation "com.android.support:cardview-v7:$supportLibraryVersion"
     implementation "com.android.support:recyclerview-v7:$supportLibraryVersion"
     implementation "com.android.support:design:$supportLibraryVersion"
+    implementation "com.google.android.gms:play-services-analytics:$playServicesVersion"
 
     //android FCM dependencies
     implementation "com.google.firebase:firebase-messaging:$playServicesVersion"
