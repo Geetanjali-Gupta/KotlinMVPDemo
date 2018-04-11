@@ -41,7 +41,10 @@
     <!-- Sign In -->
     <string name="error_invalid_email">Please enter valid email address.</string>
     <string name="error_invalid_password">Please enter valid password.</string>
+    <string name="error_invalid_phone_number">Please enter a valid phone number.</string>
     <string name="txt_sign_in">Sign In</string>
+    <string name="enter_phone_number_to_continue">Enter your phone no. to continue…</string>
+    <string name="txt_hint_enter_phone_number">Enter Phone Number</string>
     <string name="txt_hint_enter_email_id">Enter Email ID</string>
     <string name="txt_hint_enter_password">Password</string>
     <string name="text_start_tutorial_msg">Welcome to MVP Base Project.
@@ -54,4 +57,13 @@
     <string name="has_send_you_a_referral_link">Hi your friend has send you a referral link, to Sign Up for Demo App </string>
     <string name="invite">Invite</string>
     <string name="share">Share</string>
+
+
+    <!-- Landing Activity-->
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+
+    <!-- Sign Up Activity-->
+    <string name="txt_display_sign_up_msg">Sign up to Digitech group to continue!</string>
+    <string name="txt_sign_up">Sign Up</string>
 </resources>

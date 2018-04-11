@@ -2,14 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg">
 
-    <android.support.v7.widget.AppCompatTextView
-        android:layout_width="match_parent"
+
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/text_start_tutorial_msg"
-        android:textColor="@color/pure_black"
-        android:textSize="@dimen/font_large" />
+        android:layout_centerInParent="true"
+        android:src="@mipmap/logo" />
 
     <com.skeleton.mvp.ui.customview.ProgressWheel
         android:id="@+id/progressWheel"
@@ -20,6 +21,4 @@
         android:layout_margin="@dimen/spacing_normal"
         android:visibility="gone"
         app:matProg_barColor="@color/colorPrimary" />
-
-
 </RelativeLayout>

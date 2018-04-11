@@ -1,5 +1,6 @@
 package com.skeleton.mvp.ui.onboarding.signin;
 
+import com.skeleton.mvp.data.model.CommonResponse;
 import com.skeleton.mvp.ui.base.BasePresenter;
 
 /**
@@ -11,8 +12,14 @@ public interface SignInPresenter extends BasePresenter {
     /**
      * On SignIn clicked
      *
-     * @param email    the provided email
-     * @param password the provided password
+     * @param phoneNumber the provided email
      */
-    void onSignInClicked(final String email, final String password);
+    void onSignInClicked(final String phoneNumber);
+
+    /**
+     * On sign in success.
+     *
+     * @param commonResponse the common response
+     */
+    void onSignInSuccess(CommonResponse commonResponse);
 }

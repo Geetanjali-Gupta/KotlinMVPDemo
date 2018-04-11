@@ -1,15 +1,18 @@
 package com.skeleton.mvp.ui.splash;
 
 import com.skeleton.mvp.BuildConfig;
+import com.skeleton.mvp.data.DataManager;
+import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.model.AppVersion;
 import com.skeleton.mvp.data.model.CommonResponse;
 import com.skeleton.mvp.data.network.ApiError;
+import com.skeleton.mvp.data.network.ApiHelper;
 import com.skeleton.mvp.fcm.FcmTokenInterface;
 import com.skeleton.mvp.fcm.MyFirebaseInstanceIdService;
-import com.skeleton.mvp.ui.base.BaseInteractor;
 import com.skeleton.mvp.ui.base.BasePresenterImpl;
 import com.skeleton.mvp.ui.base.BaseView;
 import com.skeleton.mvp.util.AppConstant;
+import com.skeleton.mvp.util.Log;
 import com.skeleton.mvp.util.RootUtil;
 
 /**
@@ -19,16 +22,18 @@ import com.skeleton.mvp.util.RootUtil;
 class SplashPresenterImpl extends BasePresenterImpl implements SplashPresenter, FcmTokenInterface {
 
     private SplashView mSplashView;
-    private SplashInteractor mSplashInteractor;
+    private DataManager mDataManager;
 
     /**
      * Constructor
      *
-     * @param splashView the associated splash view
+     * @param splashView   the associated splash view
+     * @param mDataManager the m data manager
      */
-    SplashPresenterImpl(final SplashView splashView) {
-        mSplashView = splashView;
-        mSplashInteractor = new SplashInteractorImpl();
+    SplashPresenterImpl(final SplashView splashView,
+                        final DataManagerImpl mDataManager) {
+        this.mSplashView = splashView;
+        this.mDataManager = mDataManager;
     }
 
     @Override
@@ -36,6 +41,7 @@ class SplashPresenterImpl extends BasePresenterImpl implements SplashPresenter, 
 
         // check for root
         if (RootUtil.isDeviceRooted()) {
+            Log.e("Device", " Rooted");
             mSplashView.showDeviceRootedAlert(new RootConfirmationListener() {
                 @Override
                 public void onProceed() {
@@ -49,6 +55,7 @@ class SplashPresenterImpl extends BasePresenterImpl implements SplashPresenter, 
             });
         } else {
             registerForFcmToken();
+            Log.e("Device", "Not Rooted");
         }
 
     }
@@ -56,9 +63,9 @@ class SplashPresenterImpl extends BasePresenterImpl implements SplashPresenter, 
     @Override
     public void checkAppVersion() {
         if (isViewAttached()) {
-            mSplashView.showProgress();
+            mSplashView.showProgressBar();
         }
-        mSplashInteractor.getCurrentAppVersion(new BaseInteractor.ApiListener() {
+        mDataManager.apiCallToGetAppVersion(new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
                 if (isViewAttached()) {
@@ -71,7 +78,7 @@ class SplashPresenterImpl extends BasePresenterImpl implements SplashPresenter, 
                         isUpdateFound = true;
                     }
                     if (isUpdateFound) {
-                        mSplashView.hideProgress();
+                        mSplashView.hideProgressBar();
                         mSplashView.showAppUpdateDialog(updateTitle, updateMessage,
                                 mAppVersion.getCriticalAndroidVersion() > BuildConfig.VERSION_CODE);
                     } else {
@@ -83,7 +90,7 @@ class SplashPresenterImpl extends BasePresenterImpl implements SplashPresenter, 
             @Override
             public void onFailure(final ApiError apiError, final Throwable throwable) {
                 if (isViewAttached()) {
-                    mSplashView.hideProgress();
+                    mSplashView.hideProgressBar();
                     if (apiError != null) {
                         mSplashView.showErrorMessage(apiError.getMessage(), new BaseView.OnErrorHandleCallback() {
                             @Override
@@ -106,21 +113,22 @@ class SplashPresenterImpl extends BasePresenterImpl implements SplashPresenter, 
 
     @Override
     public void checkAccessToken() {
-        String accessToken = mSplashInteractor.getAccessToken();
+        String accessToken = mDataManager.getAccessToken();
         if (accessToken == null || accessToken.isEmpty()) {
             if (isViewAttached()) {
-                mSplashView.hideProgress();
+                mSplashView.hideProgressBar();
                 mSplashView.navigateToWelcomeScreen();
             }
         } else {
             if (isViewAttached()) {
-                mSplashView.showProgress();
+                mSplashView.showProgressBar();
             }
-            mSplashInteractor.accessTokenLogin(new BaseInteractor.ApiListener() {
+
+            mDataManager.apiCallForAccessTokenLogin(new ApiHelper.ApiListener() {
                 @Override
                 public void onSuccess(final CommonResponse commonResponse) {
                     if (isViewAttached()) {
-                        mSplashView.hideProgress();
+                        mSplashView.hideProgressBar();
                         mSplashView.navigateToHomeScreen();
                     }
                 }
@@ -128,11 +136,11 @@ class SplashPresenterImpl extends BasePresenterImpl implements SplashPresenter, 
                 @Override
                 public void onFailure(final ApiError apiError, final Throwable throwable) {
                     if (isViewAttached()) {
-                        mSplashView.hideProgress();
+                        mSplashView.hideProgressBar();
                         if (apiError != null) {
                             if (apiError.getStatusCode() == AppConstant.SESSION_EXPIRED) {
-                                mSplashInteractor.clearSessionManager();
-                                mSplashView.navigateToWelcomeScreen();
+                                mDataManager.clearSessionManager();
+                                mSplashView.navigateToHomeScreen();
                             } else {
                                 mSplashView.showErrorMessage(apiError.getMessage(), new BaseView.OnErrorHandleCallback() {
                                     @Override
@@ -173,7 +181,7 @@ class SplashPresenterImpl extends BasePresenterImpl implements SplashPresenter, 
 
     @Override
     public void onTokenReceived(final String token) {
-        mSplashInteractor.saveFcmToken(token);
+        mDataManager.saveFcmToken(token);
         if (isViewAttached()) {
             mSplashView.onFcmTokenReceived();
         }

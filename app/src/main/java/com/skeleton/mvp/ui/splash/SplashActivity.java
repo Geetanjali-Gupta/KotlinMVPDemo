@@ -13,8 +13,11 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.skeleton.mvp.BuildConfig;
 import com.skeleton.mvp.R;
+import com.skeleton.mvp.data.DataManagerImpl;
+import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.BaseActivity;
 import com.skeleton.mvp.ui.customview.ProgressWheel;
+import com.skeleton.mvp.ui.onboarding.landing.LandingActivity;
 
 
 /**
@@ -36,7 +39,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
 
         progressWheel = findViewById(R.id.progressWheel);
 
-        mSplashPresenter = new SplashPresenterImpl(this);
+        mSplashPresenter = new SplashPresenterImpl(this, new DataManagerImpl(RestClient.getRetrofitBuilder()));
         mSplashPresenter.onAttach();
         mSplashPresenter.init();
 
@@ -117,6 +120,9 @@ public class SplashActivity extends BaseActivity implements SplashView {
     public void navigateToWelcomeScreen() {
         //its called when access token login fails or access token is null or empty
         //navigate to welcome screen of the application or show login or sign up options
+        Intent landingActivity = new Intent(this, LandingActivity.class);
+        startActivity(landingActivity);
+        finish();
     }
 
     @Override
@@ -143,13 +149,13 @@ public class SplashActivity extends BaseActivity implements SplashView {
     }
 
     @Override
-    public void showProgress() {
+    public void showProgressBar() {
         progressWheel.setVisibility(View.VISIBLE);
         progressWheel.spin();
     }
 
     @Override
-    public void hideProgress() {
+    public void hideProgressBar() {
         progressWheel.stopSpinning();
         progressWheel.setVisibility(View.GONE);
     }
@@ -159,7 +165,8 @@ public class SplashActivity extends BaseActivity implements SplashView {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                mSplashPresenter.checkAppVersion();
+                navigateToWelcomeScreen();
+                //mSplashPresenter.checkAppVersion();
             }
         });
     }

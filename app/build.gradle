@@ -13,6 +13,12 @@ apply plugin: 'io.fabric'
 repositories {
     maven { url 'https://maven.fabric.io/public' }
 }
+allprojects {
+    repositories {
+        jcenter()
+        maven { url "https://jitpack.io" }
+    }
+}
 
 
 apply plugin: 'kotlin-android'
@@ -31,7 +37,7 @@ android {
     /**
      * Define you Project Name here
      */
-    def appName = 'MVP Base'
+    def appName = 'Digi Tech'
 
     /**
      * For Internal user only
@@ -39,7 +45,7 @@ android {
     def APP_NAME = '\"' + (System.getenv("APP_NAME") ?: appName) + '\"'
 
     defaultConfig {
-        applicationId "com.skeleton.mvp"
+        applicationId "com.digitech.cp"
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 100
@@ -71,7 +77,7 @@ android {
 
     productFlavors {
         dev {
-            buildConfigField 'String', 'BASE_URL', '"YOUR DEV URL"'
+            buildConfigField 'String', 'BASE_URL', '"http://35.178.52.239:3000/"'
             buildConfigField 'String', 'FIREBASE_URL', '"https://firebasedynamiclinks.googleapis.com/"'
             buildConfigField 'boolean', 'WATER_MARK', 'true'
 
@@ -98,13 +104,14 @@ android {
 }
 
 ext {
-    supportLibraryVersion = "27.0.2"
-    playServicesVersion = "11.8.0"
+    supportLibraryVersion = "27.1.1"
+    playServicesVersion = "12.0.1"
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -121,8 +128,8 @@ dependencies {
     implementation "com.google.firebase:firebase-messaging:$playServicesVersion"
 
     // retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
 
     // map and location dependencies
@@ -137,7 +144,7 @@ dependencies {
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
 
     //facebook
-    implementation 'com.facebook.android:facebook-android-sdk:4.29.0'
+    implementation 'com.facebook.android:facebook-android-sdk:4.31.0'
 
     //multi picker
     implementation 'com.kbeanie:multipicker:1.1.31@aar'
@@ -145,7 +152,7 @@ dependencies {
     //for cropping
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.3.+'
 
-
+    implementation 'com.github.joielechong:countrycodepicker:2.1.5'
     compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true;
     }

@@ -9,6 +9,9 @@ import android.util.Patterns;
 
 public final class ValidationUtil {
 
+    private static final String REGEX_ALL_DIGITS = "\\d+";
+    private static final int PHONE_NUMBER_MIN_LENGTH = 7;
+    private static final int PHONE_NUMBER_MAX_LENGTH = 12;
     private static final int PASSWORD_LENGTH = 6;
 
     /**
@@ -43,5 +46,20 @@ public final class ValidationUtil {
         return true;
     }
 
-
+    /**
+     * Check phone number boolean.
+     *
+     * @param phoneNumber the phone number
+     * @return the boolean
+     */
+    public static boolean checkPhoneNumber(final String phoneNumber) {
+        if (phoneNumber == null) {
+            return false;
+        }
+        if (!phoneNumber.matches(REGEX_ALL_DIGITS)) {
+            return false;
+        }
+        final int phoneNumberLength = phoneNumber.length();
+        return phoneNumberLength >= PHONE_NUMBER_MIN_LENGTH && phoneNumberLength <= PHONE_NUMBER_MAX_LENGTH;
+    }
 }

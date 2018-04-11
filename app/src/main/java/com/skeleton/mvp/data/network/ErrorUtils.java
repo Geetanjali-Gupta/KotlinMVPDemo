@@ -5,10 +5,11 @@ import java.lang.annotation.Annotation;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Response;
+import retrofit2.Retrofit;
 
 /**
  * Developer: Click Labs
- *
+ * <p>
  * Error Utils
  */
 final class ErrorUtils {
@@ -24,11 +25,12 @@ final class ErrorUtils {
     /**
      * Parses error from the api response
      *
-     * @param response the api response
+     * @param mRetrofit the m retrofit
+     * @param response  the api response
      * @return parsed instance of ApiError
      */
-    static ApiError parseError(final Response<?> response) {
-        Converter<ResponseBody, ApiError> converter = RestClient.getRetrofitBuilder().responseBodyConverter(ApiError.class, new Annotation[0]);
+    static ApiError parseError(final Retrofit mRetrofit, final Response<?> response) {
+        Converter<ResponseBody, ApiError> converter = mRetrofit.responseBodyConverter(ApiError.class, new Annotation[0]);
         ApiError error;
         try {
             if (response.errorBody() != null) {

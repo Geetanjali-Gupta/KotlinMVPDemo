@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "570651038601",
-    "firebase_url": "https://dynamiclinkdemo-70519.firebaseio.com",
-    "project_id": "dynamiclinkdemo-70519",
-    "storage_bucket": "dynamiclinkdemo-70519.appspot.com"
+    "project_number": "670037917004",
+    "firebase_url": "https://digi-tech-1459e.firebaseio.com",
+    "project_id": "digi-tech-1459e",
+    "storage_bucket": "digi-tech-1459e.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:570651038601:android:a7b046b98df5f528",
+        "mobilesdk_app_id": "1:670037917004:android:b4b240653ba5293f",
         "android_client_info": {
-          "package_name": "com.skeleton.mvp"
+          "package_name": "com.digitech.cp"
         }
       },
       "oauth_client": [
         {
-          "client_id": "570651038601-tsnqc65nj0o631geg2b37r4a1rd7uql0.apps.googleusercontent.com",
+          "client_id": "670037917004-f0o6d23je6vkt277qrshon50f60vtm4i.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBqjYmXVAreA36UhiNtijsrUg2n4zhAbJw"
+          "current_key": "AIzaSyBZ-TFq4Nl0frEoxVD6kDxB5kqJZP_VfOQ"
         }
       ],
       "services": {

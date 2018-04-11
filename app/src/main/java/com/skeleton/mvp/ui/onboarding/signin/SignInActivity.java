@@ -6,6 +6,8 @@ import android.support.v7.widget.AppCompatEditText;
 import android.view.View;
 
 import com.skeleton.mvp.R;
+import com.skeleton.mvp.data.DataManagerImpl;
+import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.BaseActivity;
 
 
@@ -14,7 +16,7 @@ import com.skeleton.mvp.ui.base.BaseActivity;
  */
 public class SignInActivity extends BaseActivity implements View.OnClickListener, SignInView {
 
-    private AppCompatEditText etEmail, etPassword;
+    private AppCompatEditText etPhone, etPassword;
     private SignInPresenter mSignInPresenter;
 
     @Override
@@ -22,7 +24,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         init();
-        mSignInPresenter = new SignInPresenterImpl(this);
+        mSignInPresenter = new SignInPresenterImpl(this, new DataManagerImpl(RestClient.getRetrofitBuilder()));
         mSignInPresenter.onAttach();
     }
 
@@ -36,8 +38,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
      * Init the views
      */
     private void init() {
-        etPassword = findViewById(R.id.etPassword);
-        etEmail = findViewById(R.id.etEmail);
+        etPhone = findViewById(R.id.etPhone);
 
         findViewById(R.id.btnSignIn).setOnClickListener(this);
     }
@@ -47,11 +48,16 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     public void onClick(final View v) {
         switch (v.getId()) {
             case R.id.btnSignIn:
-                mSignInPresenter.onSignInClicked(etEmail.getText().toString().trim(),
-                        etPassword.getText().toString().trim());
+                mSignInPresenter.onSignInClicked(etPhone.getText().toString().trim());
                 break;
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onSignInSuccess(final String message) {
+        setResult(RESULT_OK, getIntent());
+        finish();
     }
 }

@@ -54,12 +54,12 @@ public interface SplashView extends BaseView {
     /**
      * Show progress.
      */
-    void showProgress();
+    void showProgressBar();
 
     /**
      * Hide progress.
      */
-    void hideProgress();
+    void hideProgressBar();
 
 
     /**

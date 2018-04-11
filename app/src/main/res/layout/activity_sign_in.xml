@@ -1,34 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    android:padding="@dimen/screen_padding">
+    android:layout_height="match_parent">
 
+    <include layout="@layout/toolbar" />
 
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/etEmail"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:hint="@string/txt_hint_enter_email_id"
-        android:inputType="textEmailAddress" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/screen_padding">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/screen_padding"
+                android:text="@string/enter_phone_number_to_continue"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_xxxlarge" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.rilixtech.CountryCodePicker
+                    android:id="@+id/ccp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/screen_padding"
+                    android:visibility="gone"
+                    app:ccp_showFlag="false"
+                    app:ccp_textSize="@dimen/font_large" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/etPhone"
+                    style="@style/OnBoardingEditText"
+                    android:layout_margin="@dimen/screen_padding"
+                    android:layout_marginTop="@dimen/spacing_xlarge"
+                    android:hint="@string/txt_hint_enter_phone_number"
+                    android:inputType="phone"
+                    android:maxLength="12" />
+            </LinearLayout>
 
 
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:hint="@string/txt_hint_enter_password"
-        android:inputType="textPassword" />
+            <android.support.v7.widget.AppCompatEditText
+                android:id="@+id/etPassword"
+                style="@style/OnBoardingEditText"
+                android:layout_margin="@dimen/screen_padding"
+                android:hint="@string/txt_hint_enter_password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword"
+                android:visibility="gone" />
 
 
-    <android.support.v7.widget.AppCompatButton
-        android:id="@+id/btnSignIn"
-        style="@style/primary_button"
-        android:layout_marginTop="@dimen/spacing_small"
-        android:text="@string/txt_sign_in" />
-
-</android.support.v7.widget.LinearLayoutCompat>
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btnSignIn"
+                style="@style/accent_button"
+                android:layout_marginTop="@dimen/spacing_small"
+                android:text="@string/txt_sign_in" />
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg"
+    tools:context="com.skeleton.mvp.ui.onboarding.landing.LandingActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/logo" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnSignIn"
+            style="@style/primary_button"
+            android:text="@string/sign_in" />
+
+        <Button
+            android:id="@+id/btnSignUp"
+            style="@style/primary_button"
+            android:background="@android:color/transparent"
+            android:text="@string/sign_up"
+            android:textColor="@color/white" />
+    </LinearLayout>
+</RelativeLayout>

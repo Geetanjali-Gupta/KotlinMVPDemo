@@ -102,7 +102,7 @@ public final class RestClient {
      *
      * @return object of Retrofit
      */
-    static Retrofit getRetrofitBuilder() {
+    public static Retrofit getRetrofitBuilder() {
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
                     .baseUrl(BuildConfig.BASE_URL)

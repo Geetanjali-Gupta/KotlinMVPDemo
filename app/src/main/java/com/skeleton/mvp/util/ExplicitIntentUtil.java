@@ -1,0 +1,53 @@
+package com.skeleton.mvp.util;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+
+/**
+ * Created by clicklabs on 11/04/18.
+ */
+
+public final class ExplicitIntentUtil {
+    /**
+     * Prevent instantiation
+     */
+    private ExplicitIntentUtil() {
+    }
+
+    /**
+     * Transit forward to an Activity with some data,leaving current one alive
+     *
+     * @param fromContext current activity
+     * @param toClass     the intended activity
+     * @param reqCode     the request code to look up
+     * @param extras      the data to be tunneled towards the intended activity
+     */
+    public static void startActivityForResult(final Activity fromContext, final Class<?> toClass,
+                                              final int reqCode, final Bundle extras) {
+        Intent intention = new Intent(fromContext, toClass);
+
+        if (extras != null) {
+            intention.putExtras(extras);
+        }
+
+        fromContext.startActivityForResult(intention, reqCode);
+    }
+
+    /**
+     * Transit forward to an Activity with some data,leaving current one alive
+     *
+     * @param fromContext current activity
+     * @param toClass     the intended activity
+     * @param extras      the data to be tunneled towards the intended activity
+     */
+    public static void startActivity(final Activity fromContext, final Class<?> toClass, final Bundle extras) {
+        Intent intention = new Intent(fromContext, toClass);
+
+        if (extras != null) {
+            intention.putExtras(extras);
+        }
+
+        fromContext.startActivity(intention);
+    }
+}

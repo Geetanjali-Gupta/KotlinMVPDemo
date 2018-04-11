@@ -4,9 +4,11 @@ package com.skeleton.mvp.ui.onboarding.signin;
 import android.support.annotation.NonNull;
 
 import com.skeleton.mvp.R;
+import com.skeleton.mvp.data.DataManager;
+import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.model.CommonResponse;
 import com.skeleton.mvp.data.network.ApiError;
-import com.skeleton.mvp.ui.base.BaseInteractor;
+import com.skeleton.mvp.data.network.ApiHelper;
 import com.skeleton.mvp.ui.base.BasePresenterImpl;
 import com.skeleton.mvp.util.ValidationUtil;
 
@@ -17,43 +19,39 @@ import com.skeleton.mvp.util.ValidationUtil;
 public class SignInPresenterImpl extends BasePresenterImpl implements SignInPresenter {
 
     private SignInView mSignInView;
-    private SignInInteractor mSignInInteractor;
+    private DataManager mDataManager;
 
     /**
      * Constructor
      *
-     * @param signInView the associated SignIn view
+     * @param signInView   the associated SignIn view
+     * @param mDataManager the m data manager
      */
-    SignInPresenterImpl(@NonNull final SignInView signInView) {
+    SignInPresenterImpl(@NonNull final SignInView signInView, final DataManagerImpl mDataManager) {
         mSignInView = signInView;
-        mSignInInteractor = new SignInInteractorImpl();
+        this.mDataManager = mDataManager;
 
     }
 
     @Override
-    public void onSignInClicked(final String email, final String password) {
+    public void onSignInClicked(final String phoneNumber) {
 
         // checking for validation
-        if (!ValidationUtil.checkEmail(email)) {
-            mSignInView.showErrorMessage(R.string.error_invalid_email);
-            return;
-        }
-
-        if (!ValidationUtil.checkPassword(password)) {
-            mSignInView.showErrorMessage(R.string.error_invalid_password);
+        if (!ValidationUtil.checkPhoneNumber(phoneNumber)) {
+            mSignInView.showErrorMessage(R.string.error_invalid_phone_number);
             return;
         }
 
         mSignInView.showLoading();
-        mSignInInteractor.login(email, password, new BaseInteractor.ApiListener() {
+        mDataManager.apiCallForLogin(phoneNumber, new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
-                //todo handle success
+                mSignInView.hideLoading();
+                onSignInSuccess(commonResponse);
             }
 
             @Override
             public void onFailure(final ApiError apiError, final Throwable throwable) {
-
                 if (isViewAttached()) {
                     mSignInView.hideLoading();
                     if (apiError != null) {
@@ -68,5 +66,11 @@ public class SignInPresenterImpl extends BasePresenterImpl implements SignInPres
         });
     }
 
-
+    @Override
+    public void onSignInSuccess(final CommonResponse commonResponse) {
+        if (isViewAttached()) {
+            //  mDataManager.saveUserData(commonResponse.toResponseModel(UserData.class));
+            mSignInView.onSignInSuccess(commonResponse.getMessage());
+        }
+    }
 }

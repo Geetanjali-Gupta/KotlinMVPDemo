@@ -9,5 +9,10 @@ import com.skeleton.mvp.ui.base.BaseView;
 
 public interface SignInView extends BaseView {
 
-    // would contain all signIn view methods
+    /**
+     * On sign in success.
+     *
+     * @param message the message
+     */
+    void onSignInSuccess(String message);
 }

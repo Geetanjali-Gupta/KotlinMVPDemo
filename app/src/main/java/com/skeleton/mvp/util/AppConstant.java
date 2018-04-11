@@ -6,6 +6,9 @@ package com.skeleton.mvp.util;
  */
 public final class AppConstant {
 
+    public static final String DEVICE_TYPE = "ANDROID";
+    public static final String ROLE = "customer";
+
     // notification related
     public static final String NOTIFICATION_RECEIVED = "notification_received";
     public static final String MESSAGE = "message";
@@ -25,5 +28,20 @@ public final class AppConstant {
      * Prevent instantiation
      */
     private AppConstant() {
+    }
+
+    /**
+     * Request Codes List
+     */
+    public interface RequestCodes {
+        int REQ_CODE_SIGN_IN = 1001;
+        int REQ_CODE_SIGN_UP = 1002;
+
+        /**
+         * Dummy method
+         *
+         * @return request code
+         */
+        int getReqCodeSign();
     }
 }
