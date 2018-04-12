@@ -12,6 +12,7 @@ import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.BaseActivity;
+import com.skeleton.mvp.util.ExplicitIntentUtil;
 
 import static com.skeleton.mvp.util.AppConstant.OTP_LENGTH;
 
@@ -101,5 +102,10 @@ public class OTPVerificationActivity extends BaseActivity implements OTPView, Vi
             default:
                 break;
         }
+    }
+
+    @Override
+    public void onBackPress() {
+        ExplicitIntentUtil.finishActivity(this);
     }
 }

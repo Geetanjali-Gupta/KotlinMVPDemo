@@ -65,4 +65,9 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
             }
         });
     }
+
+    @Override
+    public void onBackPress() {
+        mOTPView.onBackPress();
+    }
 }

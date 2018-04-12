@@ -81,6 +81,10 @@ public interface BaseView {
      */
     void restartApp();
 
+    /**
+     * Back Press Event handling
+     */
+    void onBackPress();
 
     /**
      * The interface On error handle callback.

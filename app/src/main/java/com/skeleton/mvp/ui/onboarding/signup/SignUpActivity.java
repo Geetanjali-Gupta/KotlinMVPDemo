@@ -12,6 +12,7 @@ import com.skeleton.mvp.data.model.SignUpModel;
 import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.locationbase.BaseLocationActivity;
 import com.skeleton.mvp.util.CommonUtil;
+import com.skeleton.mvp.util.ExplicitIntentUtil;
 import com.skeleton.mvp.util.locationlib.MyLocationRequest;
 
 /**
@@ -91,5 +92,10 @@ public class SignUpActivity extends BaseLocationActivity implements SignUpView, 
         if (location != null && location.getLatitude() != 0.0) {
             currentLocation = location;
         }
+    }
+
+    @Override
+    public void onBackPress() {
+        ExplicitIntentUtil.finishActivity(this);
     }
 }

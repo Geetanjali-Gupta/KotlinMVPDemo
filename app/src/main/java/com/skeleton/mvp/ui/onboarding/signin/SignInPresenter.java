@@ -22,4 +22,9 @@ public interface SignInPresenter extends BasePresenter {
      * @param commonResponse the common response
      */
     void onSignInSuccess(CommonResponse commonResponse);
+
+    /**
+     * Handle On Back Press
+     */
+    void onBackPress();
 }

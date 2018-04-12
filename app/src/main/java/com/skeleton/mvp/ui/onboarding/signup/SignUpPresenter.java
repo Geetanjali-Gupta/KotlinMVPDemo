@@ -23,4 +23,9 @@ public interface SignUpPresenter extends BasePresenter {
      * @param commonResponse the common response
      */
     void onSignUpSuccess(CommonResponse commonResponse);
+
+    /**
+     * Handle On Back Press
+     */
+    void onBackPress();
 }

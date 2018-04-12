@@ -9,6 +9,7 @@ import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.BaseActivity;
+import com.skeleton.mvp.util.ExplicitIntentUtil;
 
 
 /**
@@ -41,6 +42,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
         etPhone = findViewById(R.id.etPhone);
 
         findViewById(R.id.btnSignIn).setOnClickListener(this);
+        findViewById(R.id.ivBack).setOnClickListener(this);
     }
 
 
@@ -50,6 +52,8 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
             case R.id.btnSignIn:
                 mSignInPresenter.onSignInClicked(etPhone.getText().toString().trim());
                 break;
+            case R.id.ivBack:
+                break;
             default:
                 break;
         }
@@ -58,6 +62,11 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
     @Override
     public void onSignInSuccess(final String message) {
         setResult(RESULT_OK, getIntent());
-        finish();
+        ExplicitIntentUtil.finishActivity(this);
+    }
+
+    @Override
+    public void onBackPress() {
+        ExplicitIntentUtil.finishActivity(this);
     }
 }

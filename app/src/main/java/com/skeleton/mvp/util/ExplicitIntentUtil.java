@@ -50,4 +50,13 @@ public final class ExplicitIntentUtil {
 
         fromContext.startActivity(intention);
     }
+
+    /**
+     * Exits the current activity
+     *
+     * @param fromContext the activity to be finished
+     */
+    public static void finishActivity(final Activity fromContext) {
+        fromContext.finish();
+    }
 }

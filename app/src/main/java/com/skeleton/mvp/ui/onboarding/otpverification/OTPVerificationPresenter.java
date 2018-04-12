@@ -19,4 +19,9 @@ public interface OTPVerificationPresenter extends BasePresenter {
      * Used to handle Resend Button Click
      */
     void onResendBtnClick();
+
+    /**
+     * Handle On Back Press
+     */
+    void onBackPress();
 }

@@ -73,4 +73,9 @@ public class SignInPresenterImpl extends BasePresenterImpl implements SignInPres
             mSignInView.onSignInSuccess(commonResponse.getMessage());
         }
     }
+
+    @Override
+    public void onBackPress() {
+        mSignInView.onBackPress();
+    }
 }
