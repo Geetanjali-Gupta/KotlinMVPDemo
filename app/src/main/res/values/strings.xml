@@ -52,12 +52,16 @@
         \n<b>2.</b> Change app name from app gradle.
         \n<b>3.</b> Replace google-services.json file.
     </string>
+    <string name="rational_msg_location_permissions">Please allow location permission to get your current location</string>
+    <string name="msg_allow_location_settings">Please enable location in settings.</string>
+    <string name="msg_allow_location_settings_force_gps">Please enable location in settings and select high accuracy mode.</string>
+    <string name="heading_permission_required">PERMISSION REQUIRED</string>
+
 
     <string name="tell_friends">Tell your friends about our great services\n and earn rewards toward future rides.</string>
     <string name="has_send_you_a_referral_link">Hi your friend has send you a referral link, to Sign Up for Demo App </string>
     <string name="invite">Invite</string>
     <string name="share">Share</string>
-
 
     <!-- Landing Activity-->
     <string name="sign_in">Sign In</string>

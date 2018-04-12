@@ -72,8 +72,9 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".ui.onboarding.landing.LandingActivity"></activity>
-        <activity android:name=".ui.onboarding.signup.SignUpActivity"></activity>
+        <activity android:name=".ui.onboarding.landing.LandingActivity" />
+        <activity android:name=".ui.onboarding.signup.SignUpActivity" />
+        <activity android:name=".ui.onboarding.otpverification.OTPVerificationActivity"></activity>
     </application>
 
 </manifest>

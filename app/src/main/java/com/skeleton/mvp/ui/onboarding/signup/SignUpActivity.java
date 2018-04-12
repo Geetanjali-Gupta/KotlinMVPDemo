@@ -1,22 +1,27 @@
 package com.skeleton.mvp.ui.onboarding.signup;
 
+import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.rilixtech.CountryCodePicker;
 import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.model.SignUpModel;
 import com.skeleton.mvp.data.network.RestClient;
-import com.skeleton.mvp.ui.base.BaseActivity;
+import com.skeleton.mvp.ui.base.locationbase.BaseLocationActivity;
 import com.skeleton.mvp.util.CommonUtil;
 
 /**
  * Developer: Geetanjali Gupta
  */
-public class SignUpActivity extends BaseActivity implements SignUpView, View.OnClickListener {
+public class SignUpActivity extends BaseLocationActivity implements SignUpView, View.OnClickListener {
     private SignUpPresenter mSignUpPresenter;
     private EditText etPhone, etEmail;
+    private CountryCodePicker countryCodePicker;
+
+    private Location currentLocation;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -26,12 +31,16 @@ public class SignUpActivity extends BaseActivity implements SignUpView, View.OnC
         initViews();
     }
 
+    /**
+     * Used to initialise Views
+     */
     private void initViews() {
         mSignUpPresenter = new SignUpPresenterImpl(this, new DataManagerImpl(RestClient.getRetrofitBuilder()));
         mSignUpPresenter.onAttach();
 
         etPhone = findViewById(R.id.etPhone);
         etEmail = findViewById(R.id.etEmail);
+        countryCodePicker = findViewById(R.id.countryCodePicker);
 
         findViewById(R.id.btnSignUp).setOnClickListener(this);
     }
@@ -62,13 +71,20 @@ public class SignUpActivity extends BaseActivity implements SignUpView, View.OnC
     public void onClick(final View v) {
         switch (v.getId()) {
             case R.id.btnSignUp:
-                SignUpModel signUpModel = new SignUpModel(etEmail.getText().toString(), etPhone.getText().toString(),
-                        "+91",  CommonUtil.getAppVersionCode(this), 0.0, 0.0
-                );
-                mSignUpPresenter.onSignUpClicked(signUpModel);
+                mSignUpPresenter.onSignUpClicked(new SignUpModel(etEmail.getText().toString(), etPhone.getText().toString(),
+                        countryCodePicker.getSelectedCountryCodeWithPlus(), CommonUtil.getAppVersionCode(this),
+                        currentLocation.getLatitude(), currentLocation.getLongitude()));
                 break;
             default:
                 break;
+        }
+    }
+
+
+    @Override
+    protected void onLocationReceived(final Location location) {
+        if (location != null && location.getLatitude() != 0.0) {
+            currentLocation = location;
         }
     }
 }

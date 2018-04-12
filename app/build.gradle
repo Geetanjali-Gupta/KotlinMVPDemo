@@ -152,6 +152,10 @@ dependencies {
     //for cropping
     implementation 'com.theartofdev.edmodo:android-image-cropper:2.3.+'
 
+    //For Permission Handling
+    implementation 'pub.devrel:easypermissions:1.1.1'
+
+    //For Picking Country code
     implementation 'com.github.joielechong:countrycodepicker:2.1.5'
     compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true;
