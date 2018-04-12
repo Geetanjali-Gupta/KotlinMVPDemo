@@ -12,6 +12,7 @@ import com.skeleton.mvp.data.model.SignUpModel;
 import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.locationbase.BaseLocationActivity;
 import com.skeleton.mvp.util.CommonUtil;
+import com.skeleton.mvp.util.locationlib.MyLocationRequest;
 
 /**
  * Developer: Geetanjali Gupta
@@ -35,14 +36,18 @@ public class SignUpActivity extends BaseLocationActivity implements SignUpView, 
      * Used to initialise Views
      */
     private void initViews() {
-        mSignUpPresenter = new SignUpPresenterImpl(this, new DataManagerImpl(RestClient.getRetrofitBuilder()));
-        mSignUpPresenter.onAttach();
-
         etPhone = findViewById(R.id.etPhone);
         etEmail = findViewById(R.id.etEmail);
         countryCodePicker = findViewById(R.id.countryCodePicker);
 
         findViewById(R.id.btnSignUp).setOnClickListener(this);
+
+        mSignUpPresenter = new SignUpPresenterImpl(this, new DataManagerImpl(RestClient.getRetrofitBuilder()));
+        mSignUpPresenter.onAttach();
+
+        MyLocationRequest builder = new MyLocationRequest.Builder().build();
+        resolveMyLocationRequest(builder.getMyLocationRequest(),
+                getString(R.string.rational_msg_location_permissions), false, true);
     }
 
     @Override

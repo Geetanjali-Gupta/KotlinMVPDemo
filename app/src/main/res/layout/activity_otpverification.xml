@@ -1,17 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
     tools:context="com.skeleton.mvp.ui.onboarding.otpverification.OTPVerificationActivity">
 
     <include layout="@layout/toolbar" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:fillViewport="true">
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/screen_padding"
+                android:layout_marginStart="@dimen/screen_padding"
+                android:padding="@dimen/screen_padding"
+                android:text="@string/header_verify_phone_no"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_xxxlarge" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/screen_padding"
+                android:layout_marginStart="@dimen/screen_padding"
+                android:padding="@dimen/screen_padding"
+                android:text="@string/header_enter_otp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_xlarge" />
+
+            <LinearLayout
+                android:id="@+id/llVerificationCode"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/button_height"
+                android:layout_marginTop="@dimen/spacing_xlarge"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <EditText
+                    style="@style/OTPEditTextStyle"
+                    android:imeOptions="actionNext" />
+
+                <EditText
+                    style="@style/OTPEditTextStyle"
+                    android:imeOptions="actionNext" />
+
+                <EditText
+                    style="@style/OTPEditTextStyle"
+                    android:imeOptions="actionNext" />
+
+                <EditText
+                    style="@style/OTPEditTextStyle"
+                    android:imeOptions="actionDone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <Button
+                    android:id="@+id/btnContinue"
+                    style="@style/accent_button"
+                    android:text="@string/otp_continue" />
+
+                <Button
+                    android:id="@+id/btnResend"
+                    style="@style/primary_button"
+                    android:background="@android:color/transparent"
+                    android:text="@string/otp_resend" />
+            </LinearLayout>
+        </LinearLayout>
     </ScrollView>
-</RelativeLayout>
+</LinearLayout>

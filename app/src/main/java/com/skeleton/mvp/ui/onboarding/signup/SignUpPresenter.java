@@ -4,10 +4,10 @@ import com.skeleton.mvp.data.model.CommonResponse;
 import com.skeleton.mvp.data.model.SignUpModel;
 import com.skeleton.mvp.ui.base.BasePresenter;
 
-/**
- * Created by clicklabs on 11/04/18.
- */
 
+/**
+ * Developer: Geetanjali Gupta
+ */
 public interface SignUpPresenter extends BasePresenter {
 
     /**

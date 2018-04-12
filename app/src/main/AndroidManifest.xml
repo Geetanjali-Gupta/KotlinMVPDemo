@@ -3,6 +3,8 @@
     package="com.skeleton.mvp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".MyApplication"
@@ -27,11 +29,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Launcher"
             android:windowSoftInputMode="stateHidden">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.onboarding.signin.SignInActivity"
@@ -73,8 +71,20 @@
         </receiver>
 
         <activity android:name=".ui.onboarding.landing.LandingActivity" />
-        <activity android:name=".ui.onboarding.signup.SignUpActivity" />
-        <activity android:name=".ui.onboarding.otpverification.OTPVerificationActivity"></activity>
+        <activity
+            android:name=".ui.onboarding.signup.SignUpActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".ui.onboarding.otpverification.OTPVerificationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

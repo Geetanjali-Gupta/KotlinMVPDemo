@@ -30,8 +30,7 @@ class SplashPresenterImpl extends BasePresenterImpl implements SplashPresenter, 
      * @param splashView   the associated splash view
      * @param mDataManager the m data manager
      */
-    SplashPresenterImpl(final SplashView splashView,
-                        final DataManagerImpl mDataManager) {
+    SplashPresenterImpl(final SplashView splashView, final DataManagerImpl mDataManager) {
         this.mSplashView = splashView;
         this.mDataManager = mDataManager;
     }

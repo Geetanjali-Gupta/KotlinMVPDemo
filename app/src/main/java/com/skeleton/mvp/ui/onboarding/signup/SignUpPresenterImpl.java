@@ -10,9 +10,8 @@ import com.skeleton.mvp.ui.base.BasePresenterImpl;
 import com.skeleton.mvp.util.ValidationUtil;
 
 /**
- * Created by clicklabs on 11/04/18.
+ * Developer: Geetanjali Gupta
  */
-
 public class SignUpPresenterImpl extends BasePresenterImpl implements SignUpPresenter {
     private SignUpView mSignUpView;
     private DataManager mDataManager;

@@ -16,7 +16,7 @@ import static com.skeleton.mvp.util.AppConstant.RequestCodes.REQ_CODE_SIGN_UP;
 
 
 /**
- * Landing Screen of App
+ * Developer: Geetanjali Gupta
  */
 public class LandingActivity extends BaseActivity implements LandingView, View.OnClickListener {
     private LandingPresenter mLandingPresenter;

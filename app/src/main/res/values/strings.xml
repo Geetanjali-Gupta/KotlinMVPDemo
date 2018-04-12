@@ -70,4 +70,10 @@
     <!-- Sign Up Activity-->
     <string name="txt_display_sign_up_msg">Sign up to Digitech group to continue!</string>
     <string name="txt_sign_up">Sign Up</string>
+
+    <!--OTP Verification Acivity-->
+    <string name="header_verify_phone_no">Verify phone no.</string>
+    <string name="header_enter_otp">Enter the OTP that you’ve received on the phone number you entered</string>
+    <string name="otp_continue">Continue</string>
+    <string name="otp_resend">Resend</string>
 </resources>

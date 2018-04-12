@@ -1,12 +1,12 @@
 package com.skeleton.mvp.ui.onboarding.signup;
 
-import com.skeleton.mvp.ui.base.BaseView;
+import com.skeleton.mvp.ui.base.locationbase.BaseLocationView;
+
 
 /**
- * Created by clicklabs on 11/04/18.
+ * Developer: Geetanjali Gupta
  */
-
-public interface SignUpView extends BaseView {
+public interface SignUpView extends BaseLocationView {
     /**
      * Show email error.
      *

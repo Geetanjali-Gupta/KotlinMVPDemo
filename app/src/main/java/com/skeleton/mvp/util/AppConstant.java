@@ -5,6 +5,7 @@ package com.skeleton.mvp.util;
  * Developer: Click labs
  */
 public final class AppConstant {
+    public static final int OTP_LENGTH = 4;
 
     public static final String DEVICE_TYPE = "ANDROID";
     public static final String ROLE = "customer";

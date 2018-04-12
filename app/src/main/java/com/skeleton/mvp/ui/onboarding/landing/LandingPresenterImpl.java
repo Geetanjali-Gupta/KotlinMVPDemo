@@ -4,10 +4,10 @@ import com.skeleton.mvp.data.DataManager;
 import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.ui.base.BasePresenterImpl;
 
-/**
- * Created by clicklabs on 03/04/18.
- */
 
+/**
+ * Developer: Geetanjali Gupta
+ */
 public class LandingPresenterImpl extends BasePresenterImpl implements LandingPresenter {
     private LandingView mLandingView;
     private DataManager mDataManager;
