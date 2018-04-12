@@ -405,7 +405,6 @@ public class ApiHelperImpl implements ApiHelper {
                 .add("email", signUpModel.getEmail())
                 .add("mobile", signUpModel.getMobile())
                 .add("countryCode", signUpModel.getCountryCode())
-                .add("password", signUpModel.getPassword())
                 .add("appVersion", signUpModel.getAppVersion())
                 .add("latitude", signUpModel.getLatitude())
                 .add("longitude", signUpModel.getLongitude())

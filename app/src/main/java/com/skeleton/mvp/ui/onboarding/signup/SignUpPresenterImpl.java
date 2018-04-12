@@ -39,10 +39,6 @@ public class SignUpPresenterImpl extends BasePresenterImpl implements SignUpPres
             mSignUpView.showEmailError(R.string.error_invalid_email);
             return;
         }
-        if (!ValidationUtil.checkPassword(signUpModel.getPassword())) {
-            mSignUpView.showPasswordError(R.string.error_invalid_password);
-            return;
-        }
         mSignUpView.showLoading();
         mDataManager.apiCallToRegisterUser(signUpModel, new ApiHelper.ApiListener() {
             @Override

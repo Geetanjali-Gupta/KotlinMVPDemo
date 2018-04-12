@@ -33,7 +33,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
-        setTheme(R.style.AppTheme);
+        //setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 

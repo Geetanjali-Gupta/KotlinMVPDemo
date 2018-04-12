@@ -16,7 +16,7 @@ import com.skeleton.mvp.util.CommonUtil;
  */
 public class SignUpActivity extends BaseActivity implements SignUpView, View.OnClickListener {
     private SignUpPresenter mSignUpPresenter;
-    private EditText etPhone, etEmail, etPassword;
+    private EditText etPhone, etEmail;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -32,7 +32,6 @@ public class SignUpActivity extends BaseActivity implements SignUpView, View.OnC
 
         etPhone = findViewById(R.id.etPhone);
         etEmail = findViewById(R.id.etEmail);
-        etPassword = findViewById(R.id.etPassword);
 
         findViewById(R.id.btnSignUp).setOnClickListener(this);
     }
@@ -45,11 +44,6 @@ public class SignUpActivity extends BaseActivity implements SignUpView, View.OnC
     @Override
     public void showPhoneNumberError(final int resId) {
         etPhone.setError(getString(resId));
-    }
-
-    @Override
-    public void showPasswordError(final int resId) {
-        etPassword.setError(getString(resId));
     }
 
     @Override
@@ -69,7 +63,7 @@ public class SignUpActivity extends BaseActivity implements SignUpView, View.OnC
         switch (v.getId()) {
             case R.id.btnSignUp:
                 SignUpModel signUpModel = new SignUpModel(etEmail.getText().toString(), etPhone.getText().toString(),
-                        "+91", etPassword.getText().toString(), CommonUtil.getAppVersionCode(this), 0.0, 0.0
+                        "+91",  CommonUtil.getAppVersionCode(this), 0.0, 0.0
                 );
                 mSignUpPresenter.onSignUpClicked(signUpModel);
                 break;

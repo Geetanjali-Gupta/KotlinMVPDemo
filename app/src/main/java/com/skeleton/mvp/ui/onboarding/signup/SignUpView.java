@@ -21,12 +21,6 @@ public interface SignUpView extends BaseView {
      */
     void showPhoneNumberError(int resId);
 
-    /**
-     * Show password error.
-     *
-     * @param resId the res id
-     */
-    void showPasswordError(int resId);
 
     /**
      * On sign up success.
