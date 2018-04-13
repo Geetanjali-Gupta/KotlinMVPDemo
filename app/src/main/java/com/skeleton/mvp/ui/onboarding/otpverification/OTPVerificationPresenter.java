@@ -32,6 +32,13 @@ public interface OTPVerificationPresenter extends BasePresenter {
     void onOtpVerificationSuccess(CommonResponse commonResponse);
 
     /**
+     * On Otp Verification success.
+     *
+     * @param commonResponse the common response
+     */
+    void onResendOtpSuccess(CommonResponse commonResponse);
+
+    /**
      * Handle On Back Press
      */
     void onBackPress();

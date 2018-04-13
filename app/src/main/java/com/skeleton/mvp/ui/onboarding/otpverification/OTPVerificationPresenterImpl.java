@@ -52,7 +52,6 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
                         if (apiError != null) {
                             mOTPView.showErrorMessage(apiError.getMessage());
                         } else {
-                            // resolve error through throwable
                             mOTPView.showErrorMessage(parseThrowableMessage(throwable));
                         }
                     }
@@ -63,15 +62,24 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
 
     @Override
     public void onResendBtnClick(final String mobileNumber) {
+        mOTPView.showLoading();
         mDataManager.apiCallToResendOtp(mobileNumber, new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
-
+                mOTPView.hideLoading();
+                onResendOtpSuccess(commonResponse);
             }
 
             @Override
             public void onFailure(final ApiError apiError, final Throwable throwable) {
-
+                if (isViewAttached()) {
+                    mOTPView.hideLoading();
+                    if (apiError != null) {
+                        mOTPView.showErrorMessage(apiError.getMessage());
+                    } else {
+                        mOTPView.showErrorMessage(parseThrowableMessage(throwable));
+                    }
+                }
             }
         });
     }
@@ -80,6 +88,13 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
     public void onOtpVerificationSuccess(final CommonResponse commonResponse) {
         if (isViewAttached()) {
             mOTPView.onOtpVerificationSuccessful(commonResponse.getMessage());
+        }
+    }
+
+    @Override
+    public void onResendOtpSuccess(final CommonResponse commonResponse) {
+        if (isViewAttached()) {
+            mOTPView.onResendOtpSuccessful(commonResponse.getMessage());
         }
     }
 

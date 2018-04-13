@@ -33,6 +33,7 @@ public class ApiHelperImpl implements ApiHelper {
     private static final String LOGIN = "user/login";
     private static final String REGISTER = "customer/registerFromEmail";
     private static final String OTP_VERIFICATION = "user/verifyMobileOTP";
+    private static final String RESEND_OTP = "/user/resendOTP";
 
     private Retrofit mRetrofit;
     private DbHelper mDbHelper;
@@ -143,7 +144,11 @@ public class ApiHelperImpl implements ApiHelper {
 
     @Override
     public void apiCallToResendOtp(final String phone, final ApiListener mApiListener) {
-
+        final CommonParams mCommonParams = new CommonParams.Builder()
+                .add("mobile", phone).build();
+        final Call<CommonResponse> mCommonResponseCall = getApiInterface()
+                .putCall(RESEND_OTP, getApiHeader(true), mCommonParams.getMap());
+        executeApiCall(mCommonResponseCall, mApiListener);
     }
 
     @Override

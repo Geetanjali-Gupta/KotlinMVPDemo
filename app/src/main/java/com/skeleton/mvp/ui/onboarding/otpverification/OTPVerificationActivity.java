@@ -12,6 +12,7 @@ import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.BaseActivity;
+import com.skeleton.mvp.util.CommonUtil;
 import com.skeleton.mvp.util.ExplicitIntentUtil;
 
 import static com.skeleton.mvp.util.AppConstant.OTP_LENGTH;
@@ -73,10 +74,8 @@ public class OTPVerificationActivity extends BaseActivity implements OTPView, Vi
                 editText.setOnKeyListener(new View.OnKeyListener() {
                     @Override
                     public boolean onKey(final View view, final int keyCode, final KeyEvent keyEvent) {
-                        if (keyCode == KeyEvent.KEYCODE_DEL && keyEvent.getAction()
-                                == KeyEvent.ACTION_DOWN
+                        if (keyCode == KeyEvent.KEYCODE_DEL && keyEvent.getAction() == KeyEvent.ACTION_DOWN
                                 && editText.getText().toString().isEmpty() && j != 0) {
-                            // do your stuff
                             llVerificationCode.getChildAt(j - 1).requestFocus();
                         }
                         return false;
@@ -120,6 +119,9 @@ public class OTPVerificationActivity extends BaseActivity implements OTPView, Vi
             case R.id.btnResend:
                 otpVerificationPresenter.onResendBtnClick(phoneNumber);
                 break;
+            case R.id.ivBack:
+                otpVerificationPresenter.onBackPress();
+                break;
             default:
                 break;
         }
@@ -132,6 +134,12 @@ public class OTPVerificationActivity extends BaseActivity implements OTPView, Vi
 
     @Override
     public void onOtpVerificationSuccessful(final String message) {
+        CommonUtil.showToast(this, message);
         ExplicitIntentUtil.finishActivityForResultOk(this);
+    }
+
+    @Override
+    public void onResendOtpSuccessful(final String message) {
+        showErrorMessage(message);
     }
 }

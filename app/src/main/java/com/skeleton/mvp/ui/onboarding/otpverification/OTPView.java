@@ -14,4 +14,11 @@ public interface OTPView extends BaseView {
      * @param message Success Message
      */
     void onOtpVerificationSuccessful(final String message);
+
+    /**
+     * On Verification Complete
+     *
+     * @param message Success Message
+     */
+    void onResendOtpSuccessful(final String message);
 }

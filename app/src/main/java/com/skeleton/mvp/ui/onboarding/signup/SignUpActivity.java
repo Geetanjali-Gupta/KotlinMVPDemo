@@ -68,6 +68,7 @@ public class SignUpActivity extends BaseLocationActivity implements SignUpView, 
 
     @Override
     public void onSignUpSuccess(final String message) {
+        CommonUtil.showToast(this, message);
         Bundle phoneNumberBundle = new Bundle();
         phoneNumberBundle.putString(EXTRA_PHONE_NUMBER, etPhone.getText().toString());
         ExplicitIntentUtil.startActivityForResult(this, OTPVerificationActivity.class, REQ_CODE_OTP_VERIFICATION, phoneNumberBundle);

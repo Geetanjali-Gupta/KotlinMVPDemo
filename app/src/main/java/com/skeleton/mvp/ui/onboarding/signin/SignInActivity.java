@@ -11,6 +11,7 @@ import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.BaseActivity;
 import com.skeleton.mvp.ui.onboarding.otpverification.OTPVerificationActivity;
+import com.skeleton.mvp.util.CommonUtil;
 import com.skeleton.mvp.util.ExplicitIntentUtil;
 
 import static com.skeleton.mvp.util.AppConstant.RequestCodes.REQ_CODE_OTP_VERIFICATION;
@@ -66,6 +67,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onSignInSuccess(final String message) {
+        CommonUtil.showToast(this, message);
         Bundle phoneNumberBundle = new Bundle();
         phoneNumberBundle.putString(EXTRA_PHONE_NUMBER, etPhone.getText().toString());
         ExplicitIntentUtil.startActivityForResult(this, OTPVerificationActivity.class, REQ_CODE_OTP_VERIFICATION, phoneNumberBundle);
