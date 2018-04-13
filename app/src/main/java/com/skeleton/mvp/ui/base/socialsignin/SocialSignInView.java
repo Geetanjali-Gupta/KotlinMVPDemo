@@ -1,6 +1,6 @@
 package com.skeleton.mvp.ui.base.socialsignin;
 
-import com.skeleton.mvp.data.model.CommonResponse;
+import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
 import com.skeleton.mvp.ui.base.BaseView;
 import com.skeleton.mvp.util.facebookutil.FbUserDetails;
 

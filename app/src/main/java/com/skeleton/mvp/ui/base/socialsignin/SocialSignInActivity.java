@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookException;
 import com.skeleton.mvp.R;
-import com.skeleton.mvp.data.model.CommonResponse;
+import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
 import com.skeleton.mvp.ui.base.BaseActivity;
 import com.skeleton.mvp.util.facebookutil.FacebookManager;
 import com.skeleton.mvp.util.facebookutil.FacebookResponseHandler;

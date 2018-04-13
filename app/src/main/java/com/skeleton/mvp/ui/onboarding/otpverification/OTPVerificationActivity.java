@@ -40,6 +40,7 @@ public class OTPVerificationActivity extends BaseActivity implements OTPView, Vi
      */
     private void initViews() {
         otpVerificationPresenter = new OTPVerificationPresenterImpl(this, new DataManagerImpl(RestClient.getRetrofitBuilder()));
+        otpVerificationPresenter.onAttach();
 
         llVerificationCode = findViewById(R.id.llVerificationCode);
 
@@ -130,7 +131,7 @@ public class OTPVerificationActivity extends BaseActivity implements OTPView, Vi
     }
 
     @Override
-    public void onOtpVerificationSuccess(final String message) {
+    public void onOtpVerificationSuccessful(final String message) {
         ExplicitIntentUtil.finishActivityForResultOk(this);
     }
 }

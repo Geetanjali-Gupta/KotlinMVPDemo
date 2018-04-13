@@ -33,7 +33,7 @@ public class DbHelperImpl implements DbHelper {
 
     @Override
     public void saveAccessToken(final String accessToken) {
-
+        CommonData.saveAccessToken(accessToken);
     }
 
 /*    @Override

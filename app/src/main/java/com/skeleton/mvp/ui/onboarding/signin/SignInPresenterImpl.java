@@ -6,7 +6,8 @@ import android.support.annotation.NonNull;
 import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManager;
 import com.skeleton.mvp.data.DataManagerImpl;
-import com.skeleton.mvp.data.model.CommonResponse;
+import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
+import com.skeleton.mvp.data.model.responsemodel.onboarding.signin.SignInResponseModel;
 import com.skeleton.mvp.data.network.ApiError;
 import com.skeleton.mvp.data.network.ApiHelper;
 import com.skeleton.mvp.ui.base.BasePresenterImpl;
@@ -69,7 +70,8 @@ public class SignInPresenterImpl extends BasePresenterImpl implements SignInPres
     @Override
     public void onSignInSuccess(final CommonResponse commonResponse) {
         if (isViewAttached()) {
-            //  mDataManager.saveUserData(commonResponse.toResponseModel(UserData.class));
+            SignInResponseModel signInResponseModel = commonResponse.toResponseModel(SignInResponseModel.class);
+            mDataManager.saveAccessToken(signInResponseModel.getToken());
             mSignInView.onSignInSuccess(commonResponse.getMessage());
         }
     }

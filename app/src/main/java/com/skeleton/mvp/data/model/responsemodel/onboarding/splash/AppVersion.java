@@ -1,4 +1,4 @@
-package com.skeleton.mvp.data.model;
+package com.skeleton.mvp.data.model.responsemodel.onboarding.splash;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

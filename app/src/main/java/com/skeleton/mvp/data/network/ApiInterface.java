@@ -1,7 +1,7 @@
 package com.skeleton.mvp.data.network;
 
 import com.google.gson.JsonObject;
-import com.skeleton.mvp.data.model.CommonResponse;
+import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
 import com.skeleton.mvp.data.model.ShortLinkModel;
 
 import java.util.Map;

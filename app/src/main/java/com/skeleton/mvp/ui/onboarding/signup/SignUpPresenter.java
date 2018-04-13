@@ -1,7 +1,7 @@
 package com.skeleton.mvp.ui.onboarding.signup;
 
-import com.skeleton.mvp.data.model.CommonResponse;
-import com.skeleton.mvp.data.model.SignUpModel;
+import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
+import com.skeleton.mvp.data.model.requestmodel.SignUpModel;
 import com.skeleton.mvp.ui.base.BasePresenter;
 
 

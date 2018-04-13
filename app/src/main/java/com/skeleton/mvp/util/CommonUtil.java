@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.skeleton.mvp.MyApplication;
-import com.skeleton.mvp.data.model.CommonResponse;
+import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;

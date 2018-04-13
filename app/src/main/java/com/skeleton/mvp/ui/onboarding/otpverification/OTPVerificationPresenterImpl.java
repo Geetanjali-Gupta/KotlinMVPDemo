@@ -3,7 +3,7 @@ package com.skeleton.mvp.ui.onboarding.otpverification;
 import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManager;
 import com.skeleton.mvp.data.DataManagerImpl;
-import com.skeleton.mvp.data.model.CommonResponse;
+import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
 import com.skeleton.mvp.data.network.ApiError;
 import com.skeleton.mvp.data.network.ApiHelper;
 import com.skeleton.mvp.ui.base.BasePresenterImpl;
@@ -32,7 +32,6 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
 
     @Override
     public void onContinueBtnClick(final String mobileNumber, final String otp) {
-        int length;
         if (otp.isEmpty()) {
             mOTPView.showErrorMessage(R.string.error_please_enter_otp);
         } else if (otp.length() < OTP_LENGTH) {
@@ -55,7 +54,6 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
                         } else {
                             // resolve error through throwable
                             mOTPView.showErrorMessage(parseThrowableMessage(throwable));
-
                         }
                     }
                 }
@@ -81,8 +79,7 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
     @Override
     public void onOtpVerificationSuccess(final CommonResponse commonResponse) {
         if (isViewAttached()) {
-            //  mDataManager.saveUserData(commonResponse.toResponseModel(UserData.class));
-            mOTPView.onOtpVerificationSuccess(commonResponse.getMessage());
+            mOTPView.onOtpVerificationSuccessful(commonResponse.getMessage());
         }
     }
 

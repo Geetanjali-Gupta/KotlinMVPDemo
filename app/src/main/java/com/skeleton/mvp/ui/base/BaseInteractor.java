@@ -1,7 +1,7 @@
 package com.skeleton.mvp.ui.base;
 
 
-import com.skeleton.mvp.data.model.CommonResponse;
+import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
 import com.skeleton.mvp.data.network.ApiError;
 
 /**

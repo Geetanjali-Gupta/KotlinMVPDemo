@@ -1,8 +1,8 @@
 package com.skeleton.mvp.data.network;
 
 
-import com.skeleton.mvp.data.model.CommonResponse;
-import com.skeleton.mvp.data.model.SignUpModel;
+import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
+import com.skeleton.mvp.data.model.requestmodel.SignUpModel;
 
 /**
  * Developer: Saurabh Verma

@@ -9,7 +9,7 @@ import android.widget.EditText;
 import com.rilixtech.CountryCodePicker;
 import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManagerImpl;
-import com.skeleton.mvp.data.model.SignUpModel;
+import com.skeleton.mvp.data.model.requestmodel.SignUpModel;
 import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.locationbase.BaseLocationActivity;
 import com.skeleton.mvp.ui.onboarding.otpverification.OTPVerificationActivity;

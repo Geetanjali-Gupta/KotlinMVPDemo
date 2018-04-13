@@ -2,8 +2,9 @@ package com.skeleton.mvp.ui.onboarding.signup;
 
 import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManager;
-import com.skeleton.mvp.data.model.CommonResponse;
-import com.skeleton.mvp.data.model.SignUpModel;
+import com.skeleton.mvp.data.model.requestmodel.SignUpModel;
+import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
+import com.skeleton.mvp.data.model.responsemodel.onboarding.signup.SignUpResponseModel;
 import com.skeleton.mvp.data.network.ApiError;
 import com.skeleton.mvp.data.network.ApiHelper;
 import com.skeleton.mvp.ui.base.BasePresenterImpl;
@@ -65,7 +66,8 @@ public class SignUpPresenterImpl extends BasePresenterImpl implements SignUpPres
     @Override
     public void onSignUpSuccess(final CommonResponse commonResponse) {
         if (isViewAttached()) {
-            //  mDataManager.saveUserData(commonResponse.toResponseModel(UserData.class));
+            SignUpResponseModel signUpResponseModel = commonResponse.toResponseModel(SignUpResponseModel.class);
+            mDataManager.saveAccessToken(signUpResponseModel.getToken());
             mSignUpView.onSignUpSuccess(commonResponse.getMessage());
         }
     }

@@ -3,8 +3,8 @@ package com.skeleton.mvp.data.network;
 
 import com.skeleton.mvp.BuildConfig;
 import com.skeleton.mvp.data.db.DbHelper;
-import com.skeleton.mvp.data.model.CommonResponse;
-import com.skeleton.mvp.data.model.SignUpModel;
+import com.skeleton.mvp.data.model.requestmodel.SignUpModel;
+import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
 import com.skeleton.mvp.util.AppConstant;
 import com.skeleton.mvp.util.DateTimeUtil;
 
@@ -137,7 +137,7 @@ public class ApiHelperImpl implements ApiHelper {
                 .add("mobile", mobileNumber)
                 .add("OTPCode", otpCode).build();
         final Call<CommonResponse> mCommonResponseCall = getApiInterface()
-                .putCall(OTP_VERIFICATION, getApiHeader(false), mCommonParams.getMap());
+                .putCall(OTP_VERIFICATION, getApiHeader(true), mCommonParams.getMap());
         executeApiCall(mCommonResponseCall, mApiListener);
     }
 

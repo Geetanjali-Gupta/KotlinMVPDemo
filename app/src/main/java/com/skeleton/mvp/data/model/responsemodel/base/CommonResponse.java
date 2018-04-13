@@ -1,4 +1,4 @@
-package com.skeleton.mvp.data.model;
+package com.skeleton.mvp.data.model.responsemodel.base;
 
 import com.google.gson.Gson;
 import com.google.gson.annotations.SerializedName;

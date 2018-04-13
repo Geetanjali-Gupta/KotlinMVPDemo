@@ -3,7 +3,7 @@ package com.skeleton.mvp.data;
 
 import com.skeleton.mvp.data.db.DbHelper;
 import com.skeleton.mvp.data.db.DbHelperImpl;
-import com.skeleton.mvp.data.model.SignUpModel;
+import com.skeleton.mvp.data.model.requestmodel.SignUpModel;
 import com.skeleton.mvp.data.network.ApiHelper;
 import com.skeleton.mvp.data.network.ApiHelperImpl;
 

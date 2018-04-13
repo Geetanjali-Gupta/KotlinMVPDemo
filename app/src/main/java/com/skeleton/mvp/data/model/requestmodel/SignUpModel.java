@@ -1,4 +1,4 @@
-package com.skeleton.mvp.data.model;
+package com.skeleton.mvp.data.model.requestmodel;
 
 /**
  * Created by clicklabs on 11/04/18.
