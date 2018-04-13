@@ -1,5 +1,6 @@
 package com.skeleton.mvp.ui.onboarding.otpverification;
 
+import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManager;
 import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.model.CommonResponse;
@@ -30,30 +31,41 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
     }
 
     @Override
-    public void onContinueBtnClick(final String otp) {
+    public void onContinueBtnClick(final String mobileNumber, final String otp) {
         int length;
         if (otp.isEmpty()) {
-            length = otp.length();
+            mOTPView.showErrorMessage(R.string.error_please_enter_otp);
         } else if (otp.length() < OTP_LENGTH) {
-            length = otp.length();
+            mOTPView.showErrorMessage(R.string.error_please_enter_four_digit_otp);
         } else {
-            mDataManager.apiCallToVerifyOtp(otp, new ApiHelper.ApiListener() {
+            mOTPView.showLoading();
+            mDataManager.apiCallToVerifyOtp(mobileNumber, otp, new ApiHelper.ApiListener() {
                 @Override
                 public void onSuccess(final CommonResponse commonResponse) {
-
+                    mOTPView.hideLoading();
+                    onOtpVerificationSuccess(commonResponse);
                 }
 
                 @Override
                 public void onFailure(final ApiError apiError, final Throwable throwable) {
+                    if (isViewAttached()) {
+                        mOTPView.hideLoading();
+                        if (apiError != null) {
+                            mOTPView.showErrorMessage(apiError.getMessage());
+                        } else {
+                            // resolve error through throwable
+                            mOTPView.showErrorMessage(parseThrowableMessage(throwable));
 
+                        }
+                    }
                 }
             });
         }
     }
 
     @Override
-    public void onResendBtnClick() {
-        mDataManager.apiCallToResendOtp("345365", new ApiHelper.ApiListener() {
+    public void onResendBtnClick(final String mobileNumber) {
+        mDataManager.apiCallToResendOtp(mobileNumber, new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
 
@@ -64,6 +76,14 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
 
             }
         });
+    }
+
+    @Override
+    public void onOtpVerificationSuccess(final CommonResponse commonResponse) {
+        if (isViewAttached()) {
+            //  mDataManager.saveUserData(commonResponse.toResponseModel(UserData.class));
+            mOTPView.onOtpVerificationSuccess(commonResponse.getMessage());
+        }
     }
 
     @Override

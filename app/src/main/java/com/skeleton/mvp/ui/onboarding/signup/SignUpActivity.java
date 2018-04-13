@@ -1,5 +1,6 @@
 package com.skeleton.mvp.ui.onboarding.signup;
 
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
@@ -11,9 +12,13 @@ import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.model.SignUpModel;
 import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.locationbase.BaseLocationActivity;
+import com.skeleton.mvp.ui.onboarding.otpverification.OTPVerificationActivity;
 import com.skeleton.mvp.util.CommonUtil;
 import com.skeleton.mvp.util.ExplicitIntentUtil;
 import com.skeleton.mvp.util.locationlib.MyLocationRequest;
+
+import static com.skeleton.mvp.util.AppConstant.RequestCodes.REQ_CODE_OTP_VERIFICATION;
+import static com.skeleton.mvp.util.IntentConstant.EXTRA_PHONE_NUMBER;
 
 /**
  * Developer: Geetanjali Gupta
@@ -63,8 +68,9 @@ public class SignUpActivity extends BaseLocationActivity implements SignUpView, 
 
     @Override
     public void onSignUpSuccess(final String message) {
-        setResult(RESULT_OK, getIntent());
-        finish();
+        Bundle phoneNumberBundle = new Bundle();
+        phoneNumberBundle.putString(EXTRA_PHONE_NUMBER, etPhone.getText().toString());
+        ExplicitIntentUtil.startActivityForResult(this, OTPVerificationActivity.class, REQ_CODE_OTP_VERIFICATION, phoneNumberBundle);
     }
 
     @Override
@@ -97,5 +103,21 @@ public class SignUpActivity extends BaseLocationActivity implements SignUpView, 
     @Override
     public void onBackPress() {
         ExplicitIntentUtil.finishActivity(this);
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQ_CODE_OTP_VERIFICATION:
+                if (resultCode == RESULT_OK) {
+                    ExplicitIntentUtil.finishActivityForResultOk(this);
+                } else {
+                    ExplicitIntentUtil.finishActivityForResultCancel(this);
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

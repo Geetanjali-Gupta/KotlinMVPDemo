@@ -1,5 +1,6 @@
 package com.skeleton.mvp.ui.onboarding.signin;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatEditText;
@@ -9,7 +10,11 @@ import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.BaseActivity;
+import com.skeleton.mvp.ui.onboarding.otpverification.OTPVerificationActivity;
 import com.skeleton.mvp.util.ExplicitIntentUtil;
+
+import static com.skeleton.mvp.util.AppConstant.RequestCodes.REQ_CODE_OTP_VERIFICATION;
+import static com.skeleton.mvp.util.IntentConstant.EXTRA_PHONE_NUMBER;
 
 
 /**
@@ -61,12 +66,29 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void onSignInSuccess(final String message) {
-        setResult(RESULT_OK, getIntent());
-        ExplicitIntentUtil.finishActivity(this);
+        Bundle phoneNumberBundle = new Bundle();
+        phoneNumberBundle.putString(EXTRA_PHONE_NUMBER, etPhone.getText().toString());
+        ExplicitIntentUtil.startActivityForResult(this, OTPVerificationActivity.class, REQ_CODE_OTP_VERIFICATION, phoneNumberBundle);
     }
 
     @Override
     public void onBackPress() {
         ExplicitIntentUtil.finishActivity(this);
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQ_CODE_OTP_VERIFICATION:
+                if (resultCode == RESULT_OK) {
+                    ExplicitIntentUtil.finishActivityForResultOk(this);
+                } else {
+                    ExplicitIntentUtil.finishActivityForResultCancel(this);
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

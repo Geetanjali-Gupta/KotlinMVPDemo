@@ -58,15 +58,6 @@
                 android:hint="@string/txt_hint_enter_email_id"
                 android:inputType="textEmailAddress" />
 
-            <android.support.v7.widget.AppCompatEditText
-                android:id="@+id/etPassword"
-                style="@style/OnBoardingEditText"
-                android:layout_margin="@dimen/screen_padding"
-                android:hint="@string/txt_hint_enter_password"
-                android:imeOptions="actionDone"
-                android:inputType="textPassword" />
-
-
             <android.support.v7.widget.AppCompatButton
                 android:id="@+id/btnSignUp"
                 style="@style/accent_button"

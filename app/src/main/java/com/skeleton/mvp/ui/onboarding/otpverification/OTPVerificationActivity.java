@@ -15,15 +15,17 @@ import com.skeleton.mvp.ui.base.BaseActivity;
 import com.skeleton.mvp.util.ExplicitIntentUtil;
 
 import static com.skeleton.mvp.util.AppConstant.OTP_LENGTH;
+import static com.skeleton.mvp.util.IntentConstant.EXTRA_PHONE_NUMBER;
 
 /**
  * Developer: Geetanjali Gupta
  */
 public class OTPVerificationActivity extends BaseActivity implements OTPView, View.OnClickListener {
 
-
     private LinearLayout llVerificationCode;
     private OTPVerificationPresenter otpVerificationPresenter;
+
+    private String phoneNumber;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -45,6 +47,18 @@ public class OTPVerificationActivity extends BaseActivity implements OTPView, Vi
         findViewById(R.id.btnResend).setOnClickListener(this);
 
         handleOtpContainerFields();
+
+        getIntentData();
+    }
+
+    /**
+     *
+     */
+    private void getIntentData() {
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            phoneNumber = extras.getString(EXTRA_PHONE_NUMBER);
+        }
     }
 
     /**
@@ -96,8 +110,14 @@ public class OTPVerificationActivity extends BaseActivity implements OTPView, Vi
     public void onClick(final View v) {
         switch (v.getId()) {
             case R.id.btnContinue:
+                String strOTP = ((EditText) llVerificationCode.getChildAt(0)).getText().toString()
+                        + ((EditText) llVerificationCode.getChildAt(1)).getText().toString()
+                        + ((EditText) llVerificationCode.getChildAt(2)).getText().toString()
+                        + ((EditText) llVerificationCode.getChildAt(3)).getText().toString();
+                otpVerificationPresenter.onContinueBtnClick(phoneNumber, strOTP);
                 break;
             case R.id.btnResend:
+                otpVerificationPresenter.onResendBtnClick(phoneNumber);
                 break;
             default:
                 break;
@@ -107,5 +127,10 @@ public class OTPVerificationActivity extends BaseActivity implements OTPView, Vi
     @Override
     public void onBackPress() {
         ExplicitIntentUtil.finishActivity(this);
+    }
+
+    @Override
+    public void onOtpVerificationSuccess(final String message) {
+        ExplicitIntentUtil.finishActivityForResultOk(this);
     }
 }

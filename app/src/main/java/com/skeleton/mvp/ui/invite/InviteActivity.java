@@ -108,4 +108,9 @@ public class InviteActivity extends BaseActivity implements InviteView, View.OnC
                 })
                 .show();
     }
+
+    @Override
+    public void onBackPress() {
+
+    }
 }

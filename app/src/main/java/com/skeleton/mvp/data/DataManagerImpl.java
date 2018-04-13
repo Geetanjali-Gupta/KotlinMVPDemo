@@ -73,8 +73,8 @@ public class DataManagerImpl implements DataManager {
     }
 
     @Override
-    public void apiCallToVerifyOtp(final String otpCode, final ApiListener mApiListener) {
-        mApiHelper.apiCallToVerifyOtp(otpCode, mApiListener);
+    public void apiCallToVerifyOtp(final String mobileNumber, final String otpCode, final ApiListener mApiListener) {
+        mApiHelper.apiCallToVerifyOtp(mobileNumber, otpCode, mApiListener);
     }
 
     @Override

@@ -37,6 +37,7 @@ public final class AppConstant {
     public interface RequestCodes {
         int REQ_CODE_SIGN_IN = 1001;
         int REQ_CODE_SIGN_UP = 1002;
+        int REQ_CODE_OTP_VERIFICATION = 1003;
 
         /**
          * Dummy method

@@ -69,4 +69,9 @@ public class LandingActivity extends BaseActivity implements LandingView, View.O
     public void navigateToSignUpScreen() {
         ExplicitIntentUtil.startActivityForResult(this, SignUpActivity.class, REQ_CODE_SIGN_UP, null);
     }
+
+    @Override
+    public void onBackPress() {
+
+    }
 }

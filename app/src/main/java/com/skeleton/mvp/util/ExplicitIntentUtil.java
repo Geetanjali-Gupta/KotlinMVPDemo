@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import static android.app.Activity.RESULT_CANCELED;
+import static android.app.Activity.RESULT_OK;
+
 /**
  * Created by clicklabs on 11/04/18.
  */
@@ -57,6 +60,26 @@ public final class ExplicitIntentUtil {
      * @param fromContext the activity to be finished
      */
     public static void finishActivity(final Activity fromContext) {
+        fromContext.finish();
+    }
+
+    /**
+     * Exits the current activity
+     *
+     * @param fromContext the activity to be finished
+     */
+    public static void finishActivityForResultOk(final Activity fromContext) {
+        fromContext.setResult(RESULT_OK, fromContext.getIntent());
+        fromContext.finish();
+    }
+
+    /**
+     * Exits the current activity
+     *
+     * @param fromContext the activity to be finished
+     */
+    public static void finishActivityForResultCancel(final Activity fromContext) {
+        fromContext.setResult(RESULT_CANCELED, fromContext.getIntent());
         fromContext.finish();
     }
 }

@@ -52,3 +52,9 @@
 #-keep class org.webrtc.** { *; }
 # For improved crash reporting with Crashlytics
 -keepattributes SourceFile,LineNumberTable
+
+# For Bottom Navigation View
+-keepclassmembers class android.support.design.internal.BottomNavigationMenuView {
+    boolean mShiftingMode;
+    }
+

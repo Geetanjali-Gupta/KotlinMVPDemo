@@ -32,6 +32,7 @@ import retrofit2.http.Url;
 public class ApiHelperImpl implements ApiHelper {
     private static final String LOGIN = "user/login";
     private static final String REGISTER = "customer/registerFromEmail";
+    private static final String OTP_VERIFICATION = "user/verifyMobileOTP";
 
     private Retrofit mRetrofit;
     private DbHelper mDbHelper;
@@ -131,8 +132,13 @@ public class ApiHelperImpl implements ApiHelper {
 
 
     @Override
-    public void apiCallToVerifyOtp(final String otpCode, final ApiListener mApiListener) {
-
+    public void apiCallToVerifyOtp(final String mobileNumber, final String otpCode, final ApiListener mApiListener) {
+        final CommonParams mCommonParams = new CommonParams.Builder()
+                .add("mobile", mobileNumber)
+                .add("OTPCode", otpCode).build();
+        final Call<CommonResponse> mCommonResponseCall = getApiInterface()
+                .putCall(OTP_VERIFICATION, getApiHeader(false), mCommonParams.getMap());
+        executeApiCall(mCommonResponseCall, mApiListener);
     }
 
     @Override

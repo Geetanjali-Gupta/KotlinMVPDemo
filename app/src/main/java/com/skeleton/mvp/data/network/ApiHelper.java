@@ -35,9 +35,10 @@ public interface ApiHelper {
      * Api call to verify otp.
      *
      * @param otpCode      the otp code
+     * @param mobileNumber phone number to be verified
      * @param mApiListener the m api listener
      */
-    void apiCallToVerifyOtp(String otpCode, ApiListener mApiListener);
+    void apiCallToVerifyOtp(final String mobileNumber, String otpCode, ApiListener mApiListener);
 
     /**
      * Api call to resend otp.

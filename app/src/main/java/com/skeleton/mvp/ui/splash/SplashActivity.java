@@ -200,4 +200,9 @@ public class SplashActivity extends BaseActivity implements SplashView {
             startActivityForResult(intent, REQ_CODE_PLAY_STORE);
         }
     }
+
+    @Override
+    public void onBackPress() {
+
+    }
 }
