@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 /**
- * Created by clicklabs on 13/04/18.
+ * Developer: Geetanjali Gupta on 13/04/18.
  */
 public class CustomerAddressID {
 
@@ -43,9 +43,9 @@ public class CustomerAddressID {
     private Object city;
     @SerializedName("longitude")
     @Expose
-    private int longitude;
+    private double longitude;
     @SerializedName("latitude")
     @Expose
-    private int latitude;
+    private double latitude;
 
 }

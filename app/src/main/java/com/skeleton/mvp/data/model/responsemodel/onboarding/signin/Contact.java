@@ -24,4 +24,7 @@ public class Contact {
     @Expose
     private boolean isVerified;
 
+    public String getMobile() {
+        return mobile;
+    }
 }

@@ -3,8 +3,9 @@ package com.skeleton.mvp.ui.splash;
 import com.skeleton.mvp.BuildConfig;
 import com.skeleton.mvp.data.DataManager;
 import com.skeleton.mvp.data.DataManagerImpl;
-import com.skeleton.mvp.data.model.responsemodel.onboarding.splash.AppVersion;
 import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
+import com.skeleton.mvp.data.model.responsemodel.onboarding.signin.SignInResponseModel;
+import com.skeleton.mvp.data.model.responsemodel.onboarding.splash.AppVersion;
 import com.skeleton.mvp.data.network.ApiError;
 import com.skeleton.mvp.data.network.ApiHelper;
 import com.skeleton.mvp.fcm.FcmTokenInterface;
@@ -128,7 +129,12 @@ class SplashPresenterImpl extends BasePresenterImpl implements SplashPresenter, 
                 public void onSuccess(final CommonResponse commonResponse) {
                     if (isViewAttached()) {
                         mSplashView.hideProgressBar();
-                        mSplashView.navigateToHomeScreen();
+                        final SignInResponseModel signInResponseModel = commonResponse.toResponseModel(SignInResponseModel.class);
+                        if (signInResponseModel.isPhoneVerified()) {
+                            mSplashView.navigateToHomeScreen();
+                        } else {
+                            mSplashView.navigateToOTPVerificationScreen(signInResponseModel.getContacts().get(0).getMobile());
+                        }
                     }
                 }
 
@@ -173,7 +179,6 @@ class SplashPresenterImpl extends BasePresenterImpl implements SplashPresenter, 
         if (!mSplashView.isPlayServiceAvailable()) {
             return;
         }
-
         // register for push
         MyFirebaseInstanceIdService.setCallback(this);
     }

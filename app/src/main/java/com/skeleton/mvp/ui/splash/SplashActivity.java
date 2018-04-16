@@ -17,7 +17,14 @@ import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.BaseActivity;
 import com.skeleton.mvp.ui.customview.ProgressWheel;
+import com.skeleton.mvp.ui.home.HomeActivity;
 import com.skeleton.mvp.ui.onboarding.landing.LandingActivity;
+import com.skeleton.mvp.ui.onboarding.otpverification.OTPVerificationActivity;
+import com.skeleton.mvp.util.ExplicitIntentUtil;
+
+import static com.skeleton.mvp.util.AppConstant.RequestCodes.REQ_CODE_LANDING;
+import static com.skeleton.mvp.util.AppConstant.RequestCodes.REQ_CODE_OTP_VERIFICATION;
+import static com.skeleton.mvp.util.IntentConstant.EXTRA_PHONE_NUMBER;
 
 
 /**
@@ -114,15 +121,21 @@ public class SplashActivity extends BaseActivity implements SplashView {
     public void navigateToHomeScreen() {
         //its called when access token login api success
         //navigate to dashboard/home screen of the application
+        ExplicitIntentUtil.startActivityForResult(this, HomeActivity.class, REQ_CODE_LANDING, null);
     }
 
     @Override
     public void navigateToWelcomeScreen() {
         //its called when access token login fails or access token is null or empty
         //navigate to welcome screen of the application or show login or sign up options
-        Intent landingActivity = new Intent(this, LandingActivity.class);
-        startActivity(landingActivity);
-        finish();
+        ExplicitIntentUtil.startActivityForResult(this, LandingActivity.class, REQ_CODE_LANDING, null);
+    }
+
+    @Override
+    public void navigateToOTPVerificationScreen(final String phoneNumber) {
+        Bundle phoneNumberBundle = new Bundle();
+        phoneNumberBundle.putString(EXTRA_PHONE_NUMBER, phoneNumber);
+        ExplicitIntentUtil.startActivityForResult(this, OTPVerificationActivity.class, REQ_CODE_OTP_VERIFICATION, phoneNumberBundle);
     }
 
     @Override
@@ -165,8 +178,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                navigateToWelcomeScreen();
-                //mSplashPresenter.checkAppVersion();
+                mSplashPresenter.checkAppVersion();
             }
         });
     }
@@ -181,6 +193,20 @@ public class SplashActivity extends BaseActivity implements SplashView {
                 break;
             case REQ_CODE_PLAY_STORE:
                 mSplashPresenter.checkAppVersion();
+                break;
+            case REQ_CODE_LANDING:
+                if (resultCode == RESULT_OK) {
+                    mSplashPresenter.checkAccessToken();
+                } else if (resultCode == RESULT_CANCELED) {
+                    ExplicitIntentUtil.finishActivity(this);
+                }
+                break;
+            case REQ_CODE_OTP_VERIFICATION:
+                if (resultCode == RESULT_OK) {
+                    navigateToHomeScreen();
+                } else if (resultCode == RESULT_CANCELED) {
+                    navigateToWelcomeScreen();
+                }
                 break;
             default:
                 break;

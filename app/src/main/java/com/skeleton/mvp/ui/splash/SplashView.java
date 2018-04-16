@@ -43,6 +43,13 @@ public interface SplashView extends BaseView {
     void navigateToWelcomeScreen();
 
     /**
+     * Navigate to login screen.
+     *
+     * @param phoneNumber Mobile Number to be verified
+     */
+    void navigateToOTPVerificationScreen(final String phoneNumber);
+
+    /**
      * Show app update dialog.
      *
      * @param updateTitle      the update title

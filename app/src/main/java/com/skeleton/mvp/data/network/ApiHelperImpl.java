@@ -30,6 +30,8 @@ import retrofit2.http.Url;
  * Dated: 09/03/18.
  */
 public class ApiHelperImpl implements ApiHelper {
+    private static final String GET_APP_VERSION = "/appVersion/getCurrentVersions";
+    private static final String ACCESS_TOKEN_LOGIN = "user/accessTokenLogin";
     private static final String LOGIN = "user/login";
     private static final String REGISTER = "customer/registerFromEmail";
     private static final String OTP_VERIFICATION = "user/verifyMobileOTP";
@@ -109,12 +111,19 @@ public class ApiHelperImpl implements ApiHelper {
 
     @Override
     public void apiCallToGetAppVersion(final ApiListener mApiListener) {
-
+        final Call<CommonResponse> mCommonResponseCall = getApiInterface()
+                .getCall(GET_APP_VERSION, getApiHeader(false));
+        executeApiCall(mCommonResponseCall, mApiListener);
     }
 
     @Override
     public void apiCallForAccessTokenLogin(final ApiListener mApiListener) {
-
+        final CommonParams mCommonParams = new CommonParams.Builder()
+                .add("deviceType", AppConstant.DEVICE_TYPE)
+                .build();
+        final Call<CommonResponse> mCommonResponseCall = getApiInterface()
+                .postCall(ACCESS_TOKEN_LOGIN, getApiHeader(true), mCommonParams.getMap());
+        executeApiCall(mCommonResponseCall, mApiListener);
     }
 
     @Override

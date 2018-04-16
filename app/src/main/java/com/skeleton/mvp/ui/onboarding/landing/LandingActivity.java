@@ -1,5 +1,6 @@
 package com.skeleton.mvp.ui.onboarding.landing;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -73,5 +74,24 @@ public class LandingActivity extends BaseActivity implements LandingView, View.O
     @Override
     public void onBackPress() {
 
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQ_CODE_SIGN_IN:
+                if (resultCode == RESULT_OK) {
+                    ExplicitIntentUtil.finishActivityForResultOk(this);
+                }
+                break;
+            case REQ_CODE_SIGN_UP:
+                if (resultCode == RESULT_OK) {
+                    ExplicitIntentUtil.finishActivityForResultOk(this);
+                }
+                break;
+            default:
+                break;
+        }
     }
 }

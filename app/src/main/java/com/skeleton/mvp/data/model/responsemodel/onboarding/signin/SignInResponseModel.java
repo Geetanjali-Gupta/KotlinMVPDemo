@@ -110,4 +110,12 @@ public class SignInResponseModel {
     public String getToken() {
         return token;
     }
+
+    public boolean isPhoneVerified() {
+        return isPhoneVerified;
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
 }
