@@ -23,16 +23,15 @@ import static com.skeleton.mvp.util.IntentConstant.EXTRA_PHONE_NUMBER;
  */
 public class SignInActivity extends BaseActivity implements View.OnClickListener, SignInView {
 
-    private AppCompatEditText etPhone, etPassword;
+    private AppCompatEditText etPhone;
     private SignInPresenter mSignInPresenter;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
         init();
-        mSignInPresenter = new SignInPresenterImpl(this, new DataManagerImpl(RestClient.getRetrofitBuilder()));
-        mSignInPresenter.onAttach();
     }
 
     @Override
@@ -45,6 +44,9 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
      * Init the views
      */
     private void init() {
+        mSignInPresenter = new SignInPresenterImpl(this, new DataManagerImpl(RestClient.getRetrofitBuilder()));
+        mSignInPresenter.onAttach();
+
         etPhone = findViewById(R.id.etPhone);
 
         findViewById(R.id.btnSignIn).setOnClickListener(this);

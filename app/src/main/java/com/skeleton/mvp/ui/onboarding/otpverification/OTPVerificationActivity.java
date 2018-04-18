@@ -24,7 +24,7 @@ import static com.skeleton.mvp.util.IntentConstant.EXTRA_PHONE_NUMBER;
 public class OTPVerificationActivity extends BaseActivity implements OTPView, View.OnClickListener {
 
     private LinearLayout llVerificationCode;
-    private OTPVerificationPresenter otpVerificationPresenter;
+    private OTPVerificationPresenter mOTPVerificationPresenter;
 
     private String phoneNumber;
 
@@ -40,8 +40,8 @@ public class OTPVerificationActivity extends BaseActivity implements OTPView, Vi
      * Used to initialise Views
      */
     private void initViews() {
-        otpVerificationPresenter = new OTPVerificationPresenterImpl(this, new DataManagerImpl(RestClient.getRetrofitBuilder()));
-        otpVerificationPresenter.onAttach();
+        mOTPVerificationPresenter = new OTPVerificationPresenterImpl(this, new DataManagerImpl(RestClient.getRetrofitBuilder()));
+        mOTPVerificationPresenter.onAttach();
 
         llVerificationCode = findViewById(R.id.llVerificationCode);
 
@@ -114,13 +114,13 @@ public class OTPVerificationActivity extends BaseActivity implements OTPView, Vi
                         + ((EditText) llVerificationCode.getChildAt(1)).getText().toString()
                         + ((EditText) llVerificationCode.getChildAt(2)).getText().toString()
                         + ((EditText) llVerificationCode.getChildAt(3)).getText().toString();
-                otpVerificationPresenter.onContinueBtnClick(phoneNumber, strOTP);
+                mOTPVerificationPresenter.onContinueBtnClick(phoneNumber, strOTP);
                 break;
             case R.id.btnResend:
-                otpVerificationPresenter.onResendBtnClick(phoneNumber);
+                mOTPVerificationPresenter.onResendBtnClick(phoneNumber);
                 break;
             case R.id.ivBack:
-                otpVerificationPresenter.onBackPress();
+                mOTPVerificationPresenter.onBackPress();
                 break;
             default:
                 break;
