@@ -44,36 +44,34 @@ import static org.mockito.Mockito.verify;
 public class SignUpApiCallUnitTestCases {
     private SignUpPresenterImpl mSignUpPresenterImpl;
     @Mock
-    private SignUpPresenterImpl mockSignUpPresenterImpl;
-    @Mock
-    private DataManagerImpl dataManager;
+    private DataManagerImpl mDataManager;
     @Mock
     private SignUpView mSignUpView;
     @Mock
-    private ApiHelper.ApiListener apiListener;
-    private MockWebServer mockWebServer;
+    private ApiHelper.ApiListener mApiListener;
+    private MockWebServer mMockWebServer;
     private CommonResponse mCommonResponse;
     private ApiError mApiError;
     private Throwable mThrowable;
 
     @Before
     public void initialisePresenter() throws Exception {
-        mockWebServer = new MockWebServer();
+        mMockWebServer = new MockWebServer();
         try {
-            mockWebServer.start();
+            mMockWebServer.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(mockWebServer.url("/"))
+                .baseUrl(mMockWebServer.url("/"))
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(new OkHttpClient.Builder()
                         .dispatcher(new Dispatcher(new SynchronousExecutorService())).build())
                 .build();
         MockitoAnnotations.initMocks(this);
         PowerMockito.mockStatic(CommonData.class);
-        dataManager = new DataManagerImpl(retrofit);
-        mSignUpPresenterImpl = new SignUpPresenterImpl(mSignUpView, dataManager);
+        mDataManager = new DataManagerImpl(retrofit);
+        mSignUpPresenterImpl = new SignUpPresenterImpl(mSignUpView, mDataManager);
         mSignUpPresenterImpl.onAttach();
     }
 
@@ -93,11 +91,11 @@ public class SignUpApiCallUnitTestCases {
      */
     @Test
     public void onSignIn_callsOnSuccess_onResponseCode_200() throws Exception {
-        mockWebServer.enqueue(new MockResponse()
+        mMockWebServer.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(FileUtils.convertStreamToString(getClass().getClassLoader().getResourceAsStream("success.json"))));
 
-        dataManager.apiCallToRegisterUser(validPhoneEmailSignUpModel(), new ApiHelper.ApiListener() {
+        mDataManager.apiCallToRegisterUser(validPhoneEmailSignUpModel(), new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
                 mCommonResponse = commonResponse;
@@ -108,8 +106,8 @@ public class SignUpApiCallUnitTestCases {
 
             }
         });
-        apiListener.onSuccess(mCommonResponse);
-        verify(apiListener, times(1)).onSuccess(mCommonResponse);
+        mApiListener.onSuccess(mCommonResponse);
+        verify(mApiListener, times(1)).onSuccess(mCommonResponse);
         mSignUpPresenterImpl.onSignUpSuccess(mCommonResponse);
         verify(mSignUpView, times(1)).hideLoading();
         verify(mSignUpView, times(1)).onSignUpSuccess(Mockito.anyString());
@@ -122,10 +120,10 @@ public class SignUpApiCallUnitTestCases {
      */
     @Test
     public void onSignIn_callsOnFailure_onResponseCode_400() throws Exception {
-        mockWebServer.enqueue(new MockResponse()
+        mMockWebServer.enqueue(new MockResponse()
                 .setResponseCode(400)
                 .setBody(FileUtils.convertStreamToString(getClass().getClassLoader().getResourceAsStream("failure.json"))));
-        dataManager.apiCallToRegisterUser(validPhoneEmailSignUpModel(), new ApiHelper.ApiListener() {
+        mDataManager.apiCallToRegisterUser(validPhoneEmailSignUpModel(), new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
 
@@ -135,10 +133,10 @@ public class SignUpApiCallUnitTestCases {
             public void onFailure(final ApiError apiError, final Throwable throwable) {
                 mApiError = apiError;
                 mThrowable = throwable;
-                apiListener.onFailure(apiError, throwable);
+                mApiListener.onFailure(apiError, throwable);
             }
         });
-        verify(apiListener, times(1)).onFailure(mApiError, mThrowable);
+        verify(mApiListener, times(1)).onFailure(mApiError, mThrowable);
     }
 
     /**
@@ -148,9 +146,9 @@ public class SignUpApiCallUnitTestCases {
      */
     @Test
     public void onSignIn_callsOnFailure_onFaultyJson() throws Exception {
-        mockWebServer.enqueue(new MockResponse()
+        mMockWebServer.enqueue(new MockResponse()
                 .setBody(FileUtils.convertStreamToString(getClass().getClassLoader().getResourceAsStream("faulty.json"))));
-        dataManager.apiCallToRegisterUser(validPhoneEmailSignUpModel(), new ApiHelper.ApiListener() {
+        mDataManager.apiCallToRegisterUser(validPhoneEmailSignUpModel(), new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
 
@@ -160,10 +158,10 @@ public class SignUpApiCallUnitTestCases {
             public void onFailure(final ApiError apiError, final Throwable throwable) {
                 mApiError = apiError;
                 mThrowable = throwable;
-                apiListener.onFailure(apiError, throwable);
+                mApiListener.onFailure(apiError, throwable);
             }
         });
-        verify(apiListener, times(1)).onFailure(mApiError, mThrowable);
+        verify(mApiListener, times(1)).onFailure(mApiError, mThrowable);
     }
 
     /**
@@ -174,7 +172,7 @@ public class SignUpApiCallUnitTestCases {
      */
     @Test
     public void onSignIn_callsOnFailure_onSocketTimeOut() throws Exception {
-        dataManager.apiCallToRegisterUser(validPhoneEmailSignUpModel(), new ApiHelper.ApiListener() {
+        mDataManager.apiCallToRegisterUser(validPhoneEmailSignUpModel(), new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
 
@@ -184,15 +182,15 @@ public class SignUpApiCallUnitTestCases {
             public void onFailure(final ApiError apiError, final Throwable throwable) {
                 mApiError = apiError;
                 mThrowable = throwable;
-                apiListener.onFailure(apiError, throwable);
+                mApiListener.onFailure(apiError, throwable);
             }
         });
-        verify(apiListener, times(1)).onFailure(mApiError, mThrowable);
+        verify(mApiListener, times(1)).onFailure(mApiError, mThrowable);
     }
 
     @After
     public void shutDownServer() throws IOException {
-        mockWebServer.shutdown();
+        mMockWebServer.shutdown();
     }
 
     private SignUpModel validPhoneEmailSignUpModel() {

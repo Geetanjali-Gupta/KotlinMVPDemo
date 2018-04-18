@@ -16,16 +16,16 @@ import static org.mockito.Mockito.verify;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class LandingPresenterUnitTestCases {
-    private LandingPresenterImpl landingPresenterImpl;
+    private LandingPresenterImpl mLandingPresenterImpl;
     @Mock
-    private DataManagerImpl dataManagerImpl;
+    private DataManagerImpl mDataManager;
     @Mock
-    private LandingView landingView;
+    private LandingView mLandingView;
 
     @Before
     public void initialisePresenter() throws Exception {
-        landingPresenterImpl = new LandingPresenterImpl(landingView, dataManagerImpl);
-        landingPresenterImpl.onAttach();
+        mLandingPresenterImpl = new LandingPresenterImpl(mLandingView, mDataManager);
+        mLandingPresenterImpl.onAttach();
     }
 
     /**
@@ -33,8 +33,8 @@ public class LandingPresenterUnitTestCases {
      */
     @Test
     public void onSignInClick_navigateToSignInScreen() {
-        landingPresenterImpl.onSignInClicked();
-        verify(landingView, times(1)).navigateToSignInScreen();
+        mLandingPresenterImpl.onSignInClicked();
+        verify(mLandingView, times(1)).navigateToSignInScreen();
     }
 
     /**
@@ -42,7 +42,7 @@ public class LandingPresenterUnitTestCases {
      */
     @Test
     public void onSignInClick_navigateToSignUpScreen() {
-        landingPresenterImpl.onSignUpClicked();
-        verify(landingView, times(1)).navigateToSignUpScreen();
+        mLandingPresenterImpl.onSignUpClicked();
+        verify(mLandingView, times(1)).navigateToSignUpScreen();
     }
 }

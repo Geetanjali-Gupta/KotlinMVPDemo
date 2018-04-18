@@ -25,13 +25,13 @@ import static org.mockito.Mockito.verify;
 public class SignUpPresenterUnitTestCases {
     private SignUpPresenterImpl mSignUpPresenterIml;
     @Mock
-    private DataManagerImpl dataManager;
+    private DataManagerImpl mDataManager;
     @Mock
     private SignUpView mSignUpView;
 
     @Before
     public void initialisePresenter() throws Exception {
-        mSignUpPresenterIml = new SignUpPresenterImpl(mSignUpView, dataManager);
+        mSignUpPresenterIml = new SignUpPresenterImpl(mSignUpView, mDataManager);
         mSignUpPresenterIml.onAttach();
     }
 

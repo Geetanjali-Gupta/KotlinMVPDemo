@@ -14,15 +14,15 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class LandingViewUnitTestCases {
     @Mock
-    private LandingView landingScreenView;
+    private LandingView mLandingView;
 
     /**
      * Used to Verify navigateToSignInScreen method is called
      */
     @Test
     public void onSignInClick_navigateToSignInScreen() {
-        landingScreenView.navigateToSignInScreen();
-        verify(landingScreenView, times(1)).navigateToSignInScreen();
+        mLandingView.navigateToSignInScreen();
+        verify(mLandingView, times(1)).navigateToSignInScreen();
     }
 
     /**
@@ -30,7 +30,7 @@ public class LandingViewUnitTestCases {
      */
     @Test
     public void onSignInClick_navigateToSignUpScreen() {
-        landingScreenView.navigateToSignUpScreen();
-        verify(landingScreenView, times(1)).navigateToSignUpScreen();
+        mLandingView.navigateToSignUpScreen();
+        verify(mLandingView, times(1)).navigateToSignUpScreen();
     }
 }

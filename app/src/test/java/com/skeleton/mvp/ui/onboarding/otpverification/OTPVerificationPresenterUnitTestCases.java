@@ -21,13 +21,13 @@ import static org.mockito.Mockito.verify;
 public class OTPVerificationPresenterUnitTestCases {
     private OTPVerificationPresenterImpl mOTPVerificationPresenterImpl;
     @Mock
-    private DataManagerImpl dataManager;
+    private DataManagerImpl mDataManager;
     @Mock
     private OTPView mOTPView;
 
     @Before
     public void initialisePresenter() throws Exception {
-        mOTPVerificationPresenterImpl = new OTPVerificationPresenterImpl(mOTPView, dataManager);
+        mOTPVerificationPresenterImpl = new OTPVerificationPresenterImpl(mOTPView, mDataManager);
         mOTPVerificationPresenterImpl.onAttach();
     }
 

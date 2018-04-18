@@ -25,7 +25,7 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
      * @param mOTPView     the associated splash view
      * @param mDataManager the m data manager
      */
-    public OTPVerificationPresenterImpl(final OTPView mOTPView, final DataManagerImpl mDataManager) {
+    OTPVerificationPresenterImpl(final OTPView mOTPView, final DataManagerImpl mDataManager) {
         this.mOTPView = mOTPView;
         this.mDataManager = mDataManager;
     }

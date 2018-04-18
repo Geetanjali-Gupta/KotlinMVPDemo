@@ -31,16 +31,16 @@ import static org.mockito.Mockito.verify;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class SignInPresenterUnitTestCases {
-    private SignInPresenterImpl signInPresenterImpl;
+    private SignInPresenterImpl mSignInPresenterImpl;
     @Mock
-    private DataManagerImpl dataManager;
+    private DataManagerImpl mDataManager;
     @Mock
-    private SignInView signInView;
+    private SignInView mSignInView;
 
     @Before
     public void initialisePresenter() throws Exception {
-        signInPresenterImpl = new SignInPresenterImpl(signInView, dataManager);
-        signInPresenterImpl.onAttach();
+        mSignInPresenterImpl = new SignInPresenterImpl(mSignInView, mDataManager);
+        mSignInPresenterImpl.onAttach();
     }
 
     /**
@@ -49,8 +49,8 @@ public class SignInPresenterUnitTestCases {
     @Test
     public void onSignInClicked_showErrorIfWrongPhoneNumber() {
         ValidationUtil.checkPhoneNumber("6565");
-        signInPresenterImpl.onSignInClicked(Mockito.anyString());
-        verify(signInView, times(1)).showErrorMessage(Mockito.anyInt());
+        mSignInPresenterImpl.onSignInClicked(Mockito.anyString());
+        verify(mSignInView, times(1)).showErrorMessage(Mockito.anyInt());
     }
 
     @Test
@@ -78,8 +78,8 @@ public class SignInPresenterUnitTestCases {
      */
     @Test
     public void onSignInClick_showErrorIfInvalidPhoneNumber() {
-        signInPresenterImpl.onSignInClicked(Mockito.anyString());
-        verify(signInView, times(1)).showErrorMessage(Mockito.anyInt());
+        mSignInPresenterImpl.onSignInClicked(Mockito.anyString());
+        verify(mSignInView, times(1)).showErrorMessage(Mockito.anyInt());
     }
 
     /**
@@ -87,8 +87,8 @@ public class SignInPresenterUnitTestCases {
      */
     @Test
     public void onSignInClick_showLoadingIfValidPhoneNumber() {
-        signInPresenterImpl.onSignInClicked("1234567890");
-        verify(signInView, times(1)).showLoading();
+        mSignInPresenterImpl.onSignInClicked("1234567890");
+        verify(mSignInView, times(1)).showLoading();
     }
 
     /**
@@ -96,8 +96,8 @@ public class SignInPresenterUnitTestCases {
      */
     @Test
     public void onBackPress_backPressCalled() {
-        signInPresenterImpl.onBackPress();
-        verify(signInView, times(1)).onBackPress();
+        mSignInPresenterImpl.onBackPress();
+        verify(mSignInView, times(1)).onBackPress();
     }
 
     /**
@@ -105,7 +105,7 @@ public class SignInPresenterUnitTestCases {
      */
     @Test
     public void isViewAttached_ReturnTrueIfViewAttached() {
-        assertTrue(signInPresenterImpl.isViewAttached());
+        assertTrue(mSignInPresenterImpl.isViewAttached());
     }
 
     /**
@@ -113,7 +113,7 @@ public class SignInPresenterUnitTestCases {
      */
     @Test
     public void isViewAttached_ReturnFalseIfViewNotAttached() {
-        signInPresenterImpl.onDetach();
-        assertFalse(signInPresenterImpl.isViewAttached());
+        mSignInPresenterImpl.onDetach();
+        assertFalse(mSignInPresenterImpl.isViewAttached());
     }
 }

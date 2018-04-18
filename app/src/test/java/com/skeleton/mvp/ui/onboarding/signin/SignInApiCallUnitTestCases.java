@@ -41,37 +41,38 @@ import static org.mockito.Mockito.verify;
 @PrepareForTest({CommonData.class})
 @RunWith(PowerMockRunner.class)
 public class SignInApiCallUnitTestCases {
-    private SignInPresenterImpl signInPresenterImpl;
+
+    private SignInPresenterImpl mSignInPresenterImpl;
     @Mock
-    private DataManagerImpl dataManager;
+    private DataManagerImpl mDataManager;
     @Mock
-    private SignInView signInView;
+    private SignInView mSignInView;
     @Mock
-    private ApiHelper.ApiListener apiListener;
-    private MockWebServer mockWebServer;
+    private ApiHelper.ApiListener mApiListener;
+    private MockWebServer mMockWebServer;
     private CommonResponse mCommonResponse;
     private ApiError mApiError;
     private Throwable mThrowable;
 
     @Before
     public void initialisePresenter() throws Exception {
-        mockWebServer = new MockWebServer();
+        mMockWebServer = new MockWebServer();
         try {
-            mockWebServer.start();
+            mMockWebServer.start();
         } catch (IOException e) {
             e.printStackTrace();
         }
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(mockWebServer.url("/"))
+                .baseUrl(mMockWebServer.url("/"))
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(new OkHttpClient.Builder()
                         .dispatcher(new Dispatcher(new SynchronousExecutorService())).build())
                 .build();
         MockitoAnnotations.initMocks(this);
         PowerMockito.mockStatic(CommonData.class);
-        dataManager = new DataManagerImpl(retrofit);
-        signInPresenterImpl = new SignInPresenterImpl(signInView, dataManager);
-        signInPresenterImpl.onAttach();
+        mDataManager = new DataManagerImpl(retrofit);
+        mSignInPresenterImpl = new SignInPresenterImpl(mSignInView, mDataManager);
+        mSignInPresenterImpl.onAttach();
     }
 
     /**
@@ -79,8 +80,8 @@ public class SignInApiCallUnitTestCases {
      */
     @Test
     public void onSignInClick_showLoadingIfValidPhoneNumber() {
-        signInPresenterImpl.onSignInClicked("1234567890");
-        verify(signInView, times(1)).showLoading();
+        mSignInPresenterImpl.onSignInClicked("1234567890");
+        verify(mSignInView, times(1)).showLoading();
     }
 
     /**
@@ -90,11 +91,11 @@ public class SignInApiCallUnitTestCases {
      */
     @Test
     public void onSignIn_callsOnSuccess_onResponseCode_200() throws Exception {
-        mockWebServer.enqueue(new MockResponse()
+        mMockWebServer.enqueue(new MockResponse()
                 .setResponseCode(200)
                 .setBody(FileUtils.convertStreamToString(getClass().getClassLoader().getResourceAsStream("success.json"))));
 
-        dataManager.apiCallForLogin(Mockito.anyString(), new ApiHelper.ApiListener() {
+        mDataManager.apiCallForLogin(Mockito.anyString(), new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
                 mCommonResponse = commonResponse;
@@ -105,11 +106,11 @@ public class SignInApiCallUnitTestCases {
 
             }
         });
-        apiListener.onSuccess(mCommonResponse);
-        verify(apiListener, times(1)).onSuccess(mCommonResponse);
-        signInPresenterImpl.onSignInSuccess(mCommonResponse);
-        verify(signInView, times(1)).hideLoading();
-        verify(signInView, times(1)).onSignInSuccess(Mockito.anyString());
+        mApiListener.onSuccess(mCommonResponse);
+        verify(mApiListener, times(1)).onSuccess(mCommonResponse);
+        mSignInPresenterImpl.onSignInSuccess(mCommonResponse);
+        verify(mSignInView, times(1)).hideLoading();
+        verify(mSignInView, times(1)).onSignInSuccess(Mockito.anyString());
     }
 
     /**
@@ -119,10 +120,10 @@ public class SignInApiCallUnitTestCases {
      */
     @Test
     public void onSignIn_callsOnFailure_onResponseCode_400() throws Exception {
-        mockWebServer.enqueue(new MockResponse()
+        mMockWebServer.enqueue(new MockResponse()
                 .setResponseCode(400)
                 .setBody(FileUtils.convertStreamToString(getClass().getClassLoader().getResourceAsStream("failure.json"))));
-        dataManager.apiCallForLogin(Mockito.anyString(), new ApiHelper.ApiListener() {
+        mDataManager.apiCallForLogin(Mockito.anyString(), new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
 
@@ -132,10 +133,10 @@ public class SignInApiCallUnitTestCases {
             public void onFailure(final ApiError apiError, final Throwable throwable) {
                 mApiError = apiError;
                 mThrowable = throwable;
-                apiListener.onFailure(apiError, throwable);
+                mApiListener.onFailure(apiError, throwable);
             }
         });
-        verify(apiListener, times(1)).onFailure(mApiError, mThrowable);
+        verify(mApiListener, times(1)).onFailure(mApiError, mThrowable);
     }
 
     /**
@@ -145,9 +146,9 @@ public class SignInApiCallUnitTestCases {
      */
     @Test
     public void onSignIn_callsOnFailure_onFaultyJson() throws Exception {
-        mockWebServer.enqueue(new MockResponse()
+        mMockWebServer.enqueue(new MockResponse()
                 .setBody(FileUtils.convertStreamToString(getClass().getClassLoader().getResourceAsStream("faulty.json"))));
-        dataManager.apiCallForLogin(Mockito.anyString(), new ApiHelper.ApiListener() {
+        mDataManager.apiCallForLogin(Mockito.anyString(), new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
 
@@ -157,10 +158,10 @@ public class SignInApiCallUnitTestCases {
             public void onFailure(final ApiError apiError, final Throwable throwable) {
                 mApiError = apiError;
                 mThrowable = throwable;
-                apiListener.onFailure(apiError, throwable);
+                mApiListener.onFailure(apiError, throwable);
             }
         });
-        verify(apiListener, times(1)).onFailure(mApiError, mThrowable);
+        verify(mApiListener, times(1)).onFailure(mApiError, mThrowable);
     }
 
     /**
@@ -171,7 +172,7 @@ public class SignInApiCallUnitTestCases {
      */
     @Test
     public void onSignIn_callsOnFailure_onSocketTimeOut() throws Exception {
-        dataManager.apiCallForLogin(Mockito.anyString(), new ApiHelper.ApiListener() {
+        mDataManager.apiCallForLogin(Mockito.anyString(), new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
 
@@ -181,14 +182,14 @@ public class SignInApiCallUnitTestCases {
             public void onFailure(final ApiError apiError, final Throwable throwable) {
                 mApiError = apiError;
                 mThrowable = throwable;
-                apiListener.onFailure(apiError, throwable);
+                mApiListener.onFailure(apiError, throwable);
             }
         });
-        verify(apiListener, times(1)).onFailure(mApiError, mThrowable);
+        verify(mApiListener, times(1)).onFailure(mApiError, mThrowable);
     }
 
     @After
     public void shutDownServer() throws IOException {
-        mockWebServer.shutdown();
+        mMockWebServer.shutdown();
     }
 }

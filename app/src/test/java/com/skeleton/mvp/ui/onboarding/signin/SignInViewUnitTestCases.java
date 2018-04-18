@@ -15,15 +15,15 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class SignInViewUnitTestCases {
     @Mock
-    private SignInView signInView;
+    private SignInView mSignInView;
 
     /**
      * Used to Verify showNetworkError method is called
      */
     @Test
     public void onSignInClick_showNetWorkError() {
-        signInView.onSignInSuccess(Mockito.anyString());
-        verify(signInView, times(1)).onSignInSuccess(Mockito.anyString());
+        mSignInView.onSignInSuccess(Mockito.anyString());
+        verify(mSignInView, times(1)).onSignInSuccess(Mockito.anyString());
     }
 
 }
