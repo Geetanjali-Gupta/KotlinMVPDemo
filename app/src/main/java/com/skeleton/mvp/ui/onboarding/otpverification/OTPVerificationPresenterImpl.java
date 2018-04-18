@@ -25,7 +25,7 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
      * @param mOTPView     the associated splash view
      * @param mDataManager the m data manager
      */
-    OTPVerificationPresenterImpl(final OTPView mOTPView, final DataManagerImpl mDataManager) {
+    public OTPVerificationPresenterImpl(final OTPView mOTPView, final DataManagerImpl mDataManager) {
         this.mOTPView = mOTPView;
         this.mDataManager = mDataManager;
     }
@@ -34,30 +34,31 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
     public void onContinueBtnClick(final String mobileNumber, final String otp) {
         if (otp.isEmpty()) {
             mOTPView.showErrorMessage(R.string.error_please_enter_otp);
-        } else if (otp.length() < OTP_LENGTH) {
+            return;
+        }
+        if (otp.length() < OTP_LENGTH) {
             mOTPView.showErrorMessage(R.string.error_please_enter_four_digit_otp);
-        } else {
-            mOTPView.showLoading();
-            mDataManager.apiCallToVerifyOtp(mobileNumber, otp, new ApiHelper.ApiListener() {
-                @Override
-                public void onSuccess(final CommonResponse commonResponse) {
-                    mOTPView.hideLoading();
-                    onOtpVerificationSuccess(commonResponse);
-                }
+            return;
+        }
+        mOTPView.showLoading();
+        mDataManager.apiCallToVerifyOtp(mobileNumber, otp, new ApiHelper.ApiListener() {
+            @Override
+            public void onSuccess(final CommonResponse commonResponse) {
+                onOtpVerificationSuccess(commonResponse);
+            }
 
-                @Override
-                public void onFailure(final ApiError apiError, final Throwable throwable) {
-                    if (isViewAttached()) {
-                        mOTPView.hideLoading();
-                        if (apiError != null) {
-                            mOTPView.showErrorMessage(apiError.getMessage());
-                        } else {
-                            mOTPView.showErrorMessage(parseThrowableMessage(throwable));
-                        }
+            @Override
+            public void onFailure(final ApiError apiError, final Throwable throwable) {
+                if (isViewAttached()) {
+                    mOTPView.hideLoading();
+                    if (apiError != null) {
+                        mOTPView.showErrorMessage(apiError.getMessage());
+                    } else {
+                        mOTPView.showErrorMessage(parseThrowableMessage(throwable));
                     }
                 }
-            });
-        }
+            }
+        });
     }
 
     @Override
@@ -66,7 +67,6 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
         mDataManager.apiCallToResendOtp(mobileNumber, new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
-                mOTPView.hideLoading();
                 onResendOtpSuccess(commonResponse);
             }
 
@@ -87,6 +87,7 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
     @Override
     public void onOtpVerificationSuccess(final CommonResponse commonResponse) {
         if (isViewAttached()) {
+            mOTPView.hideLoading();
             mOTPView.onOtpVerificationSuccessful(commonResponse.getMessage());
         }
     }
@@ -94,6 +95,7 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
     @Override
     public void onResendOtpSuccess(final CommonResponse commonResponse) {
         if (isViewAttached()) {
+            mOTPView.hideLoading();
             mOTPView.onResendOtpSuccessful(commonResponse.getMessage());
         }
     }

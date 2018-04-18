@@ -1,18 +1,19 @@
 package com.skeleton.mvp.util;
 
-import android.text.TextUtils;
-import android.util.Patterns;
+import java.util.regex.Pattern;
 
 /**
  * Developer: Click Labs
  */
-
 public final class ValidationUtil {
-
+    private static final String REGEX_EMAIL_ADDRESS = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}"
+            + "\\@" + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" + "(" + "\\."
+            + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" + ")+";
+    private static final String REGEX_PASSWORD = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$";
+    private static final String REGEX_NAME = "^[\\p{L} .'-]+$";
     private static final String REGEX_ALL_DIGITS = "\\d+";
     private static final int PHONE_NUMBER_MIN_LENGTH = 7;
     private static final int PHONE_NUMBER_MAX_LENGTH = 12;
-    private static final int PASSWORD_LENGTH = 6;
 
     /**
      * Prevent instantiation
@@ -27,10 +28,9 @@ public final class ValidationUtil {
      * @return whether email is valid
      */
     public static boolean checkEmail(final String email) {
-        if (TextUtils.isEmpty(email) || (!email.matches(Patterns.EMAIL_ADDRESS.toString()))) {
-            return false;
-        }
-        return true;
+        return !(email == null
+                || email.trim().isEmpty()
+                || (!email.matches(Pattern.compile(REGEX_EMAIL_ADDRESS).toString())));
     }
 
     /**
@@ -40,10 +40,21 @@ public final class ValidationUtil {
      * @return whether the password is valid
      */
     public static boolean checkPassword(final String password) {
-        if (TextUtils.isEmpty(password) || (password.length() < PASSWORD_LENGTH)) {
-            return false;
-        }
-        return true;
+        return !(password == null
+                || password.trim().isEmpty()
+                || (!password.matches(REGEX_PASSWORD)));
+    }
+
+    /**
+     * Check name boolean.
+     *
+     * @param name the name
+     * @return the boolean
+     */
+    public static boolean checkName(final String name) {
+        return !(name == null
+                || name.trim().isEmpty()
+                || (!name.matches(REGEX_NAME)));
     }
 
     /**
@@ -61,5 +72,15 @@ public final class ValidationUtil {
         }
         final int phoneNumberLength = phoneNumber.length();
         return phoneNumberLength >= PHONE_NUMBER_MIN_LENGTH && phoneNumberLength <= PHONE_NUMBER_MAX_LENGTH;
+    }
+
+    /**
+     * Is empty boolean.
+     *
+     * @param value the value
+     * @return the boolean
+     */
+    public static boolean isEmpty(final String value) {
+        return !(value == null || value.trim().isEmpty());
     }
 }

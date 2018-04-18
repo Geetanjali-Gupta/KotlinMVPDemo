@@ -43,10 +43,7 @@ public class SignUpPresenterImpl extends BasePresenterImpl implements SignUpPres
         mDataManager.apiCallToRegisterUser(signUpModel, new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
-                if (isViewAttached()) {
-                    mSignUpView.hideLoading();
-                    onSignUpSuccess(commonResponse);
-                }
+                onSignUpSuccess(commonResponse);
             }
 
             @Override
@@ -66,6 +63,7 @@ public class SignUpPresenterImpl extends BasePresenterImpl implements SignUpPres
     @Override
     public void onSignUpSuccess(final CommonResponse commonResponse) {
         if (isViewAttached()) {
+            mSignUpView.hideLoading();
             SignUpResponseModel signUpResponseModel = commonResponse.toResponseModel(SignUpResponseModel.class);
             mDataManager.saveAccessToken(signUpResponseModel.getToken());
             mSignUpView.onSignUpSuccess(commonResponse.getMessage());

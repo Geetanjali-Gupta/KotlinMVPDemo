@@ -36,18 +36,15 @@ public class SignInPresenterImpl extends BasePresenterImpl implements SignInPres
 
     @Override
     public void onSignInClicked(final String phoneNumber) {
-
         // checking for validation
         if (!ValidationUtil.checkPhoneNumber(phoneNumber)) {
             mSignInView.showErrorMessage(R.string.error_invalid_phone_number);
             return;
         }
-
         mSignInView.showLoading();
         mDataManager.apiCallForLogin(phoneNumber, new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
-                mSignInView.hideLoading();
                 onSignInSuccess(commonResponse);
             }
 
@@ -70,6 +67,7 @@ public class SignInPresenterImpl extends BasePresenterImpl implements SignInPres
     @Override
     public void onSignInSuccess(final CommonResponse commonResponse) {
         if (isViewAttached()) {
+            mSignInView.hideLoading();
             SignInResponseModel signInResponseModel = commonResponse.toResponseModel(SignInResponseModel.class);
             mDataManager.saveAccessToken(signInResponseModel.getToken());
             mSignInView.onSignInSuccess(commonResponse.getMessage());
