@@ -120,7 +120,7 @@ public class SplashActivity extends BaseActivity implements SplashView {
     @Override
     public void navigateToHomeScreen() {
         //its called when access token login api success
-        //navigate to dashboard/home screen of the application
+        //navigate to dashboard/ic_home_selected screen of the application
         ExplicitIntentUtil.startActivityForResult(this, HomeActivity.class, REQ_CODE_LANDING, null);
     }
 

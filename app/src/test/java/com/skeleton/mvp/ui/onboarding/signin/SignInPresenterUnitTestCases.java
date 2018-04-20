@@ -1,25 +1,16 @@
 package com.skeleton.mvp.ui.onboarding.signin;
 
 import com.skeleton.mvp.data.DataManagerImpl;
-import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
-import com.skeleton.mvp.data.network.ApiError;
-import com.skeleton.mvp.data.network.ApiHelper;
 import com.skeleton.mvp.util.ValidationUtil;
 
 import junit.framework.Assert;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
-
-import java.io.IOException;
-
-import okhttp3.mockwebserver.MockWebServer;
 
 import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;

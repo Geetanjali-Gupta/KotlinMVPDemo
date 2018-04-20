@@ -33,7 +33,7 @@ public interface SplashView extends BaseView {
     void showDeviceRootedAlert(final SplashPresenter.RootConfirmationListener rootConfirmationListener);
 
     /**
-     * Navigate to home screen.
+     * Navigate to ic_home_selected screen.
      */
     void navigateToHomeScreen();
 

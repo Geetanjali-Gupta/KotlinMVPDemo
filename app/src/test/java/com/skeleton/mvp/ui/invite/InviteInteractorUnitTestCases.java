@@ -65,7 +65,7 @@ public class InviteInteractorUnitTestCases {
                 .setResponseCode(200)
                 .setBody(FileUtils.convertStreamToString(getClass().getClassLoader().getResourceAsStream("success.json"))));
         inviteInteractorImpl.createDynamicShortLink("", "", linkCreatedListener);
-        verify(linkCreatedListener, times(1)).onSuccessful(anyString());
+        verify(linkCreatedListener, times(1)).onSuccessful(null);
     }
 
     /**
