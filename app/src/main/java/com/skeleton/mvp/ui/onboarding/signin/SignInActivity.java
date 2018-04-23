@@ -61,6 +61,7 @@ public class SignInActivity extends BaseActivity implements View.OnClickListener
                 mSignInPresenter.onSignInClicked(etPhone.getText().toString().trim());
                 break;
             case R.id.ivBack:
+                mSignInPresenter.onBackPress();
                 break;
             default:
                 break;

@@ -10,6 +10,8 @@ import android.view.MenuItem;
 
 import com.skeleton.mvp.R;
 import com.skeleton.mvp.ui.base.BaseActivity;
+import com.skeleton.mvp.ui.dialog.CustomAlertDialog;
+import com.skeleton.mvp.util.ExplicitIntentUtil;
 
 import java.lang.reflect.Field;
 
@@ -68,14 +70,34 @@ public class HomeActivity extends BaseActivity {
         });
 
         //Used to select an item programmatically
-        bottomNavigationView.getMenu().getItem(2).setChecked(true);
+        //   bottomNavigationView.getMenu().getItem(2).setChecked(true);
         //   changeFragment(new HomeFragment(), AppConstant.FragmentTags.HOME_FRAGMENT.toString());
 
     }
 
     @Override
     public void onBackPress() {
+        new CustomAlertDialog.Builder(this)
+                .setMessage(R.string.exit_confirmation_msg)
+                .setNegativeButton(R.string.text_cancel, new CustomAlertDialog.CustomDialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick() {
 
+                    }
+                })
+                .setPositiveButton(R.string.text_ok, new CustomAlertDialog.CustomDialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        ExplicitIntentUtil.finishActivity(HomeActivity.this);
+                    }
+                })
+                .setCancelable(false).show();
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        onBackPress();
     }
 
     /**

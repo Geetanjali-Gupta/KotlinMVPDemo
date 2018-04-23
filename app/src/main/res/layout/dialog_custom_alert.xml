@@ -10,6 +10,7 @@
         android:background="@color/colorPrimary"
         android:padding="@dimen/spacing_normal"
         android:text="@string/app_name"
+        android:textAppearance="@style/CustomTextAppearance.Bold"
         android:textColor="@color/white"
         android:textSize="@dimen/font_large" />
 
@@ -30,7 +31,7 @@
 
         <Button
             android:id="@+id/btnNegative"
-            style="@style/primary_button"
+            style="@style/accent_button"
             android:layout_width="0dp"
             android:layout_margin="@dimen/spacing_normal"
             android:layout_weight="1"
@@ -38,7 +39,7 @@
 
         <Button
             android:id="@+id/btnPositive"
-            style="@style/primary_button"
+            style="@style/accent_button"
             android:layout_width="0dp"
             android:layout_margin="@dimen/spacing_normal"
             android:layout_weight="1" />

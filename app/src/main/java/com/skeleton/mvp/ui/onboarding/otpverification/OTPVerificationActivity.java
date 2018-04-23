@@ -47,6 +47,7 @@ public class OTPVerificationActivity extends BaseActivity implements OTPView, Vi
 
         findViewById(R.id.btnContinue).setOnClickListener(this);
         findViewById(R.id.btnResend).setOnClickListener(this);
+        findViewById(R.id.ivBack).setOnClickListener(this);
 
         handleOtpContainerFields();
 

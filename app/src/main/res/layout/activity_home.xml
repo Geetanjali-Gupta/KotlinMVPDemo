@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context="com.skeleton.mvp.ui.home.HomeActivity">
 
+    <include layout="@layout/toolbar_home" />
+
+    <FrameLayout
+        android:id="@+id/fragmentContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomNavigationView"
+        android:layout_below="@+id/toolbarHome" />
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"

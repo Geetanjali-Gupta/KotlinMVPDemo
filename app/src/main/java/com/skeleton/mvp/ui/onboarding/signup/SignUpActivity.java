@@ -47,6 +47,7 @@ public class SignUpActivity extends BaseLocationActivity implements SignUpView, 
         countryCodePicker = findViewById(R.id.countryCodePicker);
 
         findViewById(R.id.btnSignUp).setOnClickListener(this);
+        findViewById(R.id.ivBack).setOnClickListener(this);
 
         mSignUpPresenter = new SignUpPresenterImpl(this, new DataManagerImpl(RestClient.getRetrofitBuilder()));
         mSignUpPresenter.onAttach();
@@ -87,6 +88,9 @@ public class SignUpActivity extends BaseLocationActivity implements SignUpView, 
                 mSignUpPresenter.onSignUpClicked(new SignUpModel(etEmail.getText().toString(), etPhone.getText().toString(),
                         countryCodePicker.getSelectedCountryCodeWithPlus(), CommonUtil.getAppVersionCode(this),
                         currentLocation.getLatitude(), currentLocation.getLongitude()));
+                break;
+            case R.id.ivBack:
+                mSignUpPresenter.onBackPress();
                 break;
             default:
                 break;
