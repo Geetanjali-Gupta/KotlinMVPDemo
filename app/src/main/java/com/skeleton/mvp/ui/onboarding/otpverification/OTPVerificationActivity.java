@@ -12,6 +12,7 @@ import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.BaseActivity;
+import com.skeleton.mvp.ui.dialog.CustomAlertDialog;
 import com.skeleton.mvp.util.CommonUtil;
 import com.skeleton.mvp.util.ExplicitIntentUtil;
 
@@ -130,7 +131,21 @@ public class OTPVerificationActivity extends BaseActivity implements OTPView, Vi
 
     @Override
     public void onBackPress() {
-        ExplicitIntentUtil.finishActivity(this);
+        new CustomAlertDialog.Builder(this)
+                .setMessage(R.string.exit_confirmation_msg)
+                .setNegativeButton(R.string.text_cancel, new CustomAlertDialog.CustomDialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick() {
+
+                    }
+                })
+                .setPositiveButton(R.string.text_ok, new CustomAlertDialog.CustomDialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick() {
+                        ExplicitIntentUtil.finishActivity(OTPVerificationActivity.this);
+                    }
+                })
+                .setCancelable(false).show();
     }
 
     @Override

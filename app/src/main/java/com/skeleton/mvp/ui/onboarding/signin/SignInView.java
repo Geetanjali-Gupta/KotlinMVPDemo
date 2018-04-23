@@ -15,4 +15,11 @@ public interface SignInView extends BaseView {
      * @param message the message
      */
     void onSignInSuccess(String message);
+
+    /**
+     * Show phone number error.
+     *
+     * @param resId the res id
+     */
+    void showPhoneNumberError(int resId);
 }

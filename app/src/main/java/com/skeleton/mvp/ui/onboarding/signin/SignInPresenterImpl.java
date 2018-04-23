@@ -38,7 +38,7 @@ public class SignInPresenterImpl extends BasePresenterImpl implements SignInPres
     public void onSignInClicked(final String phoneNumber) {
         // checking for validation
         if (!ValidationUtil.checkPhoneNumber(phoneNumber)) {
-            mSignInView.showErrorMessage(R.string.error_invalid_phone_number);
+            mSignInView.showPhoneNumberError(R.string.error_invalid_phone_number);
             return;
         }
         mSignInView.showLoading();
