@@ -56,6 +56,7 @@ android {
         resValue "string", "facebook_app_id", "[PROJECT_FB_ID]"
         resValue "string", "fb_login_protocol_scheme", "fb[PROJECT_FB_ID]"
         manifestPlaceholders = [fabric_key: "4b99d2d21c7b5c9888d402bb7e7c5c851dc499c1"]
+        multiDexEnabled true
     }
 
     flavorDimensions "default"
@@ -87,7 +88,7 @@ android {
 
         }
         qa {
-            buildConfigField 'String', 'BASE_URL', '"YOUR TEST URL"'
+            buildConfigField 'String', 'BASE_URL', '"35.177.68.234:3001"'
             buildConfigField 'String', 'FIREBASE_URL', '"https://firebasedynamiclinks.googleapis.com/"'
             buildConfigField 'boolean', 'WATER_MARK', 'true'
 
@@ -118,6 +119,7 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'
 
     //unit testing
+    implementation 'com.android.support:support-v4:27.1.1'
     testImplementation 'junit:junit:4.12'
     testImplementation 'com.squareup.okhttp3:mockwebserver:3.9.0'
     testImplementation 'org.mockito:mockito-core:2.8.9'
@@ -157,7 +159,7 @@ dependencies {
 
     //Calligraphy (custom font lib)
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
-
+    compile 'com.android.support:multidex:1.0.1'
     //facebook
     implementation 'com.facebook.android:facebook-android-sdk:4.31.0'
 
@@ -169,7 +171,8 @@ dependencies {
 
     //For Permission Handling
     implementation 'pub.devrel:easypermissions:1.1.1'
-
+//Glide for loading images
+    implementation "com.github.bumptech.glide:glide:4.5.0"
     //For Picking Country code
     implementation 'com.github.joielechong:countrycodepicker:2.1.5'
     compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {

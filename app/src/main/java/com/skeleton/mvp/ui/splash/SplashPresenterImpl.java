@@ -145,7 +145,7 @@ class SplashPresenterImpl extends BasePresenterImpl implements SplashPresenter, 
                         if (apiError != null) {
                             if (apiError.getStatusCode() == AppConstant.SESSION_EXPIRED) {
                                 mDataManager.clearSessionManager();
-                                mSplashView.navigateToHomeScreen();
+                                mSplashView.navigateToWelcomeScreen();
                             } else {
                                 mSplashView.showErrorMessage(apiError.getMessage(), new BaseView.OnErrorHandleCallback() {
                                     @Override

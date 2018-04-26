@@ -6,6 +6,7 @@ package com.skeleton.mvp.util;
  */
 public final class AppConstant {
     public static final int OTP_LENGTH = 4;
+    public static final int LIMIT = 10;
 
     public static final String DEVICE_TYPE = "ANDROID";
     public static final String ROLE = "customer";
@@ -46,5 +47,22 @@ public final class AppConstant {
          * @return request code
          */
         int getReqCodeSign();
+    }
+
+    /**
+     * Request Codes List
+     */
+    public interface FragmentTags {
+        String HOME_FRAGMENT = "HOME_FRAGMENT";
+        String PLANS_FRAGMENT = "PLANS_FRAGMENT";
+        String CART_FRAGMENT = "CART_FRAGMENT";
+        String ACCOUNT_FRAGMENT = "ACCOUNT_FRAGMENT";
+
+        /**
+         * Dummy method
+         *
+         * @return request code
+         */
+        int getFragmentTag();
     }
 }

@@ -1,8 +1,8 @@
 package com.skeleton.mvp.data.network;
 
 
-import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
 import com.skeleton.mvp.data.model.requestmodel.SignUpModel;
+import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
 
 /**
  * Developer: Saurabh Verma
@@ -56,6 +56,14 @@ public interface ApiHelper {
      * @param mApiListener the m api listener
      */
     void apiCallToRegisterUser(SignUpModel signUpModel, ApiListener mApiListener);
+
+    /**
+     * Api call to register user.
+     *
+     * @param skip  skip Count for pagination
+     * @param mApiListener the m api listener
+     */
+    void apiCallToGetPlanCategories(int skip, ApiListener mApiListener);
 
     /**
      * The interface Api listener.

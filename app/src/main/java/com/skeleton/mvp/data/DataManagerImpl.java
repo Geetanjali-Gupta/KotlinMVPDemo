@@ -87,5 +87,8 @@ public class DataManagerImpl implements DataManager {
         mApiHelper.apiCallToRegisterUser(signUpModel, mApiListener);
     }
 
-
+    @Override
+    public void apiCallToGetPlanCategories(final int skip, final ApiListener mApiListener) {
+        mApiHelper.apiCallToGetPlanCategories(skip, mApiListener);
+    }
 }

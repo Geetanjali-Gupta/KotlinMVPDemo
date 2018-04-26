@@ -1,4 +1,4 @@
-package com.skeleton.mvp.ui.home;
+package com.skeleton.mvp.ui.home.homebase;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -6,21 +6,35 @@ import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.skeleton.mvp.R;
+import com.skeleton.mvp.data.DataManagerImpl;
+import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.BaseActivity;
 import com.skeleton.mvp.ui.dialog.CustomAlertDialog;
+import com.skeleton.mvp.ui.home.account.AccountFragment;
+import com.skeleton.mvp.ui.home.cart.CartFragment;
+import com.skeleton.mvp.ui.home.home.HomeFragment;
+import com.skeleton.mvp.ui.home.plans.PlansFragment;
 import com.skeleton.mvp.util.ExplicitIntentUtil;
 
 import java.lang.reflect.Field;
 
+import static com.skeleton.mvp.util.AppConstant.FragmentTags.ACCOUNT_FRAGMENT;
+import static com.skeleton.mvp.util.AppConstant.FragmentTags.CART_FRAGMENT;
+import static com.skeleton.mvp.util.AppConstant.FragmentTags.HOME_FRAGMENT;
+import static com.skeleton.mvp.util.AppConstant.FragmentTags.PLANS_FRAGMENT;
+
 /**
  * Developer: Click Labs
  */
-public class HomeActivity extends BaseActivity {
-
-    private BottomNavigationView bottomNavigationView;
+public class HomeActivity extends BaseActivity implements HomeView, View.OnClickListener {
+    private HomePresenter mHomePresenter;
+    private String mCurrentFragment = "";
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -35,8 +49,10 @@ public class HomeActivity extends BaseActivity {
      * Used to Initialise Views
      */
     private void initViews() {
-        bottomNavigationView = findViewById(R.id.bottomNavigationView);
-        disableShiftMode(bottomNavigationView);
+        mHomePresenter = new HomePresenterImpl(this, new DataManagerImpl(RestClient.getRetrofitBuilder()));
+        mHomePresenter.onAttach();
+
+        findViewById(R.id.ivNotification).setOnClickListener(this);
 
         setUpBottomNavigationView();
     }
@@ -45,22 +61,24 @@ public class HomeActivity extends BaseActivity {
      * It is used to set up Bottom navigation view
      */
     private void setUpBottomNavigationView() {
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        disableShiftMode(bottomNavigationView);
 
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull final MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_home:
-                        //  changeFragment(new HomeFragment(), AppConstant.FragmentTags.HOME_FRAGMENT.toString());
+                        mHomePresenter.onHomeTabClick(new HomeFragment(), HOME_FRAGMENT);
                         break;
                     case R.id.action_plans:
-                        //  changeFragment(new HomeFragment(), AppConstant.FragmentTags.HOME_FRAGMENT.toString());
+                        mHomePresenter.onPlansTabClick(new PlansFragment(), PLANS_FRAGMENT);
                         break;
                     case R.id.action_cart:
-                        //   changeFragment(new CartFragment(), AppConstant.FragmentTags.CART_FRAGMENT.toString());
+                        mHomePresenter.onCartTabClick(new CartFragment(), CART_FRAGMENT);
                         break;
                     case R.id.action_account:
-                        //  changeFragment(new HomeFragment(), AppConstant.FragmentTags.HOME_FRAGMENT.toString());
+                        mHomePresenter.onAccountsTabClick(new AccountFragment(), ACCOUNT_FRAGMENT);
                         break;
                     default:
                         break;
@@ -68,10 +86,10 @@ public class HomeActivity extends BaseActivity {
                 return true;
             }
         });
-
         //Used to select an item programmatically
-        //   bottomNavigationView.getMenu().getItem(2).setChecked(true);
-        //   changeFragment(new HomeFragment(), AppConstant.FragmentTags.HOME_FRAGMENT.toString());
+        // bottomNavigationView.getMenu().getItem(0).setChecked(true);
+        mHomePresenter.onHomeTabClick(new HomeFragment(), HOME_FRAGMENT);
+
 
     }
 
@@ -125,6 +143,35 @@ public class HomeActivity extends BaseActivity {
             e.printStackTrace();
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void changeFragment(final Fragment intendedFragment, final String tag) {
+        if (mCurrentFragment.equals(tag)) {
+            return;
+        }
+        mCurrentFragment = tag;
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragmentContainer, intendedFragment, tag)
+                .setTransitionStyle(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                .commit();
+    }
+
+    @Override
+    public void onNotificationBellClick() {
+
+    }
+
+    @Override
+    public void onClick(final View v) {
+        switch (v.getId()) {
+            case R.id.ivNotification:
+
+                break;
+            default:
+                break;
         }
     }
 }

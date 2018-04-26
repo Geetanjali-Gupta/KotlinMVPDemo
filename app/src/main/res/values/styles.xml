@@ -24,7 +24,7 @@
     <!--Custom bold text appearance-->
     <style name="CustomTextAppearance.Bold" parent="CustomTextAppearance">
         <!-- Custom Attr-->
-        <item name="fontPath">fonts/OpenSans-Bold.ttf</item>
+        <item name="fontPath">fonts/Montserrat-Bold.otf</item>
         <item name="android:textStyle">bold</item>
     </style>
     <!--Custom bold text appearance-->
@@ -34,7 +34,7 @@
     </style>
     <!--Custom semibold text appearance-->
     <style name="CustomTextAppearance.Semibold" parent="CustomTextAppearance">
-        <item name="fontPath">fonts/OpenSans-Semibold.ttf</item>
+        <item name="fontPath">fonts/Montserrat-SemiBold.ttf</item>
     </style>
 
     <style name="accent_button">

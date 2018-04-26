@@ -8,6 +8,8 @@ import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.widget.Toast;
 
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 import com.skeleton.mvp.MyApplication;
 import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
@@ -162,4 +164,16 @@ public final class CommonUtil {
         }
     }
 
+    /**
+     * Used to get Request options
+     *
+     * @return request options for glide
+     */
+    public static RequestOptions getRequestOptions() {
+        return new RequestOptions()
+                //.fitCenter()
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .dontAnimate();
+        //.placeholder(R.mipmap.ic_launcher);
+    }
 }

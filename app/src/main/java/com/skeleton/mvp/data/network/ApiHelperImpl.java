@@ -25,6 +25,8 @@ import retrofit2.http.PartMap;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 
+import static com.skeleton.mvp.util.AppConstant.LIMIT;
+
 /**
  * Developer: Saurabh Verma
  * Dated: 09/03/18.
@@ -37,6 +39,7 @@ public class ApiHelperImpl implements ApiHelper {
     private static final String OTP_VERIFICATION = "user/verifyMobileOTP";
     private static final String RESEND_OTP = "/user/resendOTP";
 
+    private static final String GET_ALL_CATEGORY = "/service/getAllCategory";
     private Retrofit mRetrofit;
     private DbHelper mDbHelper;
     private boolean isApiCalling;
@@ -174,6 +177,18 @@ public class ApiHelperImpl implements ApiHelper {
                 .build();
         final Call<CommonResponse> mCommonResponseCall = getApiInterface()
                 .postCall(REGISTER, getApiHeader(false), mCommonParams.getMap());
+        executeApiCall(mCommonResponseCall, mApiListener);
+    }
+
+    @Override
+    public void apiCallToGetPlanCategories(final int skip, final ApiListener mApiListener) {
+        final CommonParams mCommonParams = new CommonParams.Builder()
+                .add("isDeleted", "all")
+                .add("isBlocked", "all")
+                .add("limit", LIMIT)
+                .add("skip", skip).build();
+        final Call<CommonResponse> mCommonResponseCall = getApiInterface()
+                .getCall(GET_ALL_CATEGORY, getApiHeader(true), mCommonParams.getMap());
         executeApiCall(mCommonResponseCall, mApiListener);
     }
 

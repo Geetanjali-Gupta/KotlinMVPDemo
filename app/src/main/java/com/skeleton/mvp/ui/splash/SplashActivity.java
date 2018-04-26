@@ -17,7 +17,7 @@ import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.BaseActivity;
 import com.skeleton.mvp.ui.customview.ProgressWheel;
-import com.skeleton.mvp.ui.home.HomeActivity;
+import com.skeleton.mvp.ui.home.homebase.HomeActivity;
 import com.skeleton.mvp.ui.onboarding.landing.LandingActivity;
 import com.skeleton.mvp.ui.onboarding.otpverification.OTPVerificationActivity;
 import com.skeleton.mvp.util.ExplicitIntentUtil;
