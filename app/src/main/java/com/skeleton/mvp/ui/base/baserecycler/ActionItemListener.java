@@ -9,4 +9,13 @@ public interface ActionItemListener {
      * On retry.
      */
     void onRetry();
+
+    /**
+     * On Loading more data
+     *
+     *
+     *
+     *
+     */
+    void onLoadMore();
 }

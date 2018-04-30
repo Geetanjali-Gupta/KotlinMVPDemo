@@ -32,6 +32,11 @@
         <!-- Custom Attr-->
         <item name="fontPath">fonts/Montserrat-Light.ttf</item>
     </style>
+    <!--Custom bold text appearance-->
+    <style name="CustomTextAppearance.ExtraLight" parent="CustomTextAppearance">
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/Montserrat-ExtraLight.ttf</item>
+    </style>
     <!--Custom semibold text appearance-->
     <style name="CustomTextAppearance.Semibold" parent="CustomTextAppearance">
         <item name="fontPath">fonts/Montserrat-SemiBold.ttf</item>

@@ -36,6 +36,7 @@
                 android:layout_marginStart="@dimen/screen_padding"
                 android:padding="@dimen/screen_padding"
                 android:text="@string/header_enter_otp"
+                android:textAppearance="@style/CustomTextAppearance.ExtraLight"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_xlarge" />
 

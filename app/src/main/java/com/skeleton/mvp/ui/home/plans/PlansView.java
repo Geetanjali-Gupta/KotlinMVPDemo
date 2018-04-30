@@ -14,7 +14,8 @@ public interface PlansView extends BaseView {
     /**
      * Used to update plan categories
      *
+     * @param totalCount         Total Count
      * @param planCategoriesList plan categories list
      */
-    void updatePlanCategories(List<PlanCategoriesModel> planCategoriesList);
+    void updatePlanCategories(final int totalCount, final List<PlanCategoriesModel> planCategoriesList);
 }

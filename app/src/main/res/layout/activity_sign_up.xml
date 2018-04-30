@@ -24,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/screen_padding"
                 android:text="@string/txt_display_sign_up_msg"
+                android:textAppearance="@style/CustomTextAppearance.ExtraLight"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_xxxlarge" />
 

@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="@dimen/screen_padding"
+                android:textAppearance="@style/CustomTextAppearance.ExtraLight"
                 android:text="@string/enter_phone_number_to_continue"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_xxxlarge" />

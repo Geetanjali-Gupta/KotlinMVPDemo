@@ -2,13 +2,10 @@ package com.skeleton.mvp.ui.home.plans;
 
 import com.skeleton.mvp.data.DataManager;
 import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
-import com.skeleton.mvp.data.model.responsemodel.home.PlanCategoriesModel;
+import com.skeleton.mvp.data.model.responsemodel.home.PlansModel;
 import com.skeleton.mvp.data.network.ApiError;
 import com.skeleton.mvp.data.network.ApiHelper;
 import com.skeleton.mvp.ui.base.BasePresenterImpl;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 /**
  * Developer: Geetanjali Gupta
@@ -32,14 +29,18 @@ public class PlansPresenterImpl extends BasePresenterImpl implements PlansPresen
 
     @Override
     public void getAllCategories(final int skip) {
-        mPlansView.showLoading();
+        if (skip == 0) {
+            mPlansView.showLoading();
+        }
         mDataManager.apiCallToGetPlanCategories(skip, new ApiHelper.ApiListener() {
             @Override
             public void onSuccess(final CommonResponse commonResponse) {
                 if (isViewAttached()) {
-                    mPlansView.hideLoading();
-                    PlanCategoriesModel[] planCategoriesModel = commonResponse.toResponseModel(PlanCategoriesModel[].class);
-                    mPlansView.updatePlanCategories(new ArrayList<>(Arrays.asList(planCategoriesModel)));
+                    if (skip == 0) {
+                        mPlansView.hideLoading();
+                    }
+                    PlansModel plansModel = commonResponse.toResponseModel(PlansModel.class);
+                    mPlansView.updatePlanCategories(plansModel.getTotalCount(), plansModel.getCategories());
                 }
             }
 

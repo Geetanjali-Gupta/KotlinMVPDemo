@@ -1,6 +1,7 @@
 package com.skeleton.mvp.ui.base.baserecycler.adapter;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,15 +16,14 @@ import com.skeleton.mvp.ui.base.baserecycler.model.DataClass;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.skeleton.mvp.ui.base.baserecycler.BaseRecyclerConstants.VIEW_TYPE_DATA;
+import static com.skeleton.mvp.ui.base.baserecycler.BaseRecyclerConstants.VIEW_TYPE_ERROR;
+import static com.skeleton.mvp.ui.base.baserecycler.BaseRecyclerConstants.VIEW_TYPE_LOADER;
+
 /**
  * Created by soc-lap-18k.n on 1/29/18.
  */
 public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter {
-    public static final int VIEW_TYPE_DATA = 0;
-    public static final int VIEW_TYPE_NO_DATA = 1;
-    public static final int VIEW_TYPE_LOADER = 2;
-    public static final int VIEW_TYPE_ERROR = 3;
-    public static final int RECYCLER_VISIBLE_THRESH_HOLD = 5;
     private ArrayList<DataClass> dataList;
     private ActionItemListener listener;
     private Context context;
@@ -108,9 +108,14 @@ public abstract class BaseRecyclerAdapter extends RecyclerView.Adapter {
      */
     public void addLoaderView() {
         if (dataList.get(dataList.size() - 1).getItemType() != VIEW_TYPE_LOADER) {
-            addItem("Loader", VIEW_TYPE_LOADER);
-
-            notifyItemInserted(dataList.size() - 1);
+            new Handler().post(new Runnable() {
+                @Override
+                public void run() {
+                    addItem("Loader", VIEW_TYPE_LOADER);
+                    notifyItemInserted(dataList.size() - 1);
+                    listener.onLoadMore();
+                }
+            });
         }
     }
 
