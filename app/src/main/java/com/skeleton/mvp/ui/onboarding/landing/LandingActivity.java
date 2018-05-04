@@ -8,6 +8,7 @@ import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.BaseActivity;
+import com.skeleton.mvp.ui.home.homebase.HomeActivity;
 import com.skeleton.mvp.ui.onboarding.signin.SignInActivity;
 import com.skeleton.mvp.ui.onboarding.signup.SignUpActivity;
 import com.skeleton.mvp.util.ExplicitIntentUtil;
@@ -72,6 +73,11 @@ public class LandingActivity extends BaseActivity implements LandingView, View.O
     }
 
     @Override
+    public void navigateToHomeScreen() {
+        ExplicitIntentUtil.startActivity(this, HomeActivity.class, null);
+    }
+
+    @Override
     public void onBackPress() {
 
     }
@@ -82,12 +88,12 @@ public class LandingActivity extends BaseActivity implements LandingView, View.O
         switch (requestCode) {
             case REQ_CODE_SIGN_IN:
                 if (resultCode == RESULT_OK) {
-                    ExplicitIntentUtil.finishActivityForResultOk(this);
+                    navigateToHomeScreen();
                 }
                 break;
             case REQ_CODE_SIGN_UP:
                 if (resultCode == RESULT_OK) {
-                    ExplicitIntentUtil.finishActivityForResultOk(this);
+                    navigateToHomeScreen();
                 }
                 break;
             default:

@@ -18,4 +18,9 @@ public interface LandingView extends BaseView {
      */
     void navigateToSignUpScreen();
 
+    /**
+     * Navigate to home screen.
+     */
+    void navigateToHomeScreen();
+
 }

@@ -88,9 +88,9 @@ android {
 
         }
         qa {
-            buildConfigField 'String', 'BASE_URL', '"35.177.68.234:3001"'
+            buildConfigField 'String', 'BASE_URL', '"http://35.177.68.234:3001/"'
             buildConfigField 'String', 'FIREBASE_URL', '"https://firebasedynamiclinks.googleapis.com/"'
-            buildConfigField 'boolean', 'WATER_MARK', 'true'
+            buildConfigField 'boolean', 'WATER_MARK', 'false'
 
         }
         live {
