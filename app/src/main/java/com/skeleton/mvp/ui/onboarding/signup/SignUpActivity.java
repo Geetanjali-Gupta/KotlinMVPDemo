@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import com.rilixtech.CountryCodePicker;
+import com.hbb20.CountryCodePicker;
 import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.model.requestmodel.SignUpModel;
@@ -85,9 +85,13 @@ public class SignUpActivity extends BaseLocationActivity implements SignUpView, 
     public void onClick(final View v) {
         switch (v.getId()) {
             case R.id.btnSignUp:
-                mSignUpPresenter.onSignUpClicked(new SignUpModel(etEmail.getText().toString(), etPhone.getText().toString(),
-                        countryCodePicker.getSelectedCountryCodeWithPlus(), CommonUtil.getAppVersionCode(this),
-                        currentLocation.getLatitude(), currentLocation.getLongitude()));
+                if (currentLocation != null) {
+                    mSignUpPresenter.onSignUpClicked(new SignUpModel(etEmail.getText().toString(), etPhone.getText().toString(),
+                            countryCodePicker.getSelectedCountryCodeWithPlus(), CommonUtil.getAppVersionCode(this),
+                            currentLocation.getLatitude(), currentLocation.getLongitude()));
+                } else {
+                    showDialogForEnablingGPS();
+                }
                 break;
             case R.id.ivBack:
                 mSignUpPresenter.onBackPress();

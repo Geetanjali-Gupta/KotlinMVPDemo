@@ -104,4 +104,9 @@ public class OTPVerificationPresenterImpl extends BasePresenterImpl implements O
     public void onBackPress() {
         mOTPView.onBackPress();
     }
+
+    @Override
+    public void onBackExpireSession() {
+        mDataManager.clearSessionManager();
+    }
 }

@@ -41,7 +41,7 @@ public class PlansFragment extends BaseFragment implements PlansView {
                              final Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_plans, container, false);
-        initViews(rootView);
+        //  initViews(rootView);
         return rootView;
     }
 

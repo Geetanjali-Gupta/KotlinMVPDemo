@@ -76,7 +76,6 @@ public abstract class BaseLocationActivity extends BasePermissionActivity implem
 
     @Override
     public void onPermissionPermanentlyDenied(final int requestCode, final @NonNull List<String> perms) {
-
     }
 
     private void requestLocation() {
@@ -161,9 +160,9 @@ public abstract class BaseLocationActivity extends BasePermissionActivity implem
                             ResolvableApiException resolvable = (ResolvableApiException) e;
                             resolvable.startResolutionForResult(BaseLocationActivity.this,
                                     REQUEST_CHECK_SETTINGS);
-                        } else {
+                        } /*else {
                             showDialogForEnablingGPS();
-                        }
+                        }*/
                     } catch (IntentSender.SendIntentException sendEx) {
                         // Ignore the error.
                     }

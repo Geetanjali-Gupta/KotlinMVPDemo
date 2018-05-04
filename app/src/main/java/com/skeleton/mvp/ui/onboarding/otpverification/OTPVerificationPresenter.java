@@ -42,4 +42,9 @@ public interface OTPVerificationPresenter extends BasePresenter {
      * Handle On Back Press
      */
     void onBackPress();
+
+    /**
+     * Expire session that is clear access token On Back Press
+     */
+    void onBackExpireSession();
 }

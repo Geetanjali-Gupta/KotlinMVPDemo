@@ -7,12 +7,16 @@ import java.util.regex.Pattern;
  */
 public final class ValidationUtil {
     private static final String REGEX_EMAIL_ADDRESS = "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}"
-            + "\\@" + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" + "(" + "\\."
-            + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" + ")+";
+            + "\\@"
+            + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}"
+            + "("
+            + "\\."
+            + "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}"
+            + ")+";
     private static final String REGEX_PASSWORD = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$";
     private static final String REGEX_NAME = "^[\\p{L} .'-]+$";
     private static final String REGEX_ALL_DIGITS = "\\d+";
-    private static final int PHONE_NUMBER_MIN_LENGTH = 7;
+    private static final int PHONE_NUMBER_MIN_LENGTH = 8;
     private static final int PHONE_NUMBER_MAX_LENGTH = 12;
 
     /**

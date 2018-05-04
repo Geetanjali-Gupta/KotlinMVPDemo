@@ -33,7 +33,6 @@ public class OTPVerificationActivity extends BaseActivity implements OTPView, Vi
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otpverification);
-
         initViews();
     }
 
@@ -130,18 +129,23 @@ public class OTPVerificationActivity extends BaseActivity implements OTPView, Vi
     }
 
     @Override
+    public void onBackPressed() {
+        onBackPress();
+    }
+
+    @Override
     public void onBackPress() {
         new CustomAlertDialog.Builder(this)
                 .setMessage(R.string.exit_confirmation_msg)
                 .setNegativeButton(R.string.text_cancel, new CustomAlertDialog.CustomDialogInterface.OnClickListener() {
                     @Override
                     public void onClick() {
-
                     }
                 })
                 .setPositiveButton(R.string.text_ok, new CustomAlertDialog.CustomDialogInterface.OnClickListener() {
                     @Override
                     public void onClick() {
+                        mOTPVerificationPresenter.onBackExpireSession();
                         ExplicitIntentUtil.finishActivity(OTPVerificationActivity.this);
                     }
                 })

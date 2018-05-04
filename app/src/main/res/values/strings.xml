@@ -75,7 +75,7 @@
     <string name="header_verify_phone_no">Verify phone no.</string>
     <string name="header_enter_otp">Enter the OTP that you’ve received on the phone number you entered</string>
     <string name="otp_continue">Continue</string>
-    <string name="otp_resend">Resend</string>
+    <string name="otp_resend">Resend OTP</string>
     <string name="error_please_enter_otp">Please enter OTP.</string>
     <string name="error_please_enter_four_digit_otp">Please enter a 4-digit verification code.</string>
 
