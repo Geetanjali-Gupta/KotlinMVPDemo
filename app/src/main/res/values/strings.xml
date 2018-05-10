@@ -94,6 +94,9 @@
     <string name="one_time_fee">One Time Fee</string>
     <string name="purchase">Purchase</string>
     <string name="view_details">View details</string>
+    <string name="compare_plans">Compare Plans</string>
+    <string name="subscription_plans">Subscription Plans</string>
+    <string name="compare_plans_count_error">You can not add more than 2 plans.</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

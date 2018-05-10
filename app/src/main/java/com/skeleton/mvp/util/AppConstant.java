@@ -5,6 +5,10 @@ package com.skeleton.mvp.util;
  * Developer: Click labs
  */
 public final class AppConstant {
+    public static final String APP_CURRENCY = "$";
+    public static final String RATE = "%";
+
+
     public static final int OTP_LENGTH = 4;
     public static final int LIMIT = 10;
 

@@ -77,6 +77,12 @@ public class Plan {
     @Expose
     private int amountInvestedMonthly;
 
+    private boolean isAddedToCompare;
+
+    public String getId() {
+        return id;
+    }
+
     public String getPlanName() {
         return planName;
     }
@@ -85,15 +91,23 @@ public class Plan {
         return imageUrl;
     }
 
-    public int getOneTimeFee() {
-        return oneTimeFee;
+    public String getOneTimeFee() {
+        return String.valueOf(oneTimeFee);
     }
 
-    public int getFixedRate() {
-        return fixedRate;
+    public String getFixedRate() {
+        return String.valueOf(fixedRate);
     }
 
-    public int getAmountInvestedMonthly() {
-        return amountInvestedMonthly;
+    public String getAmountInvestedMonthly() {
+        return String.valueOf(amountInvestedMonthly);
+    }
+
+    public boolean isAddedToCompare() {
+        return isAddedToCompare;
+    }
+
+    public void setAddedToCompare(final boolean addedToCompare) {
+        isAddedToCompare = addedToCompare;
     }
 }

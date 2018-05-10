@@ -33,6 +33,7 @@
             tools:text="Plan Name" />
 
         <TextView
+            android:id="@+id/tvAddToCompare"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
