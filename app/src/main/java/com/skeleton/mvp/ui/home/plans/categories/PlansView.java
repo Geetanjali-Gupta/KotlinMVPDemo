@@ -1,6 +1,6 @@
-package com.skeleton.mvp.ui.home.plans;
+package com.skeleton.mvp.ui.home.plans.categories;
 
-import com.skeleton.mvp.data.model.responsemodel.home.PlanCategoriesModel;
+import com.skeleton.mvp.data.model.responsemodel.home.categories.PlanCategoriesModel;
 import com.skeleton.mvp.ui.base.BaseView;
 
 import java.util.List;
@@ -18,4 +18,11 @@ public interface PlansView extends BaseView {
      * @param planCategoriesList plan categories list
      */
     void updatePlanCategories(final int totalCount, final List<PlanCategoriesModel> planCategoriesList);
+
+    /**
+     * Used to navigate to subscription plans
+     *
+     * @param categoryId Category Id
+     */
+    void navigateToSubscriptionPlansActivity(final String categoryId);
 }

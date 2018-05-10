@@ -1,8 +1,8 @@
-package com.skeleton.mvp.ui.home.plans;
+package com.skeleton.mvp.ui.home.plans.categories;
 
 import com.skeleton.mvp.data.DataManager;
 import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
-import com.skeleton.mvp.data.model.responsemodel.home.PlansModel;
+import com.skeleton.mvp.data.model.responsemodel.home.categories.PlansModel;
 import com.skeleton.mvp.data.network.ApiError;
 import com.skeleton.mvp.data.network.ApiHelper;
 import com.skeleton.mvp.ui.base.BasePresenterImpl;

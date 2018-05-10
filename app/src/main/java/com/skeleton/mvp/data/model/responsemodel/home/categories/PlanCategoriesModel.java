@@ -1,4 +1,4 @@
-package com.skeleton.mvp.data.model.responsemodel.home;
+package com.skeleton.mvp.data.model.responsemodel.home.categories;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
@@ -51,5 +51,9 @@ public class PlanCategoriesModel {
 
     public String getIcon() {
         return icon;
+    }
+
+    public String getId() {
+        return id;
     }
 }

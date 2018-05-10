@@ -1,4 +1,4 @@
-package com.skeleton.mvp.ui.home.plans;
+package com.skeleton.mvp.ui.home.plans.categories;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -11,18 +11,20 @@ import android.view.ViewGroup;
 
 import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManagerImpl;
-import com.skeleton.mvp.data.model.responsemodel.home.PlanCategoriesModel;
+import com.skeleton.mvp.data.model.responsemodel.home.categories.PlanCategoriesModel;
 import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.BaseFragment;
 import com.skeleton.mvp.ui.base.baserecycler.ActionItemListener;
 import com.skeleton.mvp.ui.home.homebase.HomeActivity;
+import com.skeleton.mvp.ui.home.plans.subscriptionplans.SubscriptionPlansActivity;
+import com.skeleton.mvp.util.ExplicitIntentUtil;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.skeleton.mvp.ui.base.baserecycler.BaseRecyclerConstants.RECYCLER_VISIBLE_THRESH_HOLD;
 import static com.skeleton.mvp.ui.base.baserecycler.BaseRecyclerConstants.VIEW_TYPE_LOADER;
-import static com.skeleton.mvp.util.AppConstant.LIMIT;
+import static com.skeleton.mvp.util.IntentConstant.EXTRA_CATEGORY_ID;
 
 /**
  * Developer: Geetanjali Gupta
@@ -41,7 +43,7 @@ public class PlansFragment extends BaseFragment implements PlansView {
                              final Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_plans, container, false);
-        //  initViews(rootView);
+        initViews(rootView);
         return rootView;
     }
 
@@ -83,7 +85,12 @@ public class PlansFragment extends BaseFragment implements PlansView {
 
             @Override
             public void onLoadMore() {
-                mPlansPresenter.getAllCategories(skip + LIMIT);
+                mPlansPresenter.getAllCategories(skip);
+            }
+
+            @Override
+            public void onItemClick(final String categoryId) {
+                navigateToSubscriptionPlansActivity(categoryId);
             }
         });
         rvPlansCategories.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -109,5 +116,13 @@ public class PlansFragment extends BaseFragment implements PlansView {
     public void updatePlanCategories(final int totalCount, final List<PlanCategoriesModel> planCategoriesList) {
         totalCategoriesCount = totalCount;
         planCategoriesAdapter.updateDataList((ArrayList<PlanCategoriesModel>) planCategoriesList);
+        skip = planCategoriesList.size();
+    }
+
+    @Override
+    public void navigateToSubscriptionPlansActivity(final String categoryId) {
+        Bundle bundle = new Bundle();
+        bundle.putString(EXTRA_CATEGORY_ID, categoryId);
+        ExplicitIntentUtil.startActivity(activity, SubscriptionPlansActivity.class, bundle);
     }
 }

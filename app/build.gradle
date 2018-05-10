@@ -32,7 +32,7 @@ check.dependsOn('checkstyle')
 
 android {
     compileSdkVersion 27
-    buildToolsVersion '27.0.2'
+    buildToolsVersion '27.0.3'
 
     /**
      * Define you Project Name here
@@ -158,7 +158,7 @@ dependencies {
 
     //Calligraphy (custom font lib)
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
-    compile 'com.android.support:multidex:1.0.1'
+    implementation 'com.android.support:multidex:1.0.3'
     //facebook
     implementation 'com.facebook.android:facebook-android-sdk:4.31.0'
 
@@ -174,7 +174,7 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:4.5.0"
     //For Picking Country code
     implementation 'com.hbb20:ccp:2.2.0'
-    compile('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
+    implementation('com.crashlytics.sdk.android:crashlytics:2.7.1@aar') {
         transitive = true;
     }
 }

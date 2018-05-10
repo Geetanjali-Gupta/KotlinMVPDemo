@@ -60,10 +60,19 @@ public interface ApiHelper {
     /**
      * Api call to register user.
      *
-     * @param skip  skip Count for pagination
+     * @param skip         skip Count for pagination
      * @param mApiListener the m api listener
      */
     void apiCallToGetPlanCategories(int skip, ApiListener mApiListener);
+
+    /**
+     * Api call to register user.
+     *
+     * @param categoryId   category Id
+     * @param skip         skip Count for pagination
+     * @param mApiListener the m api listener
+     */
+    void apiCallToGetPlansOfCategory(String categoryId, int skip, ApiListener mApiListener);
 
     /**
      * The interface Api listener.

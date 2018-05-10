@@ -91,4 +91,9 @@ public class DataManagerImpl implements DataManager {
     public void apiCallToGetPlanCategories(final int skip, final ApiListener mApiListener) {
         mApiHelper.apiCallToGetPlanCategories(skip, mApiListener);
     }
+
+    @Override
+    public void apiCallToGetPlansOfCategory(final String categoryId, final int skip, final ApiListener mApiListener) {
+        mApiHelper.apiCallToGetPlansOfCategory(categoryId, skip, mApiListener);
+    }
 }

@@ -1,4 +1,4 @@
-package com.skeleton.mvp.ui.home.plans;
+package com.skeleton.mvp.ui.home.plans.categories;
 
 import com.skeleton.mvp.ui.base.BasePresenter;
 

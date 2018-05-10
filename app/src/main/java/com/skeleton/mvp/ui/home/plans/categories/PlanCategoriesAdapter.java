@@ -1,4 +1,4 @@
-package com.skeleton.mvp.ui.home.plans;
+package com.skeleton.mvp.ui.home.plans.categories;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.skeleton.mvp.R;
-import com.skeleton.mvp.data.model.responsemodel.home.PlanCategoriesModel;
+import com.skeleton.mvp.data.model.responsemodel.home.categories.PlanCategoriesModel;
 import com.skeleton.mvp.ui.base.baserecycler.ActionItemListener;
 import com.skeleton.mvp.ui.base.baserecycler.BaseRecyclerConstants;
 import com.skeleton.mvp.ui.base.baserecycler.adapter.BaseRecyclerAdapter;
@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 public class PlanCategoriesAdapter extends BaseRecyclerAdapter {
     private ArrayList<PlanCategoriesModel> dataList;
+    private ActionItemListener actionItemListener;
 
     /**
      * Instantiates a new Base recycler adapter.
@@ -33,6 +34,7 @@ public class PlanCategoriesAdapter extends BaseRecyclerAdapter {
      */
     PlanCategoriesAdapter(final ActionItemListener listener) {
         super(listener);
+        actionItemListener = listener;
     }
 
     @NonNull
@@ -51,11 +53,17 @@ public class PlanCategoriesAdapter extends BaseRecyclerAdapter {
     public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
         if (getViewType(holder.getAdapterPosition()) == BaseRecyclerConstants.VIEW_TYPE_DATA) {
             PlansViewHolder plansViewHolder = (PlansViewHolder) holder;
-            PlanCategoriesModel planCategory = dataList.get(holder.getAdapterPosition());
+            final PlanCategoriesModel planCategory = dataList.get(holder.getAdapterPosition());
             Glide.with(plansViewHolder.ivPlanIcon.getContext()).load(planCategory.getIcon())
                     .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
                             .dontAnimate()).into(plansViewHolder.ivPlanIcon);
             plansViewHolder.tvPlanName.setText(planCategory.getCategoryName());
+            plansViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(final View v) {
+                    actionItemListener.onItemClick(planCategory.getId());
+                }
+            });
         } else {
             super.onBindViewHolder(holder, position);
         }
@@ -75,7 +83,7 @@ public class PlanCategoriesAdapter extends BaseRecyclerAdapter {
     /**
      * The type My view holder.
      */
-    public class PlansViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class PlansViewHolder extends RecyclerView.ViewHolder {
         private TextView tvPlanName;
         private ImageView ivPlanIcon;
 
@@ -88,13 +96,6 @@ public class PlanCategoriesAdapter extends BaseRecyclerAdapter {
             super(itemView);
             tvPlanName = itemView.findViewById(R.id.tvPlanName);
             ivPlanIcon = itemView.findViewById(R.id.ivPlanIcon);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(final View view) {
-//            ((SuggestedLocationAdapter.LocationSelectedListener) itemView.getContext()).locationSelected(dataList.get(getAdapterPosition())
-//                    .getStructuredFormatting().getSecondaryText(), dataList.get(getAdapterPosition()).getPlaceId());
         }
     }
 

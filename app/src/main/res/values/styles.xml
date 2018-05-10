@@ -15,6 +15,12 @@
         <!-- <item name="colorPrimaryDark">@android:color/white</item> -->
     </style>
 
+    <style name="CustomTextAppearance.Regular" parent="android:TextAppearance">
+        <item name="android:textStyle">normal</item>
+        <!-- Custom Attr-->
+        <item name="fontPath">fonts/Montserrat-Regular.ttf</item>
+    </style>
+
     <style name="CustomTextAppearance" parent="android:TextAppearance">
         <item name="android:textStyle">normal</item>
         <!-- Custom Attr-->

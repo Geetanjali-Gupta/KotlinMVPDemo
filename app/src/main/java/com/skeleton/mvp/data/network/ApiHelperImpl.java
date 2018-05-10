@@ -40,6 +40,7 @@ public class ApiHelperImpl implements ApiHelper {
     private static final String RESEND_OTP = "/user/resendOTP";
 
     private static final String GET_ALL_CATEGORY = "/service/getAllCategory";
+    private static final String LIST_ALL_PLANS = "/service/listAllService";
     private Retrofit mRetrofit;
     private DbHelper mDbHelper;
     private boolean isApiCalling;
@@ -183,12 +184,25 @@ public class ApiHelperImpl implements ApiHelper {
     @Override
     public void apiCallToGetPlanCategories(final int skip, final ApiListener mApiListener) {
         final CommonParams mCommonParams = new CommonParams.Builder()
-                .add("isDeleted", "all")
-                .add("isBlocked", "all")
+                .add("isDeleted", false)
+                .add("isBlocked", false)
                 .add("limit", LIMIT)
                 .add("skip", skip).build();
         final Call<CommonResponse> mCommonResponseCall = getApiInterface()
                 .getCall(GET_ALL_CATEGORY, getApiHeader(true), mCommonParams.getMap());
+        executeApiCall(mCommonResponseCall, mApiListener);
+    }
+
+    @Override
+    public void apiCallToGetPlansOfCategory(final String categoryId, final int skip, final ApiListener mApiListener) {
+        final CommonParams mCommonParams = new CommonParams.Builder()
+                .add("isDeleted", false)
+                .add("isApproved", "all")
+                .add("parentCategory", categoryId)
+                .add("limit", LIMIT)
+                .add("skip", skip).build();
+        final Call<CommonResponse> mCommonResponseCall = getApiInterface()
+                .getCall(LIST_ALL_PLANS, getApiHeader(true), mCommonParams.getMap());
         executeApiCall(mCommonResponseCall, mApiListener);
     }
 

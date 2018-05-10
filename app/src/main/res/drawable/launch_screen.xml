@@ -7,7 +7,7 @@
     <!-- The background color, preferably the same as your normal theme -->
     <item android:drawable="@color/colorPrimary" />
 
-    <!-- Your product logo - 144dp color version of your app icon -->
+    <!-- Your prodic_logo_homelogo - 144dp color version of your app icon -->
     <!--<item
         android:drawable="@mipmap/ic_logo"
         android:gravity="center" />-->

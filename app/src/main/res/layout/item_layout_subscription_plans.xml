@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/spacing_tiny"
+    android:background="@color/white"
+    android:paddingEnd="@dimen/screen_padding"
+    android:paddingStart="@dimen/screen_padding">
+
+    <ImageView
+        android:id="@+id/ivSubscriptionPlanIcon"
+        android:layout_width="@dimen/progress_wheel_radius"
+        android:layout_height="@dimen/progress_wheel_radius"
+        android:layout_marginTop="@dimen/spacing_tiny"
+        android:scaleType="fitXY"
+        tools:src="@mipmap/ic_launcher" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/screen_padding"
+        android:layout_toEndOf="@+id/ivSubscriptionPlanIcon">
+
+        <TextView
+            android:id="@+id/tvPlanName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:textAppearance="@style/CustomTextAppearance"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_large"
+            tools:text="Plan Name" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:drawableStart="@drawable/ic_add"
+            android:padding="@dimen/spacing_xsmall"
+            android:text="@string/add_to_compare"
+            android:textAppearance="@style/CustomTextAppearance.Regular"
+            android:textColor="@color/red"
+            android:textSize="@dimen/font_xsmall" />
+
+        <LinearLayout
+            android:id="@+id/llPlanDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvPlanName"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/screen_padding"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvPlanMonthlyPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/CustomTextAppearance.Regular"
+                    android:textSize="@dimen/font_normal"
+                    tools:text="$ 12.00" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/monthly"
+                    android:textAppearance="@style/CustomTextAppearance.Light"
+                    android:textSize="@dimen/font_xsmall" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/spacing_very_tiny"
+                android:layout_height="@dimen/spacing_large"
+                android:layout_gravity="center"
+                android:background="@color/gray_light" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/screen_padding"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvPlanMonthlyFixedRate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/CustomTextAppearance.Regular"
+                    android:textSize="@dimen/font_normal"
+                    tools:text="$ 12.00" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/fixed"
+                    android:textAppearance="@style/CustomTextAppearance.Light"
+                    android:textSize="@dimen/font_xsmall" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/spacing_very_tiny"
+                android:layout_height="@dimen/spacing_large"
+                android:layout_gravity="center"
+                android:background="@color/gray_light" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/screen_padding"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvPlanMonthlyOneTimeFee"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="@style/CustomTextAppearance.Regular"
+                    android:textSize="@dimen/font_normal"
+                    tools:text="$ 12.00" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/one_time_fee"
+                    android:textAppearance="@style/CustomTextAppearance.Light"
+                    android:textSize="@dimen/font_xsmall" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llPlanDetails">
+
+            <Button
+                android:id="@+id/btnViewDetails"
+                style="@style/primary_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spacing_xlarge"
+                android:layout_weight="1"
+                android:background="@drawable/background_button_border_selector_primary_color"
+                android:text="@string/view_details"
+                android:textAppearance="@style/CustomTextAppearance.Semibold"
+                android:textSize="@dimen/font_xsmall" />
+
+            <Button
+                android:id="@+id/btnPurchase"
+                style="@style/accent_button"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/spacing_xlarge"
+                android:layout_weight="1"
+                android:text="@string/purchase"
+                android:textAppearance="@style/CustomTextAppearance.Semibold"
+                android:textSize="@dimen/font_xsmall" />
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

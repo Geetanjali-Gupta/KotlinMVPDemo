@@ -19,7 +19,7 @@ import com.skeleton.mvp.ui.dialog.CustomAlertDialog;
 import com.skeleton.mvp.ui.home.account.AccountFragment;
 import com.skeleton.mvp.ui.home.cart.CartFragment;
 import com.skeleton.mvp.ui.home.home.HomeFragment;
-import com.skeleton.mvp.ui.home.plans.PlansFragment;
+import com.skeleton.mvp.ui.home.plans.categories.PlansFragment;
 import com.skeleton.mvp.util.ExplicitIntentUtil;
 
 import java.lang.reflect.Field;
