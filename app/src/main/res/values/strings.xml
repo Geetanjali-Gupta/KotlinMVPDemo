@@ -88,7 +88,7 @@
 
     <!--Subscription Plans Activity-->
     <string name="add_to_compare">Add To Compare</string>
-    <string name="added">Added</string>
+    <string name="remove">Remove</string>
     <string name="monthly">Monthly</string>
     <string name="fixed">Fixed</string>
     <string name="one_time_fee">One Time Fee</string>

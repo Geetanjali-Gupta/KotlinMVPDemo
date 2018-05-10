@@ -28,9 +28,13 @@ import static com.skeleton.mvp.util.IntentConstant.EXTRA_CATEGORY_ID;
 
 /**
  * Developer: Geetanjali Gupta
- * Dated: 23/04/18.
+ * Dated: 23/April/18.
  */
-public class PlansFragment extends BaseFragment implements PlansView {
+public class PlansFragment extends BaseFragment implements PlansView, ActionItemListener,
+        PlanCategoriesAdapter.ItemClickListener {
+
+    private static final int NUM_COLS = 2;
+    private GridLayoutManager gridLayoutManager;
     private PlansPresenter mPlansPresenter;
     private RecyclerView rvPlansCategories;
     private HomeActivity activity;
@@ -62,37 +66,47 @@ public class PlansFragment extends BaseFragment implements PlansView {
         mPlansPresenter = new PlansPresenterImpl(this, new DataManagerImpl(RestClient.getRetrofitBuilder()));
         mPlansPresenter.onAttach();
 
-        final int numColumns = 2;
         rvPlansCategories = rootView.findViewById(R.id.rvPlansCategories);
-        final GridLayoutManager gridLayoutManager = new GridLayoutManager(activity, numColumns);
+        setUpRecyclerView();
+        mPlansPresenter.getAllCategories(skip);
+    }
+
+    /**
+     * Used to set Up recycler View
+     */
+    private void setUpRecyclerView() {
+        gridLayoutManager = new GridLayoutManager(activity, NUM_COLS);
+        setSpanSizeForLoadingView();
+
         rvPlansCategories.setLayoutManager(gridLayoutManager);
+        planCategoriesAdapter = new PlanCategoriesAdapter(this, this);
+        rvPlansCategories.setAdapter(planCategoriesAdapter);
+        rvPlansCategories.addItemDecoration(new GridDividerItemDecoration(activity));
+
+        handleAddOnScrollListener();
+    }
+
+    /**
+     * Used to set span size to 2 for loading view so that it be in center of the screen
+     */
+    private void setSpanSizeForLoadingView() {
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override
             public int getSpanSize(final int position) {
                 if (planCategoriesAdapter.getItemViewType(planCategoriesAdapter.getItemCount() - 1)
                         == VIEW_TYPE_LOADER) {
-                    return position == planCategoriesAdapter.getItemCount() - 1 ? 2 : 1;
+                    return position == planCategoriesAdapter.getItemCount() - 1 ? NUM_COLS : 1;
                 } else {
                     return 1;
                 }
             }
         });
-        planCategoriesAdapter = new PlanCategoriesAdapter(new ActionItemListener() {
-            @Override
-            public void onRetry() {
+    }
 
-            }
-
-            @Override
-            public void onLoadMore() {
-                mPlansPresenter.getAllCategories(skip);
-            }
-
-            @Override
-            public void onItemClick(final String categoryId) {
-                navigateToSubscriptionPlansActivity(categoryId);
-            }
-        });
+    /**
+     * Used to handle Add On Scroll Listeners
+     */
+    private void handleAddOnScrollListener() {
         rvPlansCategories.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
@@ -105,11 +119,6 @@ public class PlansFragment extends BaseFragment implements PlansView {
                 }
             }
         });
-
-        rvPlansCategories.setAdapter(planCategoriesAdapter);
-        rvPlansCategories.addItemDecoration(new GridDividerItemDecoration(activity));
-
-        mPlansPresenter.getAllCategories(skip);
     }
 
     @Override
@@ -124,5 +133,20 @@ public class PlansFragment extends BaseFragment implements PlansView {
         Bundle bundle = new Bundle();
         bundle.putString(EXTRA_CATEGORY_ID, categoryId);
         ExplicitIntentUtil.startActivity(activity, SubscriptionPlansActivity.class, bundle);
+    }
+
+    @Override
+    public void onRetry() {
+
+    }
+
+    @Override
+    public void onLoadMore() {
+        mPlansPresenter.getAllCategories(skip);
+    }
+
+    @Override
+    public void onItemClick(final String id) {
+        navigateToSubscriptionPlansActivity(id);
     }
 }

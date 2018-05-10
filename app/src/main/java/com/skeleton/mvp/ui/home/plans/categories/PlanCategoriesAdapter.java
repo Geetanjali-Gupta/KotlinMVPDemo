@@ -25,16 +25,17 @@ import java.util.ArrayList;
 
 public class PlanCategoriesAdapter extends BaseRecyclerAdapter {
     private ArrayList<PlanCategoriesModel> dataList;
-    private ActionItemListener actionItemListener;
+    private ItemClickListener itemClickListener;
 
     /**
      * Instantiates a new Base recycler adapter.
      *
-     * @param listener the listener
+     * @param itemClickListener Item click listener
+     * @param listener          the listener
      */
-    PlanCategoriesAdapter(final ActionItemListener listener) {
+    PlanCategoriesAdapter(final ItemClickListener itemClickListener, final ActionItemListener listener) {
         super(listener);
-        actionItemListener = listener;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -61,7 +62,7 @@ public class PlanCategoriesAdapter extends BaseRecyclerAdapter {
             plansViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
-                    actionItemListener.onItemClick(planCategory.getId());
+                    itemClickListener.onItemClick(planCategory.getId());
                 }
             });
         } else {
@@ -99,4 +100,16 @@ public class PlanCategoriesAdapter extends BaseRecyclerAdapter {
         }
     }
 
+    /**
+     * Click Listener Interface
+     */
+    interface ItemClickListener {
+
+        /**
+         * On retry.
+         *
+         * @param id Item Id
+         */
+        void onItemClick(final String id);
+    }
 }

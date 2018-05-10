@@ -24,8 +24,11 @@ import static com.skeleton.mvp.util.IntentConstant.EXTRA_CATEGORY_ID;
  * Developer: Geetanjali Gupta
  * Dated: 9/May/2018
  */
-public class SubscriptionPlansActivity extends BaseActivity implements SubscriptionPlansView {
+public class SubscriptionPlansActivity extends BaseActivity implements SubscriptionPlansView,
+        SubscriptionPlansAdapter.ItemClickListener, ActionItemListener {
+
     private SubscriptionPlansPresenter mSubscriptionPlansPresenter;
+    private RecyclerView rvSubscriptionPlans;
     private SubscriptionPlansAdapter mSubscriptionPlansAdapter;
     private LinearLayoutManager linearLayoutManager;
     private int totalPlansCount = 0, skip = 0;
@@ -51,49 +54,28 @@ public class SubscriptionPlansActivity extends BaseActivity implements Subscript
         mSubscriptionPlansPresenter.onAttach();
 
         btnComparePlans = findViewById(R.id.btnComparePlans);
-        RecyclerView rvSubscriptionPlans = findViewById(R.id.rvSubscriptionPlans);
+        rvSubscriptionPlans = findViewById(R.id.rvSubscriptionPlans);
         linearLayoutManager = new LinearLayoutManager(this);
+
+        setUpRecyclerView();
+
+        mSubscriptionPlansPresenter.getAllPlansOfCategory(categoryId, skip);
+    }
+
+    /**
+     * Used to set Up recycler View
+     */
+    private void setUpRecyclerView() {
         rvSubscriptionPlans.setLayoutManager(linearLayoutManager);
-        mSubscriptionPlansAdapter = new SubscriptionPlansAdapter(new SubscriptionPlansAdapter.ItemClickListener() {
-            @Override
-            public void onAddToCompareClick(final String planId) {
-                if (planId == null) {
-                    CommonUtil.showToast(SubscriptionPlansActivity.this, getString(R.string.compare_plans_count_error));
-                } else {
-                    if (!plansListToCompare.contains(planId)) {
-                        plansListToCompare.add(planId);
-                    }
-                    if (plansListToCompare.size() > 1) {
-                        btnComparePlans.setVisibility(View.VISIBLE);
-                    }
-                }
-            }
+        mSubscriptionPlansAdapter = new SubscriptionPlansAdapter(this, this);
+        handleAddOnScrollListener();
+        rvSubscriptionPlans.setAdapter(mSubscriptionPlansAdapter);
+    }
 
-            @Override
-            public void onViewDetailsClick(final int itemPosition) {
-
-            }
-
-            @Override
-            public void onPurchaseClick(final int itemPosition) {
-
-            }
-        }, new ActionItemListener() {
-            @Override
-            public void onRetry() {
-
-            }
-
-            @Override
-            public void onLoadMore() {
-                mSubscriptionPlansPresenter.getAllPlansOfCategory(categoryId, skip);
-            }
-
-            @Override
-            public void onItemClick(final String id) {
-
-            }
-        });
+    /**
+     * Used to handle Add On Scroll Listeners
+     */
+    private void handleAddOnScrollListener() {
         rvSubscriptionPlans.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrolled(final RecyclerView recyclerView, final int dx, final int dy) {
@@ -106,9 +88,28 @@ public class SubscriptionPlansActivity extends BaseActivity implements Subscript
                 }
             }
         });
+    }
 
-        rvSubscriptionPlans.setAdapter(mSubscriptionPlansAdapter);
-        mSubscriptionPlansPresenter.getAllPlansOfCategory(categoryId, skip);
+    /**
+     * Used to handle Add To Compare
+     *
+     * @param planId plan id
+     */
+    private void handleAddToCompare(final String planId) {
+        if (planId == null) {
+            CommonUtil.showToast(SubscriptionPlansActivity.this, getString(R.string.compare_plans_count_error));
+        } else {
+            if (!plansListToCompare.contains(planId)) {
+                plansListToCompare.add(planId);
+            } else {
+                plansListToCompare.remove(planId);
+            }
+            if (plansListToCompare.size() > 1) {
+                btnComparePlans.setVisibility(View.VISIBLE);
+            } else {
+                btnComparePlans.setVisibility(View.GONE);
+            }
+        }
     }
 
     @Override
@@ -121,5 +122,30 @@ public class SubscriptionPlansActivity extends BaseActivity implements Subscript
         totalPlansCount = totalCount;
         mSubscriptionPlansAdapter.updateDataList((ArrayList<Plan>) plansList);
         skip = plansList.size();
+    }
+
+    @Override
+    public void onAddToCompareClick(final String planId) {
+        handleAddToCompare(planId);
+    }
+
+    @Override
+    public void onViewDetailsClick(final int itemPosition) {
+
+    }
+
+    @Override
+    public void onPurchaseClick(final int itemPosition) {
+
+    }
+
+    @Override
+    public void onRetry() {
+
+    }
+
+    @Override
+    public void onLoadMore() {
+        mSubscriptionPlansPresenter.getAllPlansOfCategory(categoryId, skip);
     }
 }

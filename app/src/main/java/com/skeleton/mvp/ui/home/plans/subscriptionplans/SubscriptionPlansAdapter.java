@@ -19,7 +19,6 @@ import com.skeleton.mvp.data.model.responsemodel.home.plans.Plan;
 import com.skeleton.mvp.ui.base.baserecycler.ActionItemListener;
 import com.skeleton.mvp.ui.base.baserecycler.BaseRecyclerConstants;
 import com.skeleton.mvp.ui.base.baserecycler.adapter.BaseRecyclerAdapter;
-import com.skeleton.mvp.util.Log;
 
 import java.util.ArrayList;
 
@@ -63,7 +62,6 @@ public class SubscriptionPlansAdapter extends BaseRecyclerAdapter {
         if (getViewType(holder.getAdapterPosition()) == BaseRecyclerConstants.VIEW_TYPE_DATA) {
             final SubscriptionPlansViewHolder subscriptionPlansViewHolder = (SubscriptionPlansViewHolder) holder;
             final Plan plan = dataList.get(holder.getAdapterPosition());
-
             Glide.with(subscriptionPlansViewHolder.ivSubscriptionPlanIcon.getContext()).load(plan.getImageUrl())
                     .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.ALL)
                             .dontAnimate()).into(subscriptionPlansViewHolder.ivSubscriptionPlanIcon);
@@ -74,14 +72,11 @@ public class SubscriptionPlansAdapter extends BaseRecyclerAdapter {
             subscriptionPlansViewHolder.tvAddToCompare.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(final View v) {
-                    if (addToCompareCount < 2) {
-                        if (!plan.isAddedToCompare()) {
-                            handleAddToCompareTextClick(subscriptionPlansViewHolder.tvAddToCompare,
-                                    subscriptionPlansViewHolder.tvAddToCompare.getContext());
-                            plan.setAddedToCompare(true);
-                            itemClickListener.onAddToCompareClick(plan.getId());
-                            Log.e("Add To compare:", ">>>>>>>>> " + position);
-                        }
+                    if (addToCompareCount < 2 || plan.isAddedToCompare() && addToCompareCount > 0) {
+                        plan.setAddedToCompare(!plan.isAddedToCompare());
+                        handleAddToCompareTextClick(plan.isAddedToCompare(), subscriptionPlansViewHolder.tvAddToCompare,
+                                subscriptionPlansViewHolder.tvAddToCompare.getContext());
+                        itemClickListener.onAddToCompareClick(plan.getId());
                     } else {
                         itemClickListener.onAddToCompareClick(null);
                     }
@@ -157,11 +152,16 @@ public class SubscriptionPlansAdapter extends BaseRecyclerAdapter {
         void onPurchaseClick(final int itemPosition);
     }
 
-    private void handleAddToCompareTextClick(final TextView tv, final Context context) {
-        tv.setText(context.getString(R.string.added));
-        tv.setTextColor(ContextCompat.getColor(context, R.color.green));
+    /**
+     * @param isAddedToCompare is plan added for comparison
+     * @param tv               textView
+     * @param context          context
+     */
+    private void handleAddToCompareTextClick(final boolean isAddedToCompare, final TextView tv, final Context context) {
+        tv.setText(context.getString(isAddedToCompare ? R.string.remove : R.string.add_to_compare));
+        tv.setTextColor(ContextCompat.getColor(context, isAddedToCompare ? R.color.red : R.color.green));
         tv.setCompoundDrawablesWithIntrinsicBounds(ContextCompat.getDrawable(context,
-                R.drawable.ic_added), null, null, null);
-        addToCompareCount++;
+                isAddedToCompare ? R.drawable.ic_remove : R.drawable.ic_add), null, null, null);
+        addToCompareCount = isAddedToCompare ? addToCompareCount + 1 : addToCompareCount - 1;
     }
 }

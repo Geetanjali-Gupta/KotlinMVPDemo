@@ -14,11 +14,4 @@ public interface ActionItemListener {
      * On Loading more data
      */
     void onLoadMore();
-
-    /**
-     * On retry.
-     *
-     * @param id Item Id
-     */
-    void onItemClick(final String id);
 }

@@ -41,7 +41,7 @@
             android:padding="@dimen/spacing_xsmall"
             android:text="@string/add_to_compare"
             android:textAppearance="@style/CustomTextAppearance.Regular"
-            android:textColor="@color/red"
+            android:textColor="@color/green"
             android:textSize="@dimen/font_xsmall" />
 
         <LinearLayout
