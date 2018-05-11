@@ -14,4 +14,9 @@ public interface PlansPresenter extends BasePresenter {
      * @param skip skip Count for pagination
      */
     void getAllCategories(final int skip);
+
+    /**
+     * Used get all Offers
+     */
+    void getAllOffers();
 }

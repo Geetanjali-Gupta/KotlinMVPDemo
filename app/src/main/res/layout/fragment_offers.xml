@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivBannerImage"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/plans_view_pager_height"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/plans_view_pager_height"
+        android:background="@color/black_30" />
+
+    <TextView
+        android:id="@+id/tvBannerHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_xlarge"
+        android:paddingEnd="@dimen/screen_padding"
+        android:paddingStart="@dimen/screen_padding"
+        android:text="@string/app_name"
+        android:textAppearance="@style/CustomTextAppearance.Semibold"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_large"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvBannerDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvBannerHeader"
+        android:padding="@dimen/screen_padding"
+        android:text="@string/app_name"
+        android:textAppearance="@style/CustomTextAppearance.Semibold"
+        android:textColor="@color/white"
+        android:textSize="@dimen/font_small"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnViewDetails"
+        style="@style/accent_button"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/spacing_xlarge"
+        android:layout_below="@+id/tvBannerDesc"
+        android:layout_marginTop="@dimen/screen_padding"
+        android:text="@string/view_details"
+        android:textSize="@dimen/font_small" />
+</RelativeLayout>

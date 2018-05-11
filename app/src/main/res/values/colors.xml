@@ -13,6 +13,7 @@
     <color name="pure_black">#000</color>
     <color name="charcoal_grey">#333c40</color>
     <color name="transparent">#0000</color>
+    <color name="black_30">#4D000000</color>
 
     <color name="textColor">#2b2b2b</color>
     <color name="divider_color">#e6e6e6</color>

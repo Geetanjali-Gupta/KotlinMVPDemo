@@ -13,6 +13,13 @@ public final class IntentConstant {
     //Plans fragment
     public static final String EXTRA_CATEGORY_ID = "category_id";
 
+
+    public static final String EXTRA_PLAN_ID = "plan_id";
+    public static final String EXTRA_TITLE = "title";
+    public static final String EXTRA_DESCRIPTION = "description";
+    public static final String EXTRA_IMAGE_URL = "image_url";
+
+
     /**
      * Prevent instantiation
      */

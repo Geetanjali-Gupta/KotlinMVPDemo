@@ -40,6 +40,8 @@
     <dimen name="post_image_height">250dp</dimen>
     <dimen name="empty_nav_view_height">25dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="plans_view_pager_height">200dp</dimen>
+    <dimen name="plans_view_pager_indicator">180dp</dimen>
 
     <dimen name="button_height">56dp</dimen>
 

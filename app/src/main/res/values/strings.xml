@@ -93,7 +93,7 @@
     <string name="fixed">Fixed</string>
     <string name="one_time_fee">One Time Fee</string>
     <string name="purchase">Purchase</string>
-    <string name="view_details">View details</string>
+    <string name="view_details">View Details</string>
     <string name="compare_plans">Compare Plans</string>
     <string name="subscription_plans">Subscription Plans</string>
     <string name="compare_plans_count_error">You can not add more than 2 plans.</string>

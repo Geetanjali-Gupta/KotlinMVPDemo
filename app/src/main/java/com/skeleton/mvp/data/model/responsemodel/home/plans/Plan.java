@@ -34,6 +34,9 @@ public class Plan {
     @SerializedName("__v")
     @Expose
     private int v;
+    @SerializedName("offerDescription")
+    @Expose
+    private OfferDescription offerDescription;
     @SerializedName("isOnOffer")
     @Expose
     private boolean isOnOffer;
@@ -109,5 +112,17 @@ public class Plan {
 
     public void setAddedToCompare(final boolean addedToCompare) {
         isAddedToCompare = addedToCompare;
+    }
+
+    public Object getBannerImageUrl() {
+        return bannerImageUrl;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public OfferDescription getOfferDescription() {
+        return offerDescription;
     }
 }

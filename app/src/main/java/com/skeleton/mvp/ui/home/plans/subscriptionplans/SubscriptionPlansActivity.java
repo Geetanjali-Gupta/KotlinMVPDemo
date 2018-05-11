@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManagerImpl;
@@ -25,7 +26,7 @@ import static com.skeleton.mvp.util.IntentConstant.EXTRA_CATEGORY_ID;
  * Dated: 9/May/2018
  */
 public class SubscriptionPlansActivity extends BaseActivity implements SubscriptionPlansView,
-        SubscriptionPlansAdapter.ItemClickListener, ActionItemListener {
+        SubscriptionPlansAdapter.ItemClickListener, ActionItemListener, View.OnClickListener {
 
     private SubscriptionPlansPresenter mSubscriptionPlansPresenter;
     private RecyclerView rvSubscriptionPlans;
@@ -47,6 +48,9 @@ public class SubscriptionPlansActivity extends BaseActivity implements Subscript
      * Used to initialise views
      */
     private void initViews() {
+
+        setUpToolbar();
+
         Bundle bundle = getIntent().getExtras();
         categoryId = bundle == null ? "" : bundle.getString(EXTRA_CATEGORY_ID);
 
@@ -60,6 +64,16 @@ public class SubscriptionPlansActivity extends BaseActivity implements Subscript
         setUpRecyclerView();
 
         mSubscriptionPlansPresenter.getAllPlansOfCategory(categoryId, skip);
+    }
+
+    /**
+     * Used to set Up Toolbar
+     */
+    private void setUpToolbar() {
+        findViewById(R.id.ivBack).setOnClickListener(this);
+
+        TextView tvTitle = findViewById(R.id.tvTitle);
+        tvTitle.setText(getString(R.string.subscription_plans));
     }
 
     /**
@@ -147,5 +161,16 @@ public class SubscriptionPlansActivity extends BaseActivity implements Subscript
     @Override
     public void onLoadMore() {
         mSubscriptionPlansPresenter.getAllPlansOfCategory(categoryId, skip);
+    }
+
+    @Override
+    public void onClick(final View v) {
+        switch (v.getId()) {
+            case R.id.ivBack:
+                onBackPress();
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -3,6 +3,7 @@ package com.skeleton.mvp.ui.home.plans.categories;
 import com.skeleton.mvp.data.DataManager;
 import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
 import com.skeleton.mvp.data.model.responsemodel.home.categories.PlansModel;
+import com.skeleton.mvp.data.model.responsemodel.home.plans.PlansListModel;
 import com.skeleton.mvp.data.network.ApiError;
 import com.skeleton.mvp.data.network.ApiHelper;
 import com.skeleton.mvp.ui.base.BasePresenterImpl;
@@ -41,6 +42,26 @@ public class PlansPresenterImpl extends BasePresenterImpl implements PlansPresen
                     }
                     PlansModel plansModel = commonResponse.toResponseModel(PlansModel.class);
                     mPlansView.updatePlanCategories(plansModel.getTotalCount(), plansModel.getCategories());
+                }
+            }
+
+            @Override
+            public void onFailure(final ApiError apiError, final Throwable throwable) {
+
+            }
+        });
+    }
+
+    @Override
+    public void getAllOffers() {
+        mPlansView.showLoading();
+        mDataManager.apiCallToGetAllOffers(new ApiHelper.ApiListener() {
+            @Override
+            public void onSuccess(final CommonResponse commonResponse) {
+                if (isViewAttached()) {
+                    mPlansView.hideLoading();
+                    PlansListModel plansModel = commonResponse.toResponseModel(PlansListModel.class);
+                    mPlansView.updateOfferPlan(plansModel.getTotalCount(), plansModel.getPlans());
                 }
             }
 

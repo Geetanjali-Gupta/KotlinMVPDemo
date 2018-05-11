@@ -68,6 +68,13 @@ public interface ApiHelper {
     /**
      * Api call to register user.
      *
+     * @param mApiListener the m api listener
+     */
+    void apiCallToGetAllOffers(ApiListener mApiListener);
+
+    /**
+     * Api call to register user.
+     *
      * @param categoryId   category Id
      * @param skip         skip Count for pagination
      * @param mApiListener the m api listener

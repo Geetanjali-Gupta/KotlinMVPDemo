@@ -41,6 +41,7 @@ public class ApiHelperImpl implements ApiHelper {
 
     private static final String GET_ALL_CATEGORY = "/service/getAllCategory";
     private static final String LIST_ALL_PLANS = "/service/listAllService";
+    private static final String LIST_ALL_OFFERS = "/service/listAllOffers";
     private Retrofit mRetrofit;
     private DbHelper mDbHelper;
     private boolean isApiCalling;
@@ -190,6 +191,13 @@ public class ApiHelperImpl implements ApiHelper {
                 .add("skip", skip).build();
         final Call<CommonResponse> mCommonResponseCall = getApiInterface()
                 .getCall(GET_ALL_CATEGORY, getApiHeader(true), mCommonParams.getMap());
+        executeApiCall(mCommonResponseCall, mApiListener);
+    }
+
+    @Override
+    public void apiCallToGetAllOffers(final ApiListener mApiListener) {
+        final Call<CommonResponse> mCommonResponseCall = getApiInterface()
+                .getCall(LIST_ALL_OFFERS, getApiHeader(true));
         executeApiCall(mCommonResponseCall, mApiListener);
     }
 
