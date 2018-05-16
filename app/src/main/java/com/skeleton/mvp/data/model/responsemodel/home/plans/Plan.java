@@ -42,7 +42,7 @@ public class Plan {
     private boolean isOnOffer;
     @SerializedName("bannerImageUrl")
     @Expose
-    private Object bannerImageUrl;
+    private String bannerImageUrl;
     @SerializedName("offerPercentage")
     @Expose
     private int offerPercentage;
@@ -114,7 +114,7 @@ public class Plan {
         isAddedToCompare = addedToCompare;
     }
 
-    public Object getBannerImageUrl() {
+    public String getBannerImageUrl() {
         return bannerImageUrl;
     }
 

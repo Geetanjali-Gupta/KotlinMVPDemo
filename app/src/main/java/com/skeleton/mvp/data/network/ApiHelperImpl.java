@@ -38,10 +38,12 @@ public class ApiHelperImpl implements ApiHelper {
     private static final String REGISTER = "customer/registerFromEmail";
     private static final String OTP_VERIFICATION = "user/verifyMobileOTP";
     private static final String RESEND_OTP = "/user/resendOTP";
+    private static final String LOGOUT_USER = "/user/logout";
 
     private static final String GET_ALL_CATEGORY = "/service/getAllCategory";
     private static final String LIST_ALL_PLANS = "/service/listAllService";
     private static final String LIST_ALL_OFFERS = "/service/listAllOffers";
+    private static final String COMPARE_PLANS = "/service/comparePlans";
     private Retrofit mRetrofit;
     private DbHelper mDbHelper;
     private boolean isApiCalling;
@@ -214,6 +216,23 @@ public class ApiHelperImpl implements ApiHelper {
         executeApiCall(mCommonResponseCall, mApiListener);
     }
 
+    @Override
+    public void apiCallToComparePlans(final String planId1, final String planId2, final ApiListener mApiListener) {
+        final CommonParams mCommonParams = new CommonParams.Builder()
+                .add("planId1", planId1)
+                .add("planId2", planId2).build();
+        final Call<CommonResponse> mCommonResponseCall = getApiInterface()
+                .getCall(COMPARE_PLANS, getApiHeader(true), mCommonParams.getMap());
+        executeApiCall(mCommonResponseCall, mApiListener);
+    }
+
+    @Override
+    public void apiCallToLogoutUser(final ApiListener mApiListener) {
+        final Call<CommonResponse> mCommonResponseCall = getApiInterface()
+                .postCall(LOGOUT_USER, getApiHeader(true));
+        executeApiCall(mCommonResponseCall, mApiListener);
+    }
+
     /**
      * The interface Api interface.
      */
@@ -253,6 +272,16 @@ public class ApiHelperImpl implements ApiHelper {
         @POST
         Call<CommonResponse> postCall(@Url String url, @HeaderMap Map<String, String> headerMap,
                                       @FieldMap HashMap<String, String> fieldMap);
+
+        /**
+         * Post call without data.
+         *
+         * @param url       the url
+         * @param headerMap the header map
+         * @return the call
+         */
+        @POST
+        Call<CommonResponse> postCall(@Url String url, @HeaderMap Map<String, String> headerMap);
 
         /**
          * Put call call.

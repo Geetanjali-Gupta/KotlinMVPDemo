@@ -1,6 +1,8 @@
 package com.skeleton.mvp.data.db;
 
 
+import com.skeleton.mvp.data.model.responsemodel.onboarding.signin.SignInResponseModel;
+
 /**
  * Developer: Saurabh Verma
  * Dated: 09/03/18.
@@ -37,7 +39,7 @@ public interface DbHelper {
      *
      * @param mUserData the m user data
      */
-    //  void saveUserData(UserData mUserData);
+    void saveUserData(SignInResponseModel mUserData);
 
 
     /**
@@ -45,7 +47,7 @@ public interface DbHelper {
      *
      * @return the user data
      */
-    // UserData getUserData();
+    SignInResponseModel getUserData();
 
 
     /**

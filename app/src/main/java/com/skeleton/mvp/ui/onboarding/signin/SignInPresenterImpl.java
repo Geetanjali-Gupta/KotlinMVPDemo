@@ -69,6 +69,7 @@ public class SignInPresenterImpl extends BasePresenterImpl implements SignInPres
         if (isViewAttached()) {
             mSignInView.hideLoading();
             SignInResponseModel signInResponseModel = commonResponse.toResponseModel(SignInResponseModel.class);
+            mDataManager.saveUserData(signInResponseModel);
             mDataManager.saveAccessToken(signInResponseModel.getToken());
             mSignInView.onSignInSuccess(commonResponse.getMessage());
         }

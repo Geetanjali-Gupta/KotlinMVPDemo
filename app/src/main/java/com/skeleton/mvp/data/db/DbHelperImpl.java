@@ -1,6 +1,8 @@
 package com.skeleton.mvp.data.db;
 
 
+import com.skeleton.mvp.data.model.responsemodel.onboarding.signin.SignInResponseModel;
+
 /**
  * Developer: Saurabh Verma
  * Dated: 09/03/18.
@@ -24,6 +26,22 @@ public class DbHelperImpl implements DbHelper {
     @Override
     public void clearSessionManager() {
         CommonData.clearData();
+    }
+
+    @Override
+    public void saveUserData(final SignInResponseModel mUserData) {
+        if (mUserData != null) {
+            if (mUserData.getToken() != null
+                    && !mUserData.getToken().isEmpty()) {
+                saveAccessToken(mUserData.getToken());
+            }
+            CommonData.saveUserData(mUserData);
+        }
+    }
+
+    @Override
+    public SignInResponseModel getUserData() {
+        return CommonData.getUserData();
     }
 
     @Override

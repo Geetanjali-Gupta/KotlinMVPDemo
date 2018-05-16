@@ -4,6 +4,7 @@ package com.skeleton.mvp.data;
 import com.skeleton.mvp.data.db.DbHelper;
 import com.skeleton.mvp.data.db.DbHelperImpl;
 import com.skeleton.mvp.data.model.requestmodel.SignUpModel;
+import com.skeleton.mvp.data.model.responsemodel.onboarding.signin.SignInResponseModel;
 import com.skeleton.mvp.data.network.ApiHelper;
 import com.skeleton.mvp.data.network.ApiHelperImpl;
 
@@ -45,6 +46,16 @@ public class DataManagerImpl implements DataManager {
     @Override
     public void clearSessionManager() {
         mDbHelper.clearSessionManager();
+    }
+
+    @Override
+    public void saveUserData(final SignInResponseModel mUserData) {
+        mDbHelper.saveUserData(mUserData);
+    }
+
+    @Override
+    public SignInResponseModel getUserData() {
+        return mDbHelper.getUserData();
     }
 
     @Override
@@ -100,5 +111,15 @@ public class DataManagerImpl implements DataManager {
     @Override
     public void apiCallToGetPlansOfCategory(final String categoryId, final int skip, final ApiListener mApiListener) {
         mApiHelper.apiCallToGetPlansOfCategory(categoryId, skip, mApiListener);
+    }
+
+    @Override
+    public void apiCallToComparePlans(final String planId1, final String planId2, final ApiListener mApiListener) {
+        mApiHelper.apiCallToComparePlans(planId1, planId2, mApiListener);
+    }
+
+    @Override
+    public void apiCallToLogoutUser(final ApiListener mApiListener) {
+        mApiHelper.apiCallToLogoutUser(mApiListener);
     }
 }

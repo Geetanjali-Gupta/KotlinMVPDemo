@@ -1,5 +1,7 @@
 package com.skeleton.mvp.data.db;
 
+import com.skeleton.mvp.data.model.responsemodel.onboarding.signin.SignInResponseModel;
+
 import io.paperdb.Paper;
 
 /**
@@ -9,6 +11,7 @@ public final class CommonData {
 
     private static final String PAPER_DEVICE_TOKEN = "paper_device_token";
     private static final String PAPER_ACCESS_TOKEN = "paper_access_token";
+    private static final String PAPER_USER_DATA = "paper_user_data";
 
     /**
      * Prevent instantiation
@@ -17,6 +20,7 @@ public final class CommonData {
     }
 
     //=================================== FCM Token ==================================
+
     /**
      * Update fcm token.
      *
@@ -37,6 +41,7 @@ public final class CommonData {
 
 
     //=================================== Access Token ===============================
+
     /**
      * Save access token.
      *
@@ -54,7 +59,25 @@ public final class CommonData {
     public static String getAccessToken() {
         return Paper.book().read(PAPER_ACCESS_TOKEN);
     }
+    //=================================== UserData ===============================
 
+    /**
+     * Save access token.
+     *
+     * @param signInResponseModel the user data
+     */
+    public static void saveUserData(final SignInResponseModel signInResponseModel) {
+        Paper.book().write(PAPER_USER_DATA, signInResponseModel);
+    }
+
+    /**
+     * Gets access token.
+     *
+     * @return the user data
+     */
+    public static SignInResponseModel getUserData() {
+        return Paper.book().read(PAPER_USER_DATA);
+    }
 
     /**
      * Clear data.

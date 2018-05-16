@@ -99,7 +99,7 @@ public class SignInResponseModel {
     private boolean rememberMe;
     @SerializedName("name")
     @Expose
-    private Object name;
+    private String name;
     @SerializedName("contacts")
     @Expose
     private List<Contact> contacts = null;
@@ -117,5 +117,13 @@ public class SignInResponseModel {
 
     public List<Contact> getContacts() {
         return contacts;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getName() {
+        return name;
     }
 }

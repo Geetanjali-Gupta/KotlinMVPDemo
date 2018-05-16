@@ -130,11 +130,8 @@ class SplashPresenterImpl extends BasePresenterImpl implements SplashPresenter, 
                     if (isViewAttached()) {
                         mSplashView.hideProgressBar();
                         final SignInResponseModel signInResponseModel = commonResponse.toResponseModel(SignInResponseModel.class);
-                       /* if (signInResponseModel.isPhoneVerified()) {
-                            mSplashView.navigateToHomeScreen();
-                        } else {*/
+                        mDataManager.saveUserData(signInResponseModel);
                         mSplashView.navigateToOTPVerificationScreen(signInResponseModel.getContacts().get(0).getMobile());
-                        //  }
                     }
                 }
 

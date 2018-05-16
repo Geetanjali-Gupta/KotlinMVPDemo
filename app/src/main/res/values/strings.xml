@@ -98,6 +98,24 @@
     <string name="subscription_plans">Subscription Plans</string>
     <string name="compare_plans_count_error">You can not add more than 2 plans.</string>
 
+    <!--Compare Plans Activity-->
+    <string name="comparing_plans">Comparing Plans</string>
+    <string name="comparing_with">Comparing With</string>
+    <string name="loan_amount">Loan Amount</string>
+    <string name="best_rate">Best Rate</string>
+    <string name="emi_monthly_fee">EMI (Monthly Fees)</string>
+    <string name="processing_fee">Processing Fee</string>
+    <string name="branches">Branches</string>
+    <string name="door_step_service">Door Step Service</string>
+    <string name="for_four_years">For 4 years</string>
+
+    <!--Accounts Fragment-->
+    <string name="my_profile">My Profile</string>
+    <string name="contact_us">Contact Us</string>
+    <string name="terms_of_services">Terms Of Service</string>
+    <string name="logout">Logout</string>
+    <string name="logout_confirmation_msg">Are you sure you want to logout?</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

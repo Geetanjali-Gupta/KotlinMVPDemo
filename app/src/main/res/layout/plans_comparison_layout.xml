@@ -1,0 +1,549 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialog_progress_wheel_width_height"
+        android:layout_marginBottom="@dimen/screen_padding"
+        android:layout_marginTop="@dimen/screen_padding"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:gravity="center_vertical"
+            android:paddingEnd="@dimen/spacing_xsmall"
+            android:paddingStart="@dimen/spacing_xsmall"
+            android:text="@string/comparing_with"
+            android:textAppearance="@style/CustomTextAppearance.Light"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="@dimen/font_large" />
+
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.25"
+            android:padding="@dimen/spacing_tiny"
+            android:src="@mipmap/ic_launcher" />
+
+        <View
+            android:layout_width="@dimen/spacing_very_tiny"
+            android:layout_height="@dimen/dialog_progress_wheel_width_height"
+            android:background="@color/colorAccent"
+            android:rotation="30" />
+
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.25"
+            android:padding="@dimen/spacing_tiny"
+            android:src="@mipmap/ic_launcher" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spacing_very_tiny"
+        android:background="@color/gray_light" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:gravity="center_vertical"
+            android:paddingEnd="@dimen/spacing_xsmall"
+            android:paddingStart="@dimen/spacing_xsmall"
+            android:text="@string/loan_amount"
+            android:textAppearance="@style/CustomTextAppearance.Regular"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_large" />
+
+        <View
+            android:layout_width="@dimen/spacing_very_tiny"
+            android:layout_height="@dimen/dialog_progress_wheel_width_height"
+            android:background="@color/gray_light" />
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvPlan1LoanAmt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/CustomTextAppearance.Regular"
+                android:textSize="@dimen/font_normal"
+                tools:text="$ 12.00" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/monthly"
+                android:textAppearance="@style/CustomTextAppearance.Light"
+                android:textSize="@dimen/font_xsmall" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="@dimen/spacing_very_tiny"
+            android:layout_height="@dimen/dialog_progress_wheel_width_height"
+            android:background="@color/gray_light" />
+
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvPlan2LoanAmt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/CustomTextAppearance.Regular"
+                android:textSize="@dimen/font_normal"
+                tools:text="$ 12.00" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/monthly"
+                android:textAppearance="@style/CustomTextAppearance.Light"
+                android:textSize="@dimen/font_xsmall" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spacing_very_tiny"
+        android:background="@color/gray_light" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:gravity="center_vertical"
+            android:paddingEnd="@dimen/spacing_xsmall"
+            android:paddingStart="@dimen/spacing_xsmall"
+            android:text="@string/best_rate"
+            android:textAppearance="@style/CustomTextAppearance.Regular"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_large" />
+
+        <View
+            android:layout_width="@dimen/spacing_very_tiny"
+            android:layout_height="@dimen/dialog_progress_wheel_width_height"
+            android:background="@color/gray_light" />
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvPlan1Rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/CustomTextAppearance.Regular"
+                android:textSize="@dimen/font_normal"
+                tools:text="$ 12.00" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fixed"
+                android:textAppearance="@style/CustomTextAppearance.Light"
+                android:textSize="@dimen/font_xsmall" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="@dimen/spacing_very_tiny"
+            android:layout_height="@dimen/dialog_progress_wheel_width_height"
+            android:background="@color/gray_light" />
+
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvPlan2Rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/CustomTextAppearance.Regular"
+                android:textSize="@dimen/font_normal"
+                tools:text="$ 12.00" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/fixed"
+                android:textAppearance="@style/CustomTextAppearance.Light"
+                android:textSize="@dimen/font_xsmall" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spacing_very_tiny"
+        android:background="@color/gray_light" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:gravity="center_vertical"
+            android:paddingEnd="@dimen/spacing_xsmall"
+            android:paddingStart="@dimen/spacing_xsmall"
+            android:text="@string/emi_monthly_fee"
+            android:textAppearance="@style/CustomTextAppearance.Regular"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_large" />
+
+        <View
+            android:layout_width="@dimen/spacing_very_tiny"
+            android:layout_height="@dimen/dialog_progress_wheel_width_height"
+            android:background="@color/gray_light" />
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvPlan1EMI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/CustomTextAppearance.Regular"
+                android:textSize="@dimen/font_normal"
+                tools:text="$ 12.00" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/for_four_years"
+                android:textAppearance="@style/CustomTextAppearance.Light"
+                android:textSize="@dimen/font_xsmall" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="@dimen/spacing_very_tiny"
+            android:layout_height="@dimen/dialog_progress_wheel_width_height"
+            android:background="@color/gray_light" />
+
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvPlan2EMI"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/CustomTextAppearance.Regular"
+                android:textSize="@dimen/font_normal"
+                tools:text="$ 12.00" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/for_four_years"
+                android:textAppearance="@style/CustomTextAppearance.Light"
+                android:textSize="@dimen/font_xsmall" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spacing_very_tiny"
+        android:background="@color/gray_light" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:gravity="center_vertical"
+            android:paddingEnd="@dimen/spacing_xsmall"
+            android:paddingStart="@dimen/spacing_xsmall"
+            android:text="@string/processing_fee"
+            android:textAppearance="@style/CustomTextAppearance.Regular"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_large" />
+
+        <View
+            android:layout_width="@dimen/spacing_very_tiny"
+            android:layout_height="@dimen/dialog_progress_wheel_width_height"
+            android:background="@color/gray_light" />
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvPlan1ProcessingFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/CustomTextAppearance.Regular"
+                android:textSize="@dimen/font_normal"
+                tools:text="$ 12.00" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/one_time_fee"
+                android:textAppearance="@style/CustomTextAppearance.Light"
+                android:textSize="@dimen/font_xsmall" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <View
+            android:layout_width="@dimen/spacing_very_tiny"
+            android:layout_height="@dimen/dialog_progress_wheel_width_height"
+            android:background="@color/gray_light" />
+
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvPlan2ProcessingFee"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/CustomTextAppearance.Regular"
+                android:textSize="@dimen/font_normal"
+                tools:text="$ 12.00" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/one_time_fee"
+                android:textAppearance="@style/CustomTextAppearance.Light"
+                android:textSize="@dimen/font_xsmall" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spacing_very_tiny"
+        android:background="@color/gray_light" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:gravity="center_vertical"
+            android:paddingEnd="@dimen/spacing_xsmall"
+            android:paddingStart="@dimen/spacing_xsmall"
+            android:text="@string/branches"
+            android:textAppearance="@style/CustomTextAppearance.Regular"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_large" />
+
+        <View
+            android:layout_width="@dimen/spacing_very_tiny"
+            android:layout_height="@dimen/dialog_progress_wheel_width_height"
+            android:background="@color/gray_light" />
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvPlan1Branches"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:textAppearance="@style/CustomTextAppearance.Regular"
+            android:textSize="@dimen/font_normal"
+            tools:text="$ 12.00" />
+
+        <View
+            android:layout_width="@dimen/spacing_very_tiny"
+            android:layout_height="@dimen/dialog_progress_wheel_width_height"
+            android:background="@color/gray_light" />
+
+
+        <android.support.v7.widget.AppCompatTextView
+            android:id="@+id/tvPlan2Branches"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:textAppearance="@style/CustomTextAppearance.Regular"
+            android:textSize="@dimen/font_normal"
+            tools:text="$ 12.00" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <View xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spacing_very_tiny"
+        android:background="@color/gray_light" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:orientation="horizontal">
+
+        <android.support.v7.widget.AppCompatTextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:gravity="center_vertical"
+            android:paddingEnd="@dimen/spacing_xsmall"
+            android:paddingStart="@dimen/spacing_xsmall"
+            android:text="@string/door_step_service"
+            android:textAppearance="@style/CustomTextAppearance.Regular"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_large" />
+
+        <View
+            android:layout_width="@dimen/spacing_very_tiny"
+            android:layout_height="@dimen/dialog_progress_wheel_width_height"
+            android:background="@color/gray_light" />
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.25"
+            android:src="@drawable/ic_available" />
+
+        <View
+            android:layout_width="@dimen/spacing_very_tiny"
+            android:layout_height="@dimen/dialog_progress_wheel_width_height"
+            android:background="@color/gray_light" />
+
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="0.25"
+            android:src="@drawable/ic_available" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/spacing_very_tiny"
+        android:background="@color/gray_light" />
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/button_height"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5" />
+
+        <View
+            android:layout_width="@dimen/spacing_very_tiny"
+            android:layout_height="@dimen/dialog_progress_wheel_width_height"
+            android:background="@color/gray_light" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25">
+
+            <android.support.v7.widget.AppCompatButton
+                style="@style/accent_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/spacing_tiny"
+                android:text="@string/purchase" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/spacing_very_tiny"
+                android:layout_alignParentBottom="true"
+                android:background="@color/gray_light" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="@dimen/spacing_very_tiny"
+            android:layout_height="@dimen/dialog_progress_wheel_width_height"
+            android:background="@color/gray_light" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btnPurchasePlan2"
+                style="@style/accent_button"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/spacing_tiny"
+                android:text="@string/purchase" />
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/spacing_very_tiny"
+                android:layout_alignParentBottom="true"
+                android:background="@color/gray_light" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.LinearLayoutCompat>
+</android.support.v7.widget.LinearLayoutCompat>

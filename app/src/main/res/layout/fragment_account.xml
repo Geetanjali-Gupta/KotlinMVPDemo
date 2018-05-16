@@ -1,14 +1,174 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.skeleton.mvp.ui.home.account.AccountFragment">
+    android:fillViewport="true"
+    tools:context=".ui.home.homefragment.account.AccountFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Account" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/plans_view_pager_height"
+            android:background="@color/colorPrimaryDark">
+
+            <android.support.v7.widget.AppCompatImageView
+                android:id="@+id/ivProfilePic"
+                android:layout_width="@dimen/profile_image_height"
+                android:layout_height="@dimen/profile_image_height"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/spacing_medium"
+                android:src="@drawable/ic_profile" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ivProfilePic"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="@dimen/screen_padding"
+                android:textAppearance="@style/CustomTextAppearance.Medium"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_xxlarge"
+                tools:text="@string/comparing_with" />
+
+            <android.support.v7.widget.AppCompatTextView
+                android:id="@+id/tvUserEmailId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvUserName"
+                android:layout_centerHorizontal="true"
+                android:textAppearance="@style/CustomTextAppearance.Light"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_normal"
+                tools:text="@string/comparing_with" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlMyProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_margin="@dimen/screen_padding"
+                android:text="@string/my_profile"
+                android:textAppearance="@style/CustomTextAppearance.Light"
+                android:textSize="@dimen/font_large" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/screen_padding"
+                android:padding="@dimen/screen_padding"
+                android:src="@drawable/ic_next" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_very_tiny"
+            android:layout_marginEnd="@dimen/screen_padding"
+            android:layout_marginStart="@dimen/screen_padding"
+            android:background="@color/gray_light" />
+
+        <RelativeLayout
+            android:id="@+id/rlContactUs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_margin="@dimen/screen_padding"
+                android:text="@string/contact_us"
+                android:textAppearance="@style/CustomTextAppearance.Light"
+                android:textSize="@dimen/font_large" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/screen_padding"
+                android:padding="@dimen/screen_padding"
+                android:src="@drawable/ic_next" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_very_tiny"
+            android:layout_marginEnd="@dimen/screen_padding"
+            android:layout_marginStart="@dimen/screen_padding"
+            android:background="@color/gray_light" />
+
+        <RelativeLayout
+            android:id="@+id/rlTermsOfServices"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_margin="@dimen/screen_padding"
+                android:text="@string/terms_of_services"
+                android:textAppearance="@style/CustomTextAppearance.Light"
+                android:textSize="@dimen/font_large" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/screen_padding"
+                android:padding="@dimen/screen_padding"
+                android:src="@drawable/ic_next" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_very_tiny"
+            android:layout_marginEnd="@dimen/screen_padding"
+            android:layout_marginStart="@dimen/screen_padding"
+            android:background="@color/gray_light" />
+
+        <RelativeLayout
+            android:id="@+id/rlLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_margin="@dimen/screen_padding"
+                android:text="@string/logout"
+                android:textAppearance="@style/CustomTextAppearance.Light"
+                android:textSize="@dimen/font_large" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/screen_padding"
+                android:padding="@dimen/screen_padding"
+                android:src="@drawable/ic_logout" />
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/spacing_very_tiny"
+            android:layout_marginEnd="@dimen/screen_padding"
+            android:layout_marginStart="@dimen/screen_padding"
+            android:background="@color/gray_light" />
+    </LinearLayout>
+</ScrollView>

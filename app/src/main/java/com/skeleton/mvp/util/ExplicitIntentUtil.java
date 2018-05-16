@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.skeleton.mvp.ui.splash.SplashActivity;
+
 import static android.app.Activity.RESULT_CANCELED;
 import static android.app.Activity.RESULT_OK;
 
@@ -81,5 +83,18 @@ public final class ExplicitIntentUtil {
     public static void finishActivityForResultCancel(final Activity fromContext) {
         fromContext.setResult(RESULT_CANCELED, fromContext.getIntent());
         fromContext.finish();
+    }
+
+    /**
+     * Restart app on session expire
+     *
+     * @param fromContext the activity to be finished
+     */
+    public static void restartAppOnSessionExpire(final Activity fromContext) {
+        final Intent intent = new Intent(fromContext, SplashActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
+                | Intent.FLAG_ACTIVITY_CLEAR_TASK
+                | Intent.FLAG_ACTIVITY_NEW_TASK);
+        fromContext.startActivity(intent);
     }
 }

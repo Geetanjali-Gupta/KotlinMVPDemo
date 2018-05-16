@@ -20,4 +20,5 @@
     <color name="red">#d4002a</color>
     <color name="green">#0a9728</color>
     <color name="list_bg">#f1f0f0</color>
+    <color name="gray_list_bg">#f7f7f7</color>
 </resources>

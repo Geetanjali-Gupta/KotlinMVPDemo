@@ -13,6 +13,10 @@ public final class IntentConstant {
     //Plans fragment
     public static final String EXTRA_CATEGORY_ID = "category_id";
 
+    //Subscription/Compare Plans
+    public static final String EXTRA_PLAN_ID_1 = "plan_id_1";
+    public static final String EXTRA_PLAN_ID_2 = "plan_id_2";
+
 
     public static final String EXTRA_PLAN_ID = "plan_id";
     public static final String EXTRA_TITLE = "title";

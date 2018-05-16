@@ -81,6 +81,23 @@ public interface ApiHelper {
      */
     void apiCallToGetPlansOfCategory(String categoryId, int skip, ApiListener mApiListener);
 
+
+    /**
+     * Api call to register user.
+     *
+     * @param planId1      Plan Id 1
+     * @param planId2      Plan Id 2
+     * @param mApiListener the m api listener
+     */
+    void apiCallToComparePlans(String planId1, String planId2, ApiListener mApiListener);
+
+    /**
+     * Api call to register user.
+     *
+     * @param mApiListener the m api listener
+     */
+    void apiCallToLogoutUser(ApiListener mApiListener);
+
     /**
      * The interface Api listener.
      */

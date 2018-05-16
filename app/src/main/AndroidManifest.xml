@@ -85,8 +85,10 @@
             android:name=".ui.onboarding.otpverification.OTPVerificationActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden" />
-        <activity android:name=".ui.home.homebase.HomeActivity" />
-        <activity android:name=".ui.home.plans.subscriptionplans.SubscriptionPlansActivity"></activity>
+        <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.home.homefragment.plans.subscriptionplans.SubscriptionPlansActivity" />
+        <activity android:name=".ui.home.homefragment.plans.purchasePlan.PurchasePlanActivity" />
+        <activity android:name=".ui.home.homefragment.plans.ComparePlans.ComparePlansActivity"></activity>
     </application>
 
 </manifest>

@@ -8,7 +8,7 @@ import com.skeleton.mvp.R;
 import com.skeleton.mvp.data.DataManagerImpl;
 import com.skeleton.mvp.data.network.RestClient;
 import com.skeleton.mvp.ui.base.BaseActivity;
-import com.skeleton.mvp.ui.home.homebase.HomeActivity;
+import com.skeleton.mvp.ui.home.HomeActivity;
 import com.skeleton.mvp.ui.onboarding.signin.SignInActivity;
 import com.skeleton.mvp.ui.onboarding.signup.SignUpActivity;
 import com.skeleton.mvp.util.ExplicitIntentUtil;

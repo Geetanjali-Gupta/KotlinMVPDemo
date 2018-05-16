@@ -12,6 +12,7 @@
 
 
     <!-- typical spacing between two views -->
+    <dimen name="spacing_xxlarge">46dp</dimen>
     <dimen name="spacing_xlarge">40dp</dimen>
     <dimen name="spacing_large">24dp</dimen>
     <dimen name="spacing_medium">20dp</dimen>
@@ -42,7 +43,6 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="plans_view_pager_height">200dp</dimen>
     <dimen name="plans_view_pager_indicator">180dp</dimen>
-
     <dimen name="button_height">56dp</dimen>
-
+    <dimen name="profile_image_height">96dp</dimen>
 </resources>

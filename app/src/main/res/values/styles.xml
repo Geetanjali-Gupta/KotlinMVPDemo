@@ -47,6 +47,10 @@
     <style name="CustomTextAppearance.Semibold" parent="CustomTextAppearance">
         <item name="fontPath">fonts/Montserrat-SemiBold.ttf</item>
     </style>
+    <!--Custom semibold text appearance-->
+    <style name="CustomTextAppearance.Medium" parent="CustomTextAppearance">
+        <item name="fontPath">fonts/Montserrat-Medium.ttf</item>
+    </style>
 
     <style name="accent_button">
         <item name="android:layout_width">match_parent</item>
