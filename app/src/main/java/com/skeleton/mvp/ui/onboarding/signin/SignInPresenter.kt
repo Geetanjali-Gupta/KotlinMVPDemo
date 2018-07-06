@@ -1,30 +1,30 @@
 package com.skeleton.mvp.ui.onboarding.signin;
 
-import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse;
-import com.skeleton.mvp.ui.base.BasePresenter;
+import com.skeleton.mvp.data.model.responsemodel.base.CommonResponse
+import com.skeleton.mvp.ui.base.BasePresenter
 
 /**
  * Developer: Click Labs
  */
 
-public interface SignInPresenter extends BasePresenter {
+interface SignInPresenter : BasePresenter {
 
     /**
      * On SignIn clicked
      *
      * @param phoneNumber the provided email
      */
-    void onSignInClicked(final String phoneNumber);
+    fun onSignInClicked(phoneNumber: String)
 
     /**
      * On sign in success.
      *
      * @param commonResponse the common response
      */
-    void onSignInSuccess(CommonResponse commonResponse);
+    fun onSignInSuccess(commonResponse: CommonResponse)
 
     /**
      * Handle On Back Press
      */
-    void onBackPress();
+    fun onBackPress();
 }

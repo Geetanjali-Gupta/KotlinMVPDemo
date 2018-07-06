@@ -88,7 +88,8 @@
         <activity android:name=".ui.home.HomeActivity" />
         <activity android:name=".ui.home.homefragment.plans.subscriptionplans.SubscriptionPlansActivity" />
         <activity android:name=".ui.home.homefragment.plans.purchasePlan.PurchasePlanActivity" />
-        <activity android:name=".ui.home.homefragment.plans.ComparePlans.ComparePlansActivity"></activity>
+        <activity android:name=".ui.home.homefragment.plans.ComparePlans.ComparePlansActivity" />
+
     </application>
 
 </manifest>

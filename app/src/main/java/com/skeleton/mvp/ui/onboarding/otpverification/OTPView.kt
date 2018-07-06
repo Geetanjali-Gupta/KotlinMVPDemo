@@ -6,19 +6,19 @@ import com.skeleton.mvp.ui.base.BaseView;
 /**
  * Developer: Geetanjali Gupta
  */
-public interface OTPView extends BaseView {
+interface OTPView : BaseView {
 
     /**
      * On Verification Complete
      *
      * @param message Success Message
      */
-    void onOtpVerificationSuccessful(final String message);
+    fun onOtpVerificationSuccessful(message: String);
 
     /**
      * On Verification Complete
      *
      * @param message Success Message
      */
-    void onResendOtpSuccessful(final String message);
+    fun onResendOtpSuccessful(message: String);
 }

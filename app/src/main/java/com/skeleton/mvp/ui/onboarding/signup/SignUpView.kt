@@ -6,20 +6,20 @@ import com.skeleton.mvp.ui.base.locationbase.BaseLocationView;
 /**
  * Developer: Geetanjali Gupta
  */
-public interface SignUpView extends BaseLocationView {
+interface SignUpView : BaseLocationView {
     /**
      * Show email error.
      *
      * @param resId the res id
      */
-    void showEmailError(int resId);
+    fun showEmailError(resId: Int);
 
     /**
      * Show phone number error.
      *
      * @param resId the res id
      */
-    void showPhoneNumberError(int resId);
+    fun showPhoneNumberError(resId: Int);
 
 
     /**
@@ -27,6 +27,6 @@ public interface SignUpView extends BaseLocationView {
      *
      * @param message the message
      */
-    void onSignUpSuccess(String message);
+    fun onSignUpSuccess(message: String);
 
 }

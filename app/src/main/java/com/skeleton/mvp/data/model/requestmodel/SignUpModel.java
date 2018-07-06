@@ -8,7 +8,7 @@ public class SignUpModel {
     private String email;
     private String mobile;
     private String countryCode;
-    private double appVersion;
+    private int appVersion;
     private double latitude;
     private double longitude;
 
@@ -23,7 +23,7 @@ public class SignUpModel {
      * @param longitude   longitude
      */
     public SignUpModel(final String email, final String mobile, final String countryCode,
-                       final double appVersion, final double latitude,
+                       final int appVersion, final double latitude,
                        final double longitude) {
         this.email = email;
         this.mobile = mobile;
@@ -45,7 +45,7 @@ public class SignUpModel {
         return countryCode;
     }
 
-    public double getAppVersion() {
+    public int getAppVersion() {
         return appVersion;
     }
 

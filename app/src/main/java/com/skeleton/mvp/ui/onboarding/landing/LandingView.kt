@@ -6,21 +6,21 @@ import com.skeleton.mvp.ui.base.BaseView;
 /**
  * Developer: Geetanjali Gupta
  */
-public interface LandingView extends BaseView {
+interface LandingView : BaseView {
 
     /**
      * Navigate to login screen.
      */
-    void navigateToSignInScreen();
+    fun navigateToSignInScreen()
 
     /**
      * Navigate to sign up screen.
      */
-    void navigateToSignUpScreen();
+    fun navigateToSignUpScreen()
 
     /**
      * Navigate to home screen.
      */
-    void navigateToHomeScreen();
+    fun navigateToHomeScreen()
 
 }

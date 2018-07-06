@@ -7,7 +7,7 @@ import com.skeleton.mvp.ui.base.BasePresenter;
 /**
  * Developer: Geetanjali Gupta
  */
-public interface OTPVerificationPresenter extends BasePresenter {
+interface OTPVerificationPresenter : BasePresenter {
 
     /**
      * Used to handle Continue Button Click
@@ -15,36 +15,36 @@ public interface OTPVerificationPresenter extends BasePresenter {
      * @param mobileNumber Phone number to be verified
      * @param otp          OTP entered by user
      */
-    void onContinueBtnClick(final String mobileNumber, final String otp);
+    fun onContinueBtnClick(mobileNumber: String, otp: String);
 
     /**
      * Used to handle Resend Button Click
      *
      * @param mobileNumber Phone number to be verified
      */
-    void onResendBtnClick(final String mobileNumber);
+    fun onResendBtnClick(mobileNumber: String);
 
     /**
      * On Otp Verification success.
      *
      * @param commonResponse the common response
      */
-    void onOtpVerificationSuccess(CommonResponse commonResponse);
+    fun onOtpVerificationSuccess(commonResponse: CommonResponse);
 
     /**
      * On Otp Verification success.
      *
      * @param commonResponse the common response
      */
-    void onResendOtpSuccess(CommonResponse commonResponse);
+    fun onResendOtpSuccess(commonResponse: CommonResponse);
 
     /**
      * Handle On Back Press
      */
-    void onBackPress();
+    fun onBackPress();
 
     /**
      * Expire session that is clear access token On Back Press
      */
-    void onBackExpireSession();
+    fun onBackExpireSession();
 }

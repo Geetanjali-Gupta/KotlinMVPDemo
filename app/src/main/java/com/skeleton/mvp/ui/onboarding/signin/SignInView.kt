@@ -1,25 +1,24 @@
 package com.skeleton.mvp.ui.onboarding.signin;
 
+import com.skeleton.mvp.ui.base.BaseView
 
-import com.skeleton.mvp.ui.base.BaseView;
 
 /**
  * Developer: Click Labs
  */
-
-public interface SignInView extends BaseView {
+interface SignInView : BaseView {
 
     /**
      * On sign in success.
      *
      * @param message the message
      */
-    void onSignInSuccess(String message);
+    fun onSignInSuccess(message: String)
 
     /**
      * Show phone number error.
      *
      * @param resId the res id
      */
-    void showPhoneNumberError(int resId);
+    fun showPhoneNumberError(resId: Int)
 }
